@@ -10,7 +10,7 @@ Senior majoring in Computer Science. I am most comfortable with Java and C#, but
 
 #### [Deren](https://github.com/DerenB) - Team Member
 
-Placeholder
+I'm a second bachelor student on my last semester majoring in computer science. I've done a lot of web development with Blazor/ASP.NET, C#, ReactJS, Bootstrap, PHP, SQL, and JavaScript. I've dabbled in learning the MERN stack but haven't made a full app with it. I currently work for a small company in Detroit doing accounting and some data analysis. Outside of work and school I like to cook and play video games, right now it's Baldur's Gate 3 and Battle Bit.
 
 #### [Blaine](https://github.com/bpain96) - Team Member
 
