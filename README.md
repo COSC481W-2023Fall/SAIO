@@ -2,14 +2,15 @@
 
 The only app you need for success in school! With note taking, flashcards, calendar, to-do lists, and more, you can do it all with **SAIO**!
 
-###Languages used
-Python 3.9
-Node 16.17.0
-JavaScript ES6
-Html 5
-CSS
-
 ## Setup
+
+###Languages used
+
+- Python 3.9
+- Node 16.17.0
+- JavaScript ES6
+- Html 5
+- CSS
 
 ### Setup FastAPI Backend
 
@@ -40,8 +41,6 @@ CSS
   - web-vitals 2.1.4+
   - Run command `npm start`.
 Once the server is running, open a browser and go to http:localhost:5000 to start using the app locally!
-
-### FastAPI
 
 ## team://localhost
 
