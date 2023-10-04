@@ -4,7 +4,7 @@ The only app you need for success in school! With note taking, flashcards, calen
 
 ## Setup
 
-###Languages used
+### Languages used
 
 - Python 3.9
 - Node 16.17.0
