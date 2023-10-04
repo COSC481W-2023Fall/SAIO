@@ -13,34 +13,32 @@ CSS
 
 ### Setup FastAPI Backend
 
-Make sure you have Python installed on your machine.
-Navigate to the “backend” directory.
-Create a python virtual environment using the command `python -m venv venv`
-Install all the required modules from the requirements.txt file using `pip install -r requirements.txt’. The Python dependencies for this project are:
-FastAPI
-pydantic
-  - 	python-dotenv
+1. Make sure you have Python installed on your machine.
+2. Navigate to the “backend” directory.
+3. Create a python virtual environment using the command `python -m venv venv`
+4. Install all the required modules from the requirements.txt file using `pip install -r requirements.txt’. The Python dependencies for this project are:
+  - FastAPI
+  - pydantic
+  - python-dotenv
   - uvicorn
   - Motor
-
-
-Add the connection string to the .gitgnore file. Ask one of us for the connection string.
-To run the server, use command `uvicorn main:app`
-Once the backend server is running, open a browser and go to http:localhost:3000 to confirm.
+5. Add the connection string to the .gitgnore file. Ask one of us for the connection string.
+6. To run the server, use command `uvicorn main:app`
+7. Once the backend server is running, open a browser and go to http:localhost:3000 to confirm.
 
 ### Setup React Frontend
 
-Make sure you have Node and npm installed.
-Navigate to the “frontend” directory.
-The dependencies for the React frontend are:
-axios 1.5.0+
-bootstrap 5.3.2+
-react 18.2.0+
-react-bootstrap 2.8.0+
-react-dom 18.2.0+
-react-scripts 5.0.1+
-web-vitals 2.1.4+
-Run command `npm start`.
+1. Make sure you have Node and npm installed.
+2. Navigate to the “frontend” directory.
+3. The dependencies for the React frontend are:
+  - axios 1.5.0+
+  - bootstrap 5.3.2+
+  - react 18.2.0+
+  - react-bootstrap 2.8.0+
+  - react-dom 18.2.0+
+  - react-scripts 5.0.1+
+  - web-vitals 2.1.4+
+  - Run command `npm start`.
 Once the server is running, open a browser and go to http:localhost:5000 to start using the app locally!
 
 ### FastAPI
