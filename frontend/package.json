@@ -10,6 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@syncfusion/ej2": "^23.1.39",
+    "@syncfusion/ej2-react-calendars": "^23.1.38",
+    "@syncfusion/ej2-react-charts": "^23.1.39",
+    "@syncfusion/ej2-react-dropdowns": "^23.1.39",
+    "@syncfusion/ej2-react-grids": "^23.1.39",
+    "@syncfusion/ej2-react-inputs": "^23.1.38",
+    "@syncfusion/ej2-react-kanban": "^23.1.36",
+    "@syncfusion/ej2-react-popups": "^23.1.38",
+    "@syncfusion/ej2-react-richtexteditor": "^23.1.39",
+    "@syncfusion/ej2-react-schedule": "^23.1.39",
     "axios": "^1.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
