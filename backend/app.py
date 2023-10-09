@@ -4,4 +4,4 @@ app = FastAPI()
 
 @app.get("/")
 def index():
-    return "This is the index"
+    return {"message": "This is the index"}
