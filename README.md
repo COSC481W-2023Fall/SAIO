@@ -40,7 +40,15 @@ The only app you need for success in school! With note taking, flashcards, calen
   - react-router-dom 6.16.0
   - react-scripts 5.0.1+
   - @syncfusion/ej2 23.1.39
-4. Run command `npm run dev`.
+
+### Run React Locally
+
+1. Clone GitHub repo to local machine
+2. `cd` into frontend directory
+3. Run command: `npm i`
+4. Project now ready for local use
+5. Run command `npm run dev` to run project on localhost
+6. Run command `npm run test` to run tests
 
 Once the server is running, open a browser and go to http:localhost:5000 to start using the app locally!
 
