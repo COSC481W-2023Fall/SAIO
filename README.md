@@ -33,13 +33,15 @@ The only app you need for success in school! With note taking, flashcards, calen
 2. Navigate to the “frontend” directory.
 3. The dependencies for the React frontend are:
   - axios 1.5.0+
-  - bootstrap 5.3.2+
+  - tailwindcss 3.3.3
   - react 18.2.0+
-  - react-bootstrap 2.8.0+
   - react-dom 18.2.0+
+  - react-icons 4.11.0
+  - react-router-dom 6.16.0
   - react-scripts 5.0.1+
-  - web-vitals 2.1.4+
-  - Run command `npm start`.
+  - @syncfusion/ej2 23.1.39
+4. Run command `npm run dev`.
+
 Once the server is running, open a browser and go to http:localhost:5000 to start using the app locally!
 
 ## team://localhost
