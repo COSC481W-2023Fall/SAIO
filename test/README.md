@@ -9,7 +9,7 @@
 ### Setup Jest Test
 
 1. In terminal run npm install --save-dev jest babel-jest @babel/preset-env @babel/preset-react react-test-renderer
-npm install --save-dev @testing-library/react
+
 2. In package.json file add jest and script configuration entries like this: 
   -{
   "dependencies": {
