@@ -2,6 +2,13 @@
 
 - The testing environment uses "ViTest" since the React project was created with Vite
 
+### Run Project & Tests locally
+
+1. Clone GitHub Repo to local machine
+2. `cd` into frontend directory
+3. Run Command: `npm i` (downloads all dependencies)
+4. Project now ready to run on localhost with `npm run dev`
+
 ### Create a Test
 
 - Test files created in frontend > src > `__tests__`
