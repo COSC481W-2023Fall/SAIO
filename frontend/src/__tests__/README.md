@@ -1,6 +1,7 @@
 # Testing the React Frontend
 
 - The testing environment uses "ViTest" since the React project was created with Vite
+- [ViTest Website with Documentation](https://vitest.dev/)
 
 ### Run Project & Tests locally
 
