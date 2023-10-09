@@ -110,6 +110,9 @@ export default {
   - Added to package.json
   - Looks for the "scripts" section near the top
   - add: `"test": "vitest"`
+- Additional dependencies
+  - `npm i -D jsdom @testing-library/react @testing-library/jest-dom`
+- [Additional Resources](https://www.youtube.com/watch?v=G-4zgIPsjkU)
 
 ### Run Tests
 
