@@ -2,10 +2,17 @@ import React, { createContext, useContext, useState } from 'react';
 
 const StateContext = createContext();
 
-export const ContextProvider = () => {
+export const ContextProvider = ({ children }) => {
+    const [screenSize, setScreenSize] = useState(undefined);
+
     return (
-        <StateContext.Provider>
-            
+        <StateContext.Provider 
+            value={{ 
+                screenSize,
+                setScreenSize
+            }}
+        >
+            {children}
         </StateContext.Provider>
     )
 }
