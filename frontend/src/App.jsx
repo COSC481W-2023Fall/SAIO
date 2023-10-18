@@ -1,20 +1,17 @@
-{/* Import Style Sheets */}
-import './App.css'
-
-{/* Importing the items in Components directory */}
-import { BasicTemplateComponent } from './components';
-
-{/* Importing the items in Pages directory */}
-import { BasicTemplatePage } from './pages';
+import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import RegisterForm from './pages/RegisterForm';
 
 function App() {
   return (
-    <div>
-      <p className='underline text-4xl'>Hello World</p>
-      <BasicTemplateComponent />
-      <BasicTemplatePage />
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/account" element={<RegisterForm />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
