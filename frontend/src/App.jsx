@@ -1,9 +1,14 @@
-import './App.css'
+import React, {useState} from "react";
+import './App.css';
+import {Login} from "./Login";
 
 function App() {
+  const [currentForm, setCurrentForm] = useState('Login');
+
   return (
-    <div>
-      <p className='underline text-4xl'>Hello World</p>
+    <div className="App">
+      {currentForm === "Login"? <Login /> : <Register />}
+    
     </div>
   )
 }
