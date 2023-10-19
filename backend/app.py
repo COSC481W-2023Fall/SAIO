@@ -33,11 +33,11 @@ load_dotenv()
 MONGO_DB_URL = os.getenv("MONGO_DB_URL")
 client = AsyncIOMotorClient(MONGO_DB_URL)
 db = client["SAIO"]
-users_collection = db["test"]
+users_collection = db["users"]
 
 # Create a unique index on the email field
 users_collection.create_index("email", unique=True)
-users_collection.create_index([("email", 1)], unique=True)
+
 
 # Create user model
 class UserCreate(BaseModel):
