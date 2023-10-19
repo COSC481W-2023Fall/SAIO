@@ -65,6 +65,7 @@ function RegisterForm() {
             onChange={handleChange}
             placeholder="Name"
             className="w-full p-2 border rounded"
+            required
           />
         </div>
         <div className="mb-4">
@@ -75,6 +76,7 @@ function RegisterForm() {
             onChange={handleChange}
             placeholder="Email"
             className="w-full p-2 border rounded"
+            required
           />
         </div>
         <div className="mb-4">
@@ -85,6 +87,7 @@ function RegisterForm() {
             onChange={handleChange}
             placeholder="Password"
             className="w-full p-2 border rounded"
+            required
           />
         </div>
         <div className="mb-4">
@@ -95,6 +98,7 @@ function RegisterForm() {
             onChange={handleChange}
             placeholder="Confirm Password"
             className="w-full p-2 border rounded"
+            required
           />
         </div>
         <button type="submit" className="bg-blue-500 text-white p-2 rounded">
