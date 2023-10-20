@@ -6,8 +6,9 @@ import Flashcards from './components/pages/Flashcards'
 import Home from './components/pages/Home'
 import Notes from './components/pages/Notes'
 import Todo from './components/pages/Todo'
-{/* Import Style Sheets */}
-import './App.css'
+
+
+
 
 {/* Importing the items in Components directory */}
 import { BasicTemplateComponent } from './components';
