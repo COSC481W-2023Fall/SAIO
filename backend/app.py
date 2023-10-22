@@ -1,9 +1,19 @@
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-
+from motor.motor_asyncio import AsyncIOMotorClient
+from pymongo.errors import DuplicateKeyError
+from pydantic import BaseModel
+from starlette.responses import JSONResponse
+from passlib.context import CryptContext
+from dotenv import load_dotenv
 
 from models.TestModel import sample
+import os
+
 app = FastAPI()
+
+
 
 # Import Database Functions
 from DatabaseFunctions import (
@@ -32,7 +42,47 @@ app.add_middleware(
 )
 
 
+# Load environment variables from .env file
+load_dotenv()
 
+# Connect to MongoDB
+MONGO_DB_URL = os.getenv("MONGO_DB_URL")
+client = AsyncIOMotorClient(MONGO_DB_URL)
+db = client["SAIO"]
+users_collection = db["users"]
+
+# Create a unique index on the email field
+users_collection.create_index("email", unique=True)
+
+
+# Create user model
+class UserCreate(BaseModel):
+    name: str
+    email: str
+    password: str
+
+@app.get("/")
+def index():
+    return {"message": "This is the index"}
+
+@app.post("/account")
+async def register(user: UserCreate):
+    user_dict = user.dict()
+
+    # Configure hashing algorithm
+    password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+    # Hash the user's password
+    hashed_password = password_context.hash(user_dict['password'])
+    user_dict['password'] = hashed_password
+
+    try:
+        inserted_user = await users_collection.insert_one(user_dict)
+        return {"user_id": str(inserted_user.inserted_id), "message": "User registered successfully"}
+    except DuplicateKeyError:
+        return JSONResponse(content={"message": "Email is already in use"}, status_code=409)
+
+#Home Root
 @app.get("/")
 def index():
     return {"message": "This is the index"}
@@ -79,4 +129,5 @@ async def delete_user(name):
     if response:
         return "Successfully deleted User"
     raise HTTPException(404, f"There is no Todo item with this title {name}")
+
 
