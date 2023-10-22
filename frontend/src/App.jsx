@@ -1,7 +1,7 @@
 
 import React, {useState} from "react";
 import './App.css';
-import {Login} from "./Login";
+import {Login} from "./components/pages/Login";
 import { Routes, Route } from 'react-router-dom'
 
 /* Web Pages */
@@ -19,14 +19,14 @@ import { BasicTemplatePage } from './pages';
 
 
 function App() {
-  const [currentForm, setCurrentForm] = useState('Login');
+  
 
   return (
 
-    <div className="App">
-      {currentForm === "Login"? <Login /> : <Register />}
+   
     
     <Routes>
+      <Route path= "/app/login" element={<Login/>}></Route>
       <Route path="/" element={<Home/>}></Route>
       <Route path="/app/home" element={<Home/>}></Route>
       <Route path="/app/todo" element={<Todo/>}></Route>
@@ -34,7 +34,7 @@ function App() {
       <Route path="/app/flashcards" element={<Flashcards/>}></Route>
       <Route path="/app/notes" element={<Notes/>}></Route>
     </Routes>
-    </div>
+    
   )
 }
 

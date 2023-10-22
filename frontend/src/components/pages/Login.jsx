@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export const Login = (props) => {
+
+
+export  const  Login = (props) => {
+  const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [email_exists, setEmailExists] = useState(null);
     const [password_exists, setPasswordExists] = useState(null);
-
+    const [authenticated, setauthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated")|| false));
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
@@ -19,12 +23,16 @@ export const Login = (props) => {
           const data2 = response2.data;
     
           setPasswordExists(data2.password_exists);
+
+          
         } catch (error) {
           console.error(error);
           // Handle the error here, e.g. display an error message to the user
         }
         if(email_exists & password_exists){
-          console.log("Yes")
+          setauthenticated(true)
+            localStorage.setItem("authenticated", true);
+            navigate("/");
         }
         else{
           console.log("No")
