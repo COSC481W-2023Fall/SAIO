@@ -1,17 +1,30 @@
-import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import RegisterForm from './pages/RegisterForm';
+import { Routes, Route } from 'react-router-dom'
+
+/* Web Pages */
+import Calendar from './components/pages/Calendar'
+import Flashcards from './components/pages/Flashcards'
+import Home from './components/pages/Home'
+import Notes from './components/pages/Notes'
+import Todo from './components/pages/Todo'
+import RegisterForm from './components/pages/RegisterForm'
+{/* Importing the items in Components directory */}
+import { BasicTemplateComponent } from './components';
+
+{/* Importing the items in Pages directory */}
+import { BasicTemplatePage } from './pages';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/account" element={<RegisterForm />} />
-      </Routes>
-    </BrowserRouter>
-  );
+    <Routes>
+      <Route path="/" element={<Home/>}></Route>
+      <Route path="/app/home" element={<Home/>}></Route>
+      <Route path="/app/todo" element={<Todo/>}></Route>
+      <Route path="/app/calendar" element={<Calendar/>}></Route>
+      <Route path="/app/flashcards" element={<Flashcards/>}></Route>
+      <Route path="/app/notes" element={<Notes/>}></Route>
+      <Route path="/app/RegisterForm" element={<RegisterForm/>}></Route>
+    </Routes>
+  )
 }
 
-export default App;
+export default App
