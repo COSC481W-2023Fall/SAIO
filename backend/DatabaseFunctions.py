@@ -32,26 +32,3 @@ async def check_password(password: str):
     password_exists = await collection.find_one({"password": password})
     return {"password_exists": password_exists is not None}
 
-# Read / Fetch 1 User Name
-async def read_one_user(id):
-    document = await collection.find_one({"id":id})
-    return document
-'''
-# Read / Fetch All User Names
-async def read_all_users():
-    users = []
-    cursor = collection.find({})
-    async for document in cursor:
-        users.append(UserName(**document))
-    return users
-'''
-# Update a User Name
-async def update_user(id, name):
-    await collection.update_one({"id":id}, {"$set": {"name": name}})
-    document = await collection.find_one({"id": id})
-    return document
-
-# Delete a User Name
-async def remove_user(id):
-    await collection.delete_one({"id":id})
-    return True
