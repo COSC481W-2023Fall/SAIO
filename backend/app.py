@@ -7,6 +7,7 @@ from pydantic import BaseModel
 from starlette.responses import JSONResponse
 from passlib.context import CryptContext
 from dotenv import load_dotenv
+
 from models.TestModel import sample
 import os
 
@@ -20,13 +21,14 @@ from DatabaseFunctions import (
     read_one_test,
     update_test,
     remove_test,
-
+    check_email,
+    check_password
 )
 
 # Origins
 origins = [
     'http://localhost:3000',
-    ' http://localhost:5173',
+    'http://localhost:5173',
     'http://127.0.0.1:8000/'
 ]
 
@@ -84,6 +86,17 @@ async def register(user: UserCreate):
 @app.get("/")
 def index():
     return {"message": "This is the index"}
+
+@app.get("/api/check-email/{email}")
+async def get_email(email: str):
+   response = await check_email(email)
+   return response
+
+@app.get("/api/check-password/{password}")
+async def get_password(password: str):
+   response = await check_password(password)
+   return response
+
 # Create User
 @app.post("/api/test", response_model=sample)
 async def post_user(user:sample):
