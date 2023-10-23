@@ -15,7 +15,7 @@ export default function Notes() {
 
     // CREATE-POST a note
     const addNoteHandler = () => {
-        axios.post('TODO: Add backend URL', {
+        axios.post('https://saio-backend-8b4k2.ondigitalocean.app/', {
             'id': id,
             'note': note
         })
@@ -24,7 +24,7 @@ export default function Notes() {
 
     // READ-GET a note
     useEffect(() => {
-        axios.get('TODO: Add backend URL')
+        axios.get('https://saio-backend-8b4k2.ondigitalocean.app/')
         .then(res => {
             setNote(res.data)
         })
