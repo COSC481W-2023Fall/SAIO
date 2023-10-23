@@ -4,6 +4,7 @@ export default function Flashcards() {
     return (
         <div className="flex">
             <Sidebar/>
+            <p>Flash Cards</p>
         </div>
     )
 }
