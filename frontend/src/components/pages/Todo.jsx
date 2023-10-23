@@ -7,7 +7,7 @@ import TodoList from './TodoComponents/TodoList'
     */
 export default function Todo() {
     return (
-        <div>
+        <div className="flex">
             <Sidebar />
             <div className='todo-app'>
                 <TodoList />
