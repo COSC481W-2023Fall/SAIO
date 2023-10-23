@@ -48,7 +48,7 @@ app.add_middleware(
 load_dotenv()
 
 # Connect to MongoDB
-MONGO_DB_URL = os.getenv("MONGO_DB_URL")
+MONGO_DB_URL = os.getenv("ConnectionString")
 client = AsyncIOMotorClient(MONGO_DB_URL)
 db = client["SAIO"]
 users_collection = db["users"]
