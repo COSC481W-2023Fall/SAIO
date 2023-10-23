@@ -29,7 +29,9 @@ from DatabaseFunctions import (
 origins = [
     'http://localhost:3000',
     'http://localhost:5173',
-    'http://127.0.0.1:8000/'
+    'http://127.0.0.1:8000/',
+    'https://saio-frontend-y2z2s.ondigitalocean.app/',
+    'https://saio-frontend-y2z2s.ondigitalocean.app/app/'
 ]
 
 # Middleware
