@@ -6,7 +6,7 @@ export default function Home() {
     return (
         <div className="flex home">
             <Sidebar/>
-            <div><p>Content</p></div>
+            <div><p>Home</p></div>
         </div>
     )
     }
