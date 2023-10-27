@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -29,9 +28,7 @@ from DatabaseFunctions import (
 origins = [
     'http://localhost:3000',
     'http://localhost:5173',
-    'http://127.0.0.1:8000/',
-    'https://saio-frontend-y2z2s.ondigitalocean.app/',
-    'https://saio-frontend-y2z2s.ondigitalocean.app/app/'
+    'http://127.0.0.1:8000/'
 ]
 
 # Middleware
@@ -43,7 +40,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 # Load environment variables from .env file
 load_dotenv()
 
@@ -52,10 +48,6 @@ MONGO_DB_URL = os.getenv("ConnectionString")
 client = AsyncIOMotorClient(MONGO_DB_URL)
 db = client["SAIO"]
 users_collection = db["users"]
-
-# Create a unique index on the email field
-users_collection.create_index("email", unique=True)
-
 
 # Create user model
 class UserCreate(BaseModel):
@@ -131,5 +123,3 @@ async def delete_user(name):
     if response:
         return "Successfully deleted User"
     raise HTTPException(404, f"There is no Todo item with this title {name}")
-
-

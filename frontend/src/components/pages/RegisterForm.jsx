@@ -29,7 +29,7 @@ function RegisterForm() {
     const { confirmPassword, ...dataToSend } = formData;
   
     try {
-      const response = await axios.post('http://localhost:8000/account', dataToSend, {
+      const response = await axios.post('https://saio-backend-8b4k2.ondigitalocean.app/account', dataToSend, {
         headers: {
           'Content-Type': 'application/json',
         },
