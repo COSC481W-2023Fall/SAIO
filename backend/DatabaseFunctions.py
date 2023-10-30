@@ -35,34 +35,34 @@ async def check_password(password: str):
     return {"password_exists": password_exists is not None}
 
 
-databaseTest = client.Test
+
 
 
 # Create a sample test
 async def create_test(sample):
-    collection = databaseTest.test
+    collection = database.test
     document = sample
     result = await collection.insert_one(document)
     return document
 
 # Read / Fetch 1 User Name
 async def read_one_test(name):
-    collection = databaseTest.test
-    document = await collection.find_one({"name":name})
+    collection = database.test
+    document = await collection.find_one({"name": name})
     return document
 
 
 
 # Update a User Test
 async def update_test(name, email, password):
-    collection = databaseTest.test
+    collection = database.test
     await collection.update_one({"name":name}, {"$set": {"email": email, "password": password}})
     document = await collection.find_one({"name": name})
     return document
 
 # Delete a User Name
 async def remove_test(name):
-    collection = databaseTest.test
+    collection = database.test
     await collection.delete_one({"name":name})
     return True
 
