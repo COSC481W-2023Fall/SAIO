@@ -1,11 +1,8 @@
-// src/index.jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from '../App';
+// export { default as Login } from './Login';
+export { default as Signup } from './Signup';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// export { default as Calendar } from './app/Calendar';
+// export { default as Flashcards } from './app/Flashcards';
+// export { default as Home } from './app/Home';
+// export { default as Notes } from './app/Notes';
+// export { default as Todo } from './app/Todo';

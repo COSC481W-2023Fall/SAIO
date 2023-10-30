@@ -1,4 +1,4 @@
-import Notes from '../components/pages/Notes.jsx';
+import Notes from '../pages/app/Notes.jsx';
 import {render,screen} from '@testing-library/react';
 
 test("should have hello world", () => {

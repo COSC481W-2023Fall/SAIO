@@ -1,4 +1,4 @@
-import Sidebar from "../sidebar/Sidebar";
+import Sidebar from "../../components/sidebar/Sidebar";
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
