@@ -1,4 +1,4 @@
-import Flashcard from '../components/pages/Flashcards';
+import Flashcard from '../pages/app/Flashcards';
 import {render,screen} from '@testing-library/react';
 
 test("should have hello world", () => {
