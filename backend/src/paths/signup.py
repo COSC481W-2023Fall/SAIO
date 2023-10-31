@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from passlib.context import CryptContext
-from src.models import UserCreate
-from src.dbfuncs.signup import (
+from models import UserCreate
+from dbfuncs.signup import (
     insert_user,
     check_email,
     check_password
