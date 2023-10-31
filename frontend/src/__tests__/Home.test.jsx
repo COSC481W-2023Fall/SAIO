@@ -1,4 +1,4 @@
-import Home from '../components/pages/Home.jsx';
+import Home from '../pages/app/Home.jsx';
 import {render,screen} from '@testing-library/react';
 
 test("should have hello world", () => {

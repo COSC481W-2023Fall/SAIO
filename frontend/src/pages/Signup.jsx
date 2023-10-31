@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import config from '../config';
 
-function RegisterForm() {
+const Signup = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,7 +30,7 @@ function RegisterForm() {
     const { confirmPassword, ...dataToSend } = formData;
   
     try {
-      const response = await axios.post('https://saio-backend-8b4k2.ondigitalocean.app/account', dataToSend, {
+      const response = await axios.post(`${config.apiUrl}/signup`, dataToSend, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -109,4 +110,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default Signup;

@@ -1,4 +1,4 @@
-import Todo from '../components/pages/Todo';
+import Todo from '../pages/app/Todo';
 import {render,screen} from '@testing-library/react';
 
 test("should have hello world", () => {
