@@ -13,7 +13,7 @@ app = FastAPI()
 # Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "https://saio-frontend-y2z2s.ondigitalocean.app"],
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "https://saio-frontend-y2z2s.ondigitalocean.app", "https://saio-backend-8b4k2.ondigitalocean.app:8080", "https://saio-backend-8b4k2.ondigitalocean.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
