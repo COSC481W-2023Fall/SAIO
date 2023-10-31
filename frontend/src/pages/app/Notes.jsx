@@ -3,32 +3,28 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function Notes() {
+function Notes() {
     // Page Title
-    useEffect(() => {
-        document.title = "Note Page";
-    }, []);
+    // useEffect(() => {
+    //     document.title = "Note Page";
+    // }, []);
 
     // Test note variables
-    const [id, setID] = useState('');
-    const [note, setNote] = useState('');
+    const [firstName, setFirstName] = useState([]);
+    const [lastName, setLastName] = useState([]);
 
     // CREATE-POST a note
-    const addNoteHandler = () => {
-        axios.post('https://saio-backend-8b4k2.ondigitalocean.app/', {
-            'id': id,
-            'note': note
+    const addStudentHandler = () => {
+        axios.post("http://127.0.0.1:8000/student", {
+            'firstName': firstName,
+            'lastName': lastName
+        }).then(res => console.log(res))
+        .catch((error) => {
+            if(error.res) {
+                console.log(error.res.data)
+            }
         })
-        .then(res => console.log(res))
     }
-
-    // READ-GET a note
-    useEffect(() => {
-        axios.get('https://saio-backend-8b4k2.ondigitalocean.app/')
-        .then(res => {
-            setNote(res.data)
-        })
-    }, []);
 
     return (
         <div style={{ display: "flex", flexDirection: "row" }}>
@@ -38,18 +34,16 @@ export default function Notes() {
             <div style={{ marginLeft: "25px", marginTop: "25px" }}>
                 <h1>Note Taking Page</h1>
                 <br />
-                <form style={{ display: "flex", flexDirection: "column" }}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
                     <input 
-                        type="text" 
-                        onChange={event => setID(event.target.value)} placeholder="ID" 
+                        onChange={event => setFirstName(event.target.value)} placeholder="First Name" 
                         style={{ 
                             marginBottom: "10px",
                             border: "1px solid black"
                         }}    
                     />
                     <input 
-                        type="text" 
-                        onChange={event => setNote(event.target.value)} placeholder="Note" 
+                        onChange={event => setLastName(event.target.value)} placeholder="Last Name" 
                         style={{ 
                             marginBottom: "10px",
                             border: "1px solid black"
@@ -57,15 +51,17 @@ export default function Notes() {
                     />
                     <button 
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                        onClick={addNoteHandler}
+                        onClick={addStudentHandler}
                     >
                         Add Note
                     </button>
-                </form>
-                
-                
-                
+                </div>
+                <div>
+                    {}
+                </div>
             </div>
         </div>
     )
 }
+
+export default Notes
