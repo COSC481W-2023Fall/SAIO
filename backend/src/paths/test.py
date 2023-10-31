@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from src.models.TestModel import sample
-from src.dbfuncs.test import (
+from models.TestModel import sample
+from dbfuncs.test import (
     create_test,
     read_one_test,
     update_test,
