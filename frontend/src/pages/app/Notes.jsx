@@ -15,7 +15,7 @@ function Notes() {
 
     // CREATE-POST a note
     const addStudentHandler = () => {
-        axios.post("http://127.0.0.1:8000/student", {
+        axios.post("https://saio-backend-8b4k2.ondigitalocean.app/student", {
             'firstName': firstName,
             'lastName': lastName
         }).then(res => console.log(res))
