@@ -13,7 +13,7 @@ app = FastAPI()
 origins = [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
-    'https://saio-frontend-y2z2s.ondigitalocean.app:443'
+    'https://saio-frontend-y2z2s.ondigitalocean.app'
 ]
 
 # Middleware
