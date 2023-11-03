@@ -1,2 +1,2 @@
-const apiUrl = "https://saio-backend-qe7dd.ondigitalocean.app:8080";
+const apiUrl = "https://saio-backend-qe7dd.ondigitalocean.app";
 export default { apiUrl };
