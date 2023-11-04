@@ -11,10 +11,25 @@ database = client.SAIO
 collection = database.notes_test
 user_collection = database.users
 
-async def get_note(email: str, _id: str):
+ROOT_NOTE_DEFAULT_TEXT = "Welcome to the Notes Applet! You are looking at your root note. A note can contain text and links to other notes. Try it out by clicking around!"
+
+async def create_note(
+        email: str,
+        title: str = "Untitled",
+        adjacent: list[str] = [],
+        text: str = ""
+    ) -> str:
+    return str((await collection.insert_one({
+        "email": email,
+        "title": title,
+        "adjacent_note_ids": adjacent,
+        "text": text
+    })).inserted_id)
+
+async def get_note(email: str, note_id: str):
     object_id = ObjectId()
 
-    if _id == None:
+    if note_id == None:
         print("finding root")
         # if _id is not given, find the user's root note
         # and create a root note if needed
@@ -22,17 +37,16 @@ async def get_note(email: str, _id: str):
         object_id = result.get("root_note_id")
 
         if object_id == None:
-            print("creating root since none was found")
             # if there is no root note, create one
-            object_id = (await collection.insert_one({
-                "email": email,
-                "title": "Your Root Note",
-                "adjacent_note_ids": [],
-                "text": "Welcome to the Notes Applet! You are looking at your root note. A note can contain text and links to other notes. Try it out by clicking around!"
-            })).inserted_id
+            print("creating root since none was found")
+            
+            inserted_id: str = await create_note(email, title="Your Root Note", text=ROOT_NOTE_DEFAULT_TEXT)
+
             # link new root id to account
-            await user_collection.update_one({"email": email}, { "$set": {"root_note_id": object_id}})
+            await user_collection.update_one({"email": email}, { "$set": {"root_note_id": ObjectId(inserted_id)}})
+
+            object_id = ObjectId(inserted_id)
     else:
-        object_id = ObjectId(_id)  
+        object_id = ObjectId(note_id)  
     
     return await collection.find_one({"_id": object_id, "email": email})

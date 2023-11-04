@@ -1,7 +1,7 @@
 from typing import Annotated
 from fastapi import APIRouter, Header, HTTPException
-from ...models.notes import ( GetNoteRequest, GetNoteResponse )
-from ...dbfuncs.notes import ( get_note )
+from ...models.notes import ( CreateNoteResponse, GetNoteResponse )
+from ...dbfuncs import notes as funcs
 
 router = APIRouter(
     prefix='/app/notes',
@@ -9,28 +9,39 @@ router = APIRouter(
 )
 
 @router.post("")
-async def create_note():
-    pass
+async def create_note(
+        x_email: Annotated[str | None, Header()] = None,
+    ) -> CreateNoteResponse:    
+    
+    inserted_id: str = await funcs.create_note(x_email);
+
+    if inserted_id == None:
+        raise
+
+    return CreateNoteResponse(
+        note_id = str(inserted_id)
+    )
 
 @router.get("")
-async def read_note(
+async def get_note(
         x_email: Annotated[str | None, Header()] = None,
         x_note_id: Annotated[str | None, Header()] = None
     ) -> GetNoteResponse:
 
-    print("X-EMAIL:" + x_email)
-    result = await get_note(x_email, x_note_id)
+    note: dict = await funcs.get_note(x_email, x_note_id)
 
-    if result == None or result.get('_id') == None:
-        raise HTTPException(status_code=404, detail="Item not found")
+    if note == None or note.get('_id') == None:
+        raise HTTPException(status_code=404, detail="Note not found")
     
-    print(result)
-    print(result.get('adjacent_note_ids'))
-
+    print(note)
+    title: str = note.get('title')
+    adjacent: list[str] = map(lambda x: str(x), note.get('adjacent_note_ids'))
+    text: str = "" if note.get('text') == None else note.get('text')
+    
     return GetNoteResponse(
-        title = result.get('title'),
-        adjacent = map(lambda x: str(x), result.get('adjacent_note_ids')),
-        text = result.get('text')
+        title = title,
+        adjacent = adjacent,
+        text = text
     )
 
 @router.patch("")
