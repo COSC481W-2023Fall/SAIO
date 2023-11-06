@@ -1,7 +1,9 @@
 import os
+import asyncio
 from dotenv import load_dotenv
 from bson.objectid import ObjectId
 from pymongo.errors import DuplicateKeyError
+from bson.errors import InvalidId
 import motor.motor_asyncio
 
 load_dotenv()
@@ -31,7 +33,7 @@ async def get_note(email: str, note_id: str):
 
     if note_id == None:
         print("finding root")
-        # if _id is not given, find the user's root note
+        # if note_id is not given, find the user's root note
         # and create a root note if needed
         result = await user_collection.find_one({"email": email})
         object_id = result.get("root_note_id")
@@ -50,3 +52,32 @@ async def get_note(email: str, note_id: str):
         object_id = ObjectId(note_id)  
     
     return await collection.find_one({"_id": object_id, "email": email})
+
+async def update_note(email: str, note_id: str, title: str=None, adjacent: list[str]=None, text: str=None):
+    try: 
+        adjancent_ids = None if adjacent is None else list(map(lambda x: ObjectId(x), adjacent))
+        fields = [("title", title), ("adjacent_note_ids", adjancent_ids), ("text", text)]
+        counts = await asyncio.gather(*[update_field(email, note_id, x[0], x[1]) for x in fields])
+        return sum(counts)
+    except InvalidId:
+        return -1
+
+async def update_field(email: str, note_id: str, key: str, value):
+    if key is None or value is None:
+        return 0
+    return (await collection.update_one({"email": email, "_id": ObjectId(note_id)}, {"$set": {key: value}})).modified_count
+
+async def delete_note(email: str, note_id: str):
+    try:
+        if await user_collection.find_one({"email": email, "root_note_id": ObjectId(note_id)}) is not None:
+            # cannot delete root note
+            return None
+        
+        result = await collection.delete_one({"email": email, "_id": ObjectId(note_id)})
+
+        if result.deleted_count == 0:
+            return 0
+        else:
+            return 1
+    except InvalidId:
+        return -1
