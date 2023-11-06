@@ -10,7 +10,7 @@ load_dotenv()
 connection_string = os.getenv("ConnectionString")
 client = motor.motor_asyncio.AsyncIOMotorClient(connection_string)
 database = client.SAIO
-collection = database.notes_test
+collection = database.notes
 user_collection = database.users
 
 ROOT_NOTE_DEFAULT_TEXT = "Welcome to the Notes Applet! You are looking at your root note. A note can contain text and links to other notes. Try it out by clicking around!"
