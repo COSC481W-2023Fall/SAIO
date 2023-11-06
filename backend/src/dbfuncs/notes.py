@@ -55,6 +55,8 @@ async def get_note(email: str, note_id: str):
 
 async def update_note(email: str, note_id: str, title: str=None, adjacent: list[str]=None, text: str=None):
     try: 
+        if await collection.find_one({"email": email, "_id": ObjectId(note_id)}) is None:
+            return None
         adjancent_ids = None if adjacent is None else list(map(lambda x: ObjectId(x), adjacent))
         fields = [("title", title), ("adjacent_note_ids", adjancent_ids), ("text", text)]
         counts = await asyncio.gather(*[update_field(email, note_id, x[0], x[1]) for x in fields])

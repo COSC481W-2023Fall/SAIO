@@ -1,7 +1,7 @@
-from typing import Annotated, Union
+from typing import Annotated, Optional
 from fastapi import APIRouter, Header, HTTPException, Response
 from fastapi.responses import JSONResponse
-from ...models.common import ( MessageResponse )
+from ...models.common import *
 from ...models.notes import *
 from ...dbfuncs import notes as funcs
 
@@ -10,48 +10,50 @@ router = APIRouter(
     tags=['Notes']
 )
 
-@router.post("")
+@router.post('',
+    responses = {200: {'model': CreateNoteResponse}, 400: {'model': NotFoundResponse}},
+    response_model = CreateNoteResponse)
 async def create_note(
-        x_email: Annotated[str | None, Header()] = None,
-    ) -> CreateNoteResponse:    
+        x_email: Annotated[str | None, Header()] = None):    
     
     inserted_id: str = await funcs.create_note(x_email);
 
     if inserted_id == None:
-        raise
+        raise HTTPException(status_code=400, detail='Something went wrong')
 
-    return CreateNoteResponse(
-        note_id = str(inserted_id)
-    )
+    return CreateNoteResponse(note_id = str(inserted_id))
 
-@router.get("/{note_id:str}",
-    responses = {200: {"model": GetNoteResponse}, 404: {"model": MessageResponse}},
+@router.get('/',
+    responses = {200: {'model': GetNoteResponse}, 404: {'model': NotFoundResponse}},
+    response_model = GetNoteResponse)
+async def get_root_note(
+        x_email: Annotated[str | None, Header()]):
+    return await get_note(x_email, None)
+
+@router.get('/{note_id:str}',
+    responses = {200: {'model': GetNoteResponse}, 404: {'model': NotFoundResponse}},
     response_model = GetNoteResponse)
 async def get_note(
         x_email: Annotated[str | None, Header()],
-        note_id: str):
+        note_id: str = None):
 
     note: dict = await funcs.get_note(x_email, note_id)
 
     if note == None or note.get('_id') == None:
-        return MessageResponse(status_code=404, message="Not found")
+        raise HTTPException(status_code=404, detail='Not found')
     
-    print(note)
     title: str = note.get('title')
     adjacent: list[str] = map(lambda x: str(x), note.get('adjacent_note_ids'))
-    text: str = "" if note.get('text') == None else note.get('text')
+    text: str = '' if note.get('text') == None else note.get('text')
     
-    return JSONResponse(
-        status_code = 200,
-        content = {
-            "title": title,
-            "adjacent": adjacent,
-            "text": text
-        }
+    return GetNoteResponse(
+        title = title,
+        adjacent = adjacent,
+        text = text
     )
 
-@router.patch("/{note_id:str}",
-    responses = {200: {"model": MessageResponse}, 400: {"model": MessageResponse}, 404: {"model": MessageResponse}, 422: {"model": MessageResponse}},
+@router.patch('/{note_id:str}',
+    responses = {200: {'model': OkResponse}, 400: {'model': BadResponse}, 404: {'model': NotFoundResponse}},
     response_model = MessageResponse)
 async def update_note(
         request: UpdateNoteRequest,
@@ -59,19 +61,20 @@ async def update_note(
         note_id: str):
     result = await funcs.update_note(x_email, note_id, request.title, request.adjacent, request.text)
 
-    print(note_id)
-    print(request)
+    print(result)
     
-    if result == -1:
-        return JSONResponse(status_code=400, content={"message":"Invalid Note Id"})
+    if result == None:
+        raise HTTPException(status_code=404, detail='Note not found')
+    elif result == -1:
+        raise HTTPException(status_code=400, detail='Invalid Note Id')
     elif result == 0:
-        return JSONResponse(status_code=400, content={"message":"No data changed"})
+        return JSONResponse(status_code=400, detail='No data changed')
     
-    return JSONResponse(status_code=200, content={"message":"OK"})
+    return MessageResponse(message='OK')
 
-@router.delete("/{note_id:str}",
-    responses = {200: {"model": MessageResponse}, 400: {"model": MessageResponse}, 404: {"model": MessageResponse}, 422: {"model": MessageResponse}},
-    response_model = MessageResponse)
+@router.delete('/{note_id:str}',
+    responses = {400: {'model': BadResponse}, 404: {'model': NotFoundResponse}},
+    response_model = OkResponse)
 async def delete_note(
         x_email: Annotated[str | None, Header()],
         note_id: str):
@@ -79,10 +82,10 @@ async def delete_note(
     result = await funcs.delete_note(x_email, note_id)
 
     if result is None:
-        return JSONResponse(status_code=422, content={"message":"Cannot delete root note"})
+        raise HTTPException(status_code=400, detail='Cannot delete root note')
     elif result == 0:
-        return JSONResponse(status_code=404, content={"message":"Note not found"})
+        raise HTTPException(status_code=404, detail='Note not found')
     elif result == -1:
-        return JSONResponse(status_code=400, content={"message":"Invalid Note Id"})
+        raise HTTPException(status_code=400, detail='Invalid Note Id')
     
-    return MessageResponse(status_code=200, message="OK")
+    return OkResponse
