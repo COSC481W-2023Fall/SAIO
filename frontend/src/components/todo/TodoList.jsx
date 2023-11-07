@@ -2,32 +2,36 @@
 import React, { useState, useEffect } from 'react'
 import Todo from './TodoItems'
 import TodoForm from './TodoForm'
+import axios from 'axios';
+import config from '../../config'
+
+
 function TodoList() {
     //Stored veriables in local
     const [todos, setTodos] = useState(() => {
-        const localValue = localStorage.getItem("ITEMS")
+        /*const localValue = localStorage.getItem("ITEMS")
         if (localValue == null) return []
-        return JSON.parse(localValue)
+    return JSON.parse(localValue)
+        */
     })
-    //pulls from local
+    //pulls from collection
     useEffect(() => {
-        localStorage.setItem("ITEMS", JSON.stringify(todos))
-    }, [todos]
+        axios.get()
+            .then(res => { setTodos(res.data) })
+    }
 
     )
-    //Adds a new task in the local
+    //Adds a new task in the collection
     const addTodo = todo => {
         if (!todo.text || /^\s*$/.test(todo.text)) {
             return;
         }
-        const newTodos = [todo, ...todos]
-        setTodos(newTodos)
+        axios.post(`${config.apiUrl}/todo`, { 'id': id, 'text': text })
+            .then(res => console.log(res))
     }
-    //Deletes task from the local
+    //Deletes task from the collection
     function deleteTodo(id) {
-        setTodos(currentTodos => {
-            return currentTodos.filter(todo => todo.id !== id)
-        })
+        axios.delete(`${config.apiUrl}/todo ${id}`).then(res => console.log(res.data))
     }
     //Updates Task that was changed
     const updateTodo = (todoId, newValue) => {
