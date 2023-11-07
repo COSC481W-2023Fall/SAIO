@@ -23,7 +23,7 @@ async def create_note(
 
     return CreateNoteResponse(note_id = str(inserted_id))
 
-@router.get('/',
+@router.get('',
     responses = {200: {'model': GetNoteResponse}, 404: {'model': NotFoundResponse}},
     response_model = GetNoteResponse)
 async def get_root_note(
