@@ -1,65 +1,42 @@
-import Sidebar from "../../components/sidebar/Sidebar";
+import { useState, useEffect } from 'react';
 
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from '../../config'
 
+import Sidebar from "../../components/sidebar/Sidebar";
+import NotesTitle from "../../components/notes/NotesTitle";
+import NeighborContainer from "../../components/notes/NeighborContainer";
+import NotesBody from "../../components/notes/NotesBody";
+
 function Notes() {
-    // Page Title
-    // useEffect(() => {
-    //     document.title = "Note Page";
-    // }, []);
+    const [title, setTitle] = useState(null);
+    const [adjacent, setAdjacent] = useState([]);
+    const [text, setText] = useState(null);
 
-    // Test note variables
-    const [firstName, setFirstName] = useState([]);
-    const [lastName, setLastName] = useState([]);
-
-    // CREATE-POST a note
-    const addStudentHandler = () => {
-        axios.post(`${config.apiUrl}/student`, {
-            'firstName': firstName,
-            'lastName': lastName
-        }).then(res => console.log(res))
-        .catch((error) => {
-            if(error.res) {
-                console.log(error.res.data)
+    useEffect(() => {
+        axios.get(`${config.apiUrl}/app/notes`, {
+            headers: {
+                "x-email": "s@s.com"
             }
         })
-    }
+        .then(response => {
+            console.debug(response.data);
+            setTitle(response.data.title);
+            setAdjacent(response.data.adjacent);
+            setText(response.data.text);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+    }, []); // The empty dependency array ensures this effect runs only once on mount
 
     return (
-        <div style={{ display: "flex", flexDirection: "row" }}>
-            <div>
-                <Sidebar/>    
-            </div>
-            <div style={{ marginLeft: "25px", marginTop: "25px" }}>
-                <h1>Note Taking Page</h1>
-                <br />
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    <input 
-                        onChange={event => setFirstName(event.target.value)} placeholder="First Name" 
-                        style={{ 
-                            marginBottom: "10px",
-                            border: "1px solid black"
-                        }}    
-                    />
-                    <input 
-                        onChange={event => setLastName(event.target.value)} placeholder="Last Name" 
-                        style={{ 
-                            marginBottom: "10px",
-                            border: "1px solid black"
-                        }} 
-                    />
-                    <button 
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                        onClick={addStudentHandler}
-                    >
-                        Add Note
-                    </button>
-                </div>
-                <div>
-                    {}
-                </div>
+        <div className="flex notes">
+            <Sidebar/>
+            <div className="flex flex-col ">
+                <NotesTitle title={title}/>
+                <NeighborContainer adjacent={adjacent}/>
+                <NotesBody text={text}/>
             </div>
         </div>
     )
