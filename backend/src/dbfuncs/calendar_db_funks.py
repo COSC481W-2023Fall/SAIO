@@ -49,10 +49,15 @@ async def read_all_calendar_items():
 async def update_calendar_item(title, start, end, allDay, resource):
     await collection.update_one(
         {"title":title},
-        {"set": {"start": start}},
-        {"set": {"end": end}},
-        {"set": {"allDay": allDay}},
-        {"set": {"resource": resource}}
+        {
+            "$set": {
+                "start": start,
+                "end": end,
+                "allDay": allDay,
+                "resource": resource
+            }
+        },
+        upsert=True
     )
     document = await collection.find_one({"title": title})
     return document
