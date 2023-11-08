@@ -8,16 +8,12 @@ import config from '../../config'
 
 function TodoList() {
     //Stored veriables in local
-    const [todos, setTodos] = useState(() => {
-        /*const localValue = localStorage.getItem("ITEMS")
-        if (localValue == null) return []
-    return JSON.parse(localValue)
-        */
-    })
+    const [todos, setTodos] = useState("")
     //pulls from collection
     useEffect(() => {
-        axios.get()
+        axios.get(`${config.apiUrl}/todo`)
             .then(res => { setTodos(res.data) })
+            .catch((err) => console.log(err));
     }
 
     )
@@ -26,19 +22,22 @@ function TodoList() {
         if (!todo.text || /^\s*$/.test(todo.text)) {
             return;
         }
-        axios.post(`${config.apiUrl}/todo`, { 'id': id, 'text': text })
+        axios.post(`${config.apiUrl}/todo`, { 'id': todo.id, 'text': todo.text })
             .then(res => console.log(res))
+            .catch((err) => console.log(err));
     }
     //Deletes task from the collection
-    function deleteTodo(id) {
-        axios.delete(`${config.apiUrl}/todo ${id}`).then(res => console.log(res.data))
+    function deleteTodo(_id) {
+        axios.delete(`${config.apiUrl}/todo ${_id}`).then(res => console.log(res.data))
+            .catch((err) => console.log(err));
     }
     //Updates Task that was changed
     const updateTodo = (todoId, newValue) => {
         if (!newValue.text || /^\s*$/.test(newValue.text)) {
             return
         }
-        setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)))
+        //setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)))
+        axios.patch()
 
     }
     //Crosses out the task of a competed task

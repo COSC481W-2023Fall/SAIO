@@ -22,15 +22,15 @@ function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
         return <TodoForm edit={edit} onSubmit={submitUpdate} />
     }
     //Displays the task in the local spot
-    return todos.map((todo, index) => (
-        <div className={todo.isComplete ? 'todo-row complete' : 'todo-row'} key={index}>
-            <div key={todo.id} onClick={() => completeTodo(todo.id)}>
+    return todos.map((todo) => (
+        <div className={todo.isComplete ? 'todo-row complete' : 'todo-row'} key={todo}>
+            <div key={todo._id} onClick={() => completeTodo(todo._id)}>
                 {todo.text}
             </div>
             <div className='icons'>
-                <button onClick={() => removeTodo(todo.id)}
+                <button onClick={() => removeTodo(todo._id)}
                     className='delete-btn'>Delete</button>
-                <button onClick={() => setEdit({ id: todo.id, value: todo.text })}
+                <button onClick={() => setEdit({ id: todo._id, value: todo.text })}
                     className='edit-btn'>Edit</button>
             </div>
         </div>
