@@ -1,11 +1,11 @@
 from fastapi import APIRouter, HTTPException
-from models.calendar_model import CalendarItem
+from src.models.calendar_model import CalendarItem
 
 # Create Router
 router = APIRouter()
 
 # Import Database Functions
-from dbfuncs.calendar_db_funks import (
+from src.dbfuncs.calendar_db_funks import (
     create_calendar_item,
     read_one_calendar_item,
     read_all_calendar_items,

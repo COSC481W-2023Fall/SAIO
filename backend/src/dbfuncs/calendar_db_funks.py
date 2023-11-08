@@ -1,4 +1,4 @@
-from models.calendar_model import CalendarItem
+from src.models.calendar_model import CalendarItem
 from dotenv import load_dotenv
 import os
 # Import items
