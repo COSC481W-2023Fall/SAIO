@@ -13,7 +13,7 @@ from src.dbfuncs.calendar_db_funks import (
     remove_calendar_item
 )
 
-# Create ToDo
+# Create Calendar Item
 @router.post("/calendar", tags=["calendar"], response_model=CalendarItem)
 async def post_calendar_item(calendar_item:CalendarItem):
     response = await create_calendar_item(calendar_item.dict())
@@ -22,7 +22,7 @@ async def post_calendar_item(calendar_item:CalendarItem):
     raise HTTPException(400, "Something went wrong, bad request") 
 
 
-# Read 1 ToDo
+# Read 1 Calendar Item
 @router.get("/calendar{title}", tags=["calendar"], response_model=CalendarItem)
 async def get_calendar_item_by_id(title):
     response = await read_one_calendar_item(title)
@@ -31,14 +31,14 @@ async def get_calendar_item_by_id(title):
     raise HTTPException(404, f"There is no Calendar Item with this title: {title}")
 
 
-# Read All ToDos
+# Read All Calendar Items
 @router.get("/calendar", tags=["calendar"])
 async def get_calendar_item():
     response = await read_all_calendar_items()
     return response
 
 
-# Update ToDo
+# Update Calendar Item
 @router.put("/calendar/{title}", tags=["calendar"], response_model=CalendarItem)
 async def put_calendar_item(title:str, start:str, end:str, allDay:bool, resource:str):
     response = await update_calendar_item(title, start, end, allDay, resource)
@@ -47,7 +47,7 @@ async def put_calendar_item(title:str, start:str, end:str, allDay:bool, resource
     raise HTTPException(404, f"There is no Calendar Item with this title: {title}")
 
 
-# Delete ToDo
+# Delete Calendar Item
 @router.delete("/calendar/{title}", tags=["calendar"])
 async def delete_calendar_item(title):
     response = await remove_calendar_item(title)
