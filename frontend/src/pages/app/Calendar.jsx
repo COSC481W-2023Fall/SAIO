@@ -14,6 +14,9 @@ import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 
+// Import React Icons
+import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from 'react-icons/bs';
+
 // Create Localizer
 const localizer = momentLocalizer(moment);
 
@@ -101,9 +104,17 @@ export default function Calendar() {
     };
 
     return (
-        <div className="flex">
+        <div className="flex flex-row w-full">
             <Sidebar/>
-            <p>Calendar</p>
+            <div className='flex flex-col' id='main-calendar-section'>
+                <div>
+
+                </div>
+                <div>
+                    <div>Calendar</div>
+                    <div>Events List</div>
+                </div>
+            </div>
         </div>
     )
 }
