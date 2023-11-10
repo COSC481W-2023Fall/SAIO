@@ -23,7 +23,7 @@ async def post_calendar_item(calendar_item:CalendarItem):
 
 
 # Read 1 Calendar Item
-@router.get("/app/calendar{title}", tags=["calendar"], response_model=CalendarItem)
+@router.get("/app/calendar/{title}", tags=["calendar"], response_model=CalendarItem)
 async def get_calendar_item_by_id(title):
     response = await read_one_calendar_item(title)
     if response:
