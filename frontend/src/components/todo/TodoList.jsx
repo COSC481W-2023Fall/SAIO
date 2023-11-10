@@ -8,36 +8,36 @@ import config from '../../config'
 
 function TodoList() {
     //Stored veriables in local
-    const [todos, setTodos] = useState("")
-    //pulls from collection
+    const [todos, setTodos] = useState(() => [])
+    //pulls from local
     useEffect(() => {
-        axios.get(`${config.apiUrl}/todo`)
-            .then(res => { setTodos(res.data) })
+        axios.get('http://localhost:8000/todo')
+            .then(res => {
+                setTodos(res.data)
+            })
             .catch((err) => console.log(err));
-    }
-
-    )
-    //Adds a new task in the collection
+    });
+    //Adds a new task in the local
     const addTodo = todo => {
         if (!todo.text || /^\s*$/.test(todo.text)) {
             return;
         }
-        axios.post(`${config.apiUrl}/todo`, { 'id': todo.id, 'text': todo.text })
+        axios.post('http://localhost:8000/todo', { 'id': todo.id, 'text': todo.text, 'isCompleted': todo.isComplete, 'emial': todo.email })
             .then(res => console.log(res))
             .catch((err) => console.log(err));
+
     }
-    //Deletes task from the collection
-    function deleteTodo(_id) {
-        axios.delete(`${config.apiUrl}/todo ${_id}`).then(res => console.log(res.data))
-            .catch((err) => console.log(err));
+    //Deletes task from the local
+    function deleteTodo(id) {
+        axios.delete('http://localhost:8000/todo/${id}' )
+            .then( res => console.log(res))
     }
     //Updates Task that was changed
     const updateTodo = (todoId, newValue) => {
         if (!newValue.text || /^\s*$/.test(newValue.text)) {
             return
         }
-        //setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)))
-        axios.patch()
+        setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)))
 
     }
     //Crosses out the task of a competed task
@@ -60,6 +60,8 @@ function TodoList() {
                 removeTodo={deleteTodo}
                 updateTodo={updateTodo} />
         </div>
+           
+       
 
     )
 }

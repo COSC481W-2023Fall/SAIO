@@ -9,6 +9,12 @@ from ..dbfuncs import todo as funcs
 router = APIRouter(
      prefix = "/todo")
 
+@router.get("{id}", response_model=Todo)
+async def get_todo_by_title(id:str):
+    response = await funcs.fetch_one_todo(id)
+    if response:
+        return response
+    raise HTTPException(404, f"There is no todo with the title {id}")
 
 @router.get("")
 async def get_todos():
@@ -26,16 +32,16 @@ async def put_todos(todo:Todo):
     raise HTTPException(400, "Something went wrong, bad request")
 
 @router.put("/{id}", response_model=Todo)
-async def put_todo(id :str ,text:str):
+async def put_todo(id :str,text:str):
     response = await funcs.update_todo(id,text)
     if response:
         return response
-    raise HTTPException(404, "There is no todo with the id "+id)
+    raise HTTPException(404, "There is no email with the todo id "+id)
 
 @router.delete("/{id}")
 async def delete_todo(id:str):
     response = await funcs.remove_todo(id)
     if response:
         return "Successfully deleted todo"
-    raise HTTPException(404, "There is no todo with the id"+id)
+    raise HTTPException(404, "There is no email with the todo id"+id)
 
