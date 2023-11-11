@@ -1,7 +1,6 @@
 export default function NotesTitle(props) {
     return (
-        <div className="w-full bg-green-500">
-            {props.title}
-        </div>
+        <textarea defaultValue={props.title} className="w-full bg-green-500 resize-none">
+        </textarea>
     )
 }
