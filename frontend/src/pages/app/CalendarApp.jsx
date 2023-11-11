@@ -106,15 +106,46 @@ export default function CalendarApp() {
     return (
         <div className="flex flex-row w-full">
             <Sidebar/>
-            <div className='flex flex-col' id='main-calendar-section'>
-                <div>
-
+            <div className='flex flex-col w-full mt-2' id='main-calendar-section'>
+                <div className='flex flex-col text-center items-center w-full'>
+                    {formOpen ?
+                        <div className='flex flex-col w-full items-center bg-white'>
+                            <BsFillArrowUpCircleFill onClick={handFormOpenToggle} className='mb-1 mt-1' />
+                            <div className='flex flex-row w-full items-center'>
+                                <div className='w-1/12'></div>
+                                <div className='flex flex-col w-5/12 mt-2 mb-2'>
+                                    <div>Title :</div>
+                                    <input type='text' placeholder='Title' className='form-control h-10 mb-3 outline outline-1' onChange={event => setTitle(event.target.value)} />
+                                    <label className='mb-3'>
+                                        All Day? :
+                                        <Select options={allDayOptions} onChange={setAllDay} />
+                                    </label>
+                                    <label>
+                                        Category :
+                                        <Select options={resourceOptions} onChange={setResource} />
+                                    </label>
+                                </div>
+                                <div className='w-1/12'></div>
+                                <div className='flex flex-col w-4/12'>
+                                    <div>Start Date Time :</div>
+                                    <DateTimePicker onChange={setStart} value={start} className='h-10' />
+                                    <div className='mt-2 mb-2'></div>
+                                    <div>End Date Time :</div>
+                                    <DateTimePicker onChange={setEnd} value={end} className='h-10' />
+                                </div>
+                                <div className='w-1/12'></div>
+                            </div>
+                            <button onClick={addEventHandler} className='btn outline mt-2 mb-4 bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40'>Add Calendar Item</button>
+                        </div>  
+                    :
+                        <BsFillArrowDownCircleFill onClick={handFormOpenToggle} className='mb-1 mt-1' />    
+                    }
                 </div>
-                <div>
+                <div className='flex md:flex-row flex-col'>
                     <div>Calendar</div>
                     <div>Events List</div>
                 </div>
             </div>
         </div>
-    )
+    ) 
 }
