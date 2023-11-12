@@ -7,6 +7,10 @@ from src.paths import (
     signup,
     student_routes
 )
+from src.paths.app import (
+    notes,
+    calendar_routes
+)
 
 app = FastAPI()
 
@@ -25,3 +29,7 @@ app.include_router(login.router)
 app.include_router(signup.router)
 app.include_router(student_routes.router)
 app.include_router(test.router) # remove everything for tests endpoint eventually
+
+# applet routers
+app.include_router(notes.router)
+app.include_router(calendar_routes.router)
