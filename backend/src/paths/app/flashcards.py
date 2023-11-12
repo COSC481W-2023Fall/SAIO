@@ -1,8 +1,6 @@
 from fastapi import APIRouter
 from fastapi import HTTPException
 from src.models.Flashcard import Flashcard
-from pydantic import BaseModel
-from typing import List
 from src.dbfuncs.flashcards import (
     create_flashcard,
     read_all_flashcards,

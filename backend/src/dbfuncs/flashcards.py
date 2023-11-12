@@ -1,9 +1,7 @@
 from dotenv import load_dotenv
 import os
-from pydantic import BaseModel
 from src.models.Flashcard import Flashcard
-from bson import ObjectId
-from typing import List
+
 
 # Get Secret Items
 load_dotenv()
