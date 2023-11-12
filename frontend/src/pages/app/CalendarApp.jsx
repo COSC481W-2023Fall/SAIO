@@ -116,7 +116,7 @@ export default function CalendarApp() {
     return (
         <div className="flex flex-row w-full bg-white">
             <Sidebar/>
-            <div className='flex flex-col w-full mt-2' id='main-calendar-section'>
+            <div className='flex flex-col w-full mt-2 mr-3' id='main-calendar-section'>
                 <div className='flex flex-col text-center items-center w-full mb-5'>
                     {formOpen ?
                         <div className='flex flex-col w-full items-center'>
@@ -151,7 +151,7 @@ export default function CalendarApp() {
                         <BsFillArrowDownCircleFill onClick={handFormOpenToggle} className='mb-5 mt-1 h-10 w-10' />    
                     }
                 </div>
-                <div className='flex md:flex-row flex-col'>
+                <div className='flex lg:flex-row flex-col'>
                     <Calendar 
                         localizer={localizer}
                         events={appointments}
@@ -162,9 +162,9 @@ export default function CalendarApp() {
                         resourceAccessor='resource'
                         defaultView='week'
                         style={{ height: 900 }}
-                        className='md:w-9/12 w-full ml-2'
+                        className='lg:w-9/12 w-full ml-2'
                     />
-                    <div className='flex flex-col bg-slate-800 md:w-3/12 w-full outline ml-2 mr-2'>
+                    <div className='flex flex-col bg-slate-800 lg:w-3/12 w-full outline ml-2 mr-2 mt-5'>
                         <div className='flex flex-row w-full bg-slate-400'>
                             <div className='w-full text-center items-center'>Event List</div>
                         </div>
@@ -201,13 +201,17 @@ export default function CalendarApp() {
                                     {dataList.map((listItem) => (
                                         listItem.resource === "school"
                                         ?
-                                        <div key={listItem.title}>
-                                            <div>Title: {listItem.title}</div>
-                                            <div className='flex flex-row w-full items-center text-center mt-2 mb-2 pb-3 border-b-4'>
+                                        <div key={listItem.title} className='w-full'>
+                                            <div className='ml-1'>Title: {listItem.title}</div>
+                                            <div className='ml-1'>Start Time:</div>
+                                            <DateTimePicker value={listItem.start} className="ml-1 w-8/12" />
+                                            <div className='ml-1'>End Time:</div>
+                                            <DateTimePicker value={listItem.end} className="ml-1 w-8/12" />
+                                            <div className='flex flex-row w-full items-center text-center mt-3 mb-2 pb-3 border-b-4'>
                                                 <div className='w-1/12'></div>
-                                                <button className='btn outline outline-1 w-4/12 h-8' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
+                                                <button className='btn outline outline-1 w-4/12 h-8 hover:bg-red-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
                                                 <div className='w-2/12'></div>
-                                                <button className='btn outline outline-1 w-4/12 h-8' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Update</button>
+                                                <button className='btn outline outline-1 w-4/12 h-8 hover:bg-blue-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Update</button>
                                                 <div className='w-1/12'></div>
                                             </div>
                                         </div> 
@@ -227,13 +231,17 @@ export default function CalendarApp() {
                                     {dataList.map((listItem) => (
                                         listItem.resource === "work"
                                         ?
-                                        <div key={listItem.title}>
-                                            <div>Title: {listItem.title}</div>
+                                        <div key={listItem.title} className='w-full'>
+                                            <div className='ml-1'>Title: {listItem.title}</div>
+                                            <div className='ml-1'>Start Time:</div>
+                                            <DateTimePicker value={listItem.start} className="ml-1 w-8/12" />
+                                            <div className='ml-1'>End Time:</div>
+                                            <DateTimePicker value={listItem.end} className="ml-1 w-8/12" />
                                             <div className='flex flex-row w-full items-center text-center mt-2 mb-2 pb-3 border-b-4'>
                                                 <div className='w-1/12'></div>
-                                                <button className='btn outline outline-1 w-4/12 h-8' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
+                                                <button className='btn outline outline-1 w-4/12 h-8 hover:bg-red-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
                                                 <div className='w-2/12'></div>
-                                                <button className='btn outline outline-1 w-4/12 h-8' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Update</button>
+                                                <button className='btn outline outline-1 w-4/12 h-8 hover:bg-blue-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Update</button>
                                                 <div className='w-1/12'></div>
                                             </div>
                                         </div> 
@@ -253,13 +261,17 @@ export default function CalendarApp() {
                                     {dataList.map((listItem) => (
                                         listItem.resource === "home"
                                         ?
-                                        <div key={listItem.title}>
-                                            <div>Title: {listItem.title}</div>
+                                        <div key={listItem.title} className='w-full'>
+                                            <div className='ml-1'>Title: {listItem.title}</div>
+                                            <div className='ml-1'>Start Time:</div>
+                                            <DateTimePicker value={listItem.start} className="ml-1 w-8/12" />
+                                            <div className='ml-1'>End Time:</div>
+                                            <DateTimePicker value={listItem.end} className="ml-1 w-8/12" />
                                             <div className='flex flex-row w-full items-center text-center mt-2 mb-2 pb-3 border-b-4'>
                                                 <div className='w-1/12'></div>
-                                                <button className='btn outline outline-1 w-4/12 h-8' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
+                                                <button className='btn outline outline-1 w-4/12 h-8 hover:bg-red-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
                                                 <div className='w-2/12'></div>
-                                                <button className='btn outline outline-1 w-4/12 h-8' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Update</button>
+                                                <button className='btn outline outline-1 w-4/12 h-8 hover:bg-blue-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Update</button>
                                                 <div className='w-1/12'></div>
                                             </div>
                                         </div> 
@@ -279,13 +291,17 @@ export default function CalendarApp() {
                                     {dataList.map((listItem) => (
                                         listItem.resource === "other"
                                         ?
-                                        <div key={listItem.title}>
-                                            <div>Title: {listItem.title}</div>
+                                        <div key={listItem.title} className='w-full'>
+                                            <div className='ml-1'>Title: {listItem.title}</div>
+                                            <div className='ml-1'>Start Time:</div>
+                                            <DateTimePicker value={listItem.start} className="ml-1 w-8/12" />
+                                            <div className='ml-1'>End Time:</div>
+                                            <DateTimePicker value={listItem.end} className="ml-1 w-8/12" />
                                             <div className='flex flex-row w-full items-center text-center mt-2 mb-2 pb-3 border-b-4'>
                                                 <div className='w-1/12'></div>
-                                                <button className='btn outline outline-1 w-4/12 h-8' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
+                                                <button className='btn outline outline-1 w-4/12 h-8 hover:bg-red-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
                                                 <div className='w-2/12'></div>
-                                                <button className='btn outline outline-1 w-4/12 h-8' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Update</button>
+                                                <button className='btn outline outline-1 w-4/12 h-8 hover:bg-blue-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Update</button>
                                                 <div className='w-1/12'></div>
                                             </div>
                                         </div> 
