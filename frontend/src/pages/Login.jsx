@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import apiUrl from '../config'
+import config from "../config";
 
 export default function Login(props) {
   const navigate = useNavigate();
