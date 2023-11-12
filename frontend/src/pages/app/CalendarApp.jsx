@@ -32,6 +32,9 @@ export default function CalendarApp() {
         })
     }, []);
 
+    // Variable for Sorted Array
+    const dataListSortedByDate = [...dataList].sort((a, b) => a.title > b.title ? 1 : -1,);
+
     // Iterates over the dataList and converts the date string to a DateTime
     const appointments = dataList.map(appointment =>({
         title: appointment.title,
@@ -198,7 +201,7 @@ export default function CalendarApp() {
                             ?
                                 <div>
                                     <div className='text-center'>School Items:</div>    
-                                    {dataList.map((listItem) => (
+                                    {dataListSortedByDate.map((listItem) => (
                                         listItem.resource === "school"
                                         ?
                                         <div key={listItem.title} className='w-full'>
