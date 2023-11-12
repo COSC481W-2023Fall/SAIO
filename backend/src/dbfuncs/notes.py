@@ -21,18 +21,25 @@ async def create_note(
         adjacent: list[str] = [],
         text: str = ""
     ) -> str:
-    return str((await collection.insert_one({
+
+    inserted_id = (await collection.insert_one({
         "email": email,
         "title": title,
         "adjacent_note_ids": adjacent,
-        "text": text
-    })).inserted_id)
+        "text": text})).inserted_id
+    
+    for adj in adjacent:
+        print(inserted_id)
+        collection.update_one(
+            {"_id": ObjectId(adj), "email": email},
+            {"$push": {"adjacent_note_ids": ObjectId(inserted_id)}})
+
+    return str(inserted_id)
 
 async def get_note(email: str, note_id: str):
     object_id = ObjectId()
 
     if note_id == None:
-        print("finding root")
         # if note_id is not given, find the user's root note
         # and create a root note if needed
         result = await user_collection.find_one({"email": email})
@@ -40,7 +47,6 @@ async def get_note(email: str, note_id: str):
 
         if object_id == None:
             # if there is no root note, create one
-            print("creating root since none was found")
             
             inserted_id: str = await create_note(email, title="Your Root Note", text=ROOT_NOTE_DEFAULT_TEXT)
 
@@ -53,12 +59,12 @@ async def get_note(email: str, note_id: str):
     
     return await collection.find_one({"_id": object_id, "email": email})
 
-async def update_note(email: str, note_id: str, title: str=None, adjacent: list[str]=None, text: str=None):
+async def update_note(email: str, note_id: str, title: str=None, adjacent: list[str]=None, text: str=None, raw_draft_content_state: dict=None):
     try: 
         if await collection.find_one({"email": email, "_id": ObjectId(note_id)}) is None:
             return None
         adjancent_ids = None if adjacent is None else list(map(lambda x: ObjectId(x), adjacent))
-        fields = [("title", title), ("adjacent_note_ids", adjancent_ids), ("text", text)]
+        fields = [("title", title), ("adjacent_note_ids", adjancent_ids), ("text", text), ("raw_draft_content_state", raw_draft_content_state)]
         counts = await asyncio.gather(*[update_field(email, note_id, x[0], x[1]) for x in fields])
         return sum(counts)
     except InvalidId:
