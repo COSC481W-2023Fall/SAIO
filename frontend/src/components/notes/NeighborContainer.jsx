@@ -5,8 +5,6 @@ export default function NeighborContainer(props) {
   const [neighbors, setNeighbors] = useState([]);
 
   useEffect(() => {
-    console.log("adj: " + props.adjacent);
-
     if (props.adjacent == null) {
       setNeighbors([]);
     } else {

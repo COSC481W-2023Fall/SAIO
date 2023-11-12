@@ -23,6 +23,7 @@ function App() {
           <Route path="/app/flashcards" element={<Flashcards/>}></Route>
           <Route path="/app/home" element={<Home/>}></Route>
           <Route path="/app/notes" element={<Notes/>}></Route>
+          <Route path="/app/notes/:noteId" element={<Notes/>}></Route>
           <Route path="/app/todo" element={<Todo/>}></Route>
         </Routes>
     </BrowserRouter>

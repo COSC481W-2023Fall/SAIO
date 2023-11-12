@@ -20,17 +20,8 @@ export default function NeighborNote(props) {
     return (
         <div className="flex justify-center rounded-md bg-blue-500 w-44 h-10 py-2 px-1 m-1">
             <p className="block w-full overflow-hidden whitespace-nowrap text-ellipsis">
-              {neighborTitle}
+              <a href={`/app/notes/${props.noteId}`}>{neighborTitle}</a>
             </p>
         </div>
     )
-
-    // span {
-    //     border: solid 2px blue;
-    //     white-space: nowrap;
-    //     text-overflow: ellipsis;
-    //     width: 100px;
-    //     display: block;
-    //     overflow: hidden
-    // }
 }

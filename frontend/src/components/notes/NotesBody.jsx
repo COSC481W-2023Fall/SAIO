@@ -1,36 +1,26 @@
-import { Editor, EditorState, RichUtils, ContentState, Modifier } from "draft-js";
-import { useState, useEffect } from "react";
+import { Editor, EditorState, RichUtils, Modifier } from "draft-js";
 import EditorButton from "./EditorButton";
 
 export default function NotesBody(props) {
-    // props.text
-    const [editorState, setEditorState] = useState(EditorState.createEmpty());
-
-    useEffect(() => {
-        if (props.text != null) {
-            setEditorState(EditorState.createWithContent(ContentState.createFromText(props.text)));
-        }
-    }, [props.text]);
-
     const onBold = () => {
-        setEditorState(
-            RichUtils.toggleInlineStyle(editorState, 'BOLD')
+        props.setEditorState(
+            RichUtils.toggleInlineStyle(props.editorState, 'BOLD')
         );
     };
 
     const onItalic = () => {
-        setEditorState(
-            RichUtils.toggleInlineStyle(editorState, 'ITALIC')
+        props.setEditorState(
+            RichUtils.toggleInlineStyle(props.editorState, 'ITALIC')
         );
     };
 
     const handleTab = (event) => {
         event.preventDefault();
-        const currentContent = editorState.getCurrentContent();
-        const selection = editorState.getSelection();
+        const currentContent = props.editorState.getCurrentContent();
+        const selection = props.editorState.getSelection();
         const newContent = Modifier.replaceText(currentContent, selection, "\t");
-        const newEditorState = EditorState.push(editorState, newContent, 'insert-characters');
-        setEditorState(newEditorState);
+        const newEditorState = EditorState.push(props.editorState, newContent, 'insert-characters');
+        props.setEditorState(newEditorState);
     };
 
     return (
@@ -38,8 +28,8 @@ export default function NotesBody(props) {
             <EditorButton name="B" onChange={onBold}/>
             <EditorButton name="I" onChange={onItalic}/>
             <Editor
-                editorState={editorState}
-                onChange={setEditorState}
+                editorState={props.editorState}
+                onChange={props.setEditorState}
                 onTab={handleTab}
             />
         </div>
