@@ -5,7 +5,9 @@ from src.paths import (
     login,
     test,
     signup,
-    student_routes
+    flashcards,
+    student_routes,
+    categories
 )
 
 app = FastAPI()
@@ -24,4 +26,6 @@ app.include_router(index.router)
 app.include_router(login.router)
 app.include_router(signup.router)
 app.include_router(student_routes.router)
+app.include_router(flashcards.router)
+app.include_router(categories.router)
 app.include_router(test.router) # remove everything for tests endpoint eventually
