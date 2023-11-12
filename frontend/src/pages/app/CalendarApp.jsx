@@ -167,7 +167,7 @@ export default function CalendarApp() {
                         style={{ height: 900 }}
                         className='lg:w-9/12 w-full ml-2'
                     />
-                    <div className='flex flex-col bg-slate-800 lg:w-3/12 w-full outline ml-2 mr-2 mt-5'>
+                    <div className='flex flex-col bg-slate-800 lg:w-3/12 w-full outline ml-2 mr-2 mt-5' style={{ height: "900px", "overflow-y": "scroll" }}>
                         <div className='flex flex-row w-full bg-slate-400'>
                             <div className='w-full text-center items-center'>Event List</div>
                         </div>
@@ -232,7 +232,7 @@ export default function CalendarApp() {
                                 <div>
                                     <div className='text-center'>Work Items:</div>    
                                     {dataList.map((listItem) => (
-                                        listItem.resource === "work"
+                                        dataListSortedByDate.resource === "work"
                                         ?
                                         <div key={listItem.title} className='w-full'>
                                             <div className='ml-1'>Title: {listItem.title}</div>
@@ -261,7 +261,7 @@ export default function CalendarApp() {
                             ?
                                 <div>
                                     <div className='text-center'>Home Items:</div>    
-                                    {dataList.map((listItem) => (
+                                    {dataListSortedByDate.map((listItem) => (
                                         listItem.resource === "home"
                                         ?
                                         <div key={listItem.title} className='w-full'>
@@ -291,7 +291,7 @@ export default function CalendarApp() {
                             ?
                                 <div>
                                     <div className='text-center'>Other Items:</div>    
-                                    {dataList.map((listItem) => (
+                                    {dataListSortedByDate.map((listItem) => (
                                         listItem.resource === "other"
                                         ?
                                         <div key={listItem.title} className='w-full'>
@@ -318,6 +318,7 @@ export default function CalendarApp() {
                         </div>
                     </div>
                 </div>
+                <div className='mt-10'></div>
             </div>
         </div>
     ) 
