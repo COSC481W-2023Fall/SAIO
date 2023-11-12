@@ -5,8 +5,8 @@ from src.paths import (
     login,
     test,
     signup,
-    flashcards,
     student_routes,
+    flashcards,
     categories
 )
 
