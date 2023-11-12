@@ -41,7 +41,7 @@ async def read_all_categories(user_email: str):
     categories = []
     cursor = collection.find({"user_email": user_email})
     async for document in cursor:
-        categories.append(document["name"])  # Assuming the name field exists in your category documents
+        categories.append(document["name"])  
     return categories
 
 # Delete Category
