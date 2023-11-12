@@ -10,13 +10,13 @@ client = motor.motor_asyncio.AsyncIOMotorClient(connection_string)
 database = client.SAIO
 collection = database.todo
 
-async def fetch_one_todo(id):
-    document = await collection.find_one({"id":id})
+async def fetch_one_todo(id, email):
+    document = await collection.find_one({"id":id,"email":email})
     return document
 
-async def fetch_all_todos():
+async def fetch_all_todos(email):
     todos = []
-    cursor = collection.find({})
+    cursor = collection.find({"email":email})
     print(connection_string)
     async for document in cursor:
         todos.append(Todo(**document))
@@ -27,8 +27,11 @@ async def create_todo(todo):
     result = await collection.insert_one(document)
     return
 
-async def update_todo(id,text):
-    await collection.update_one({"id": id}, {"$set": {"text":text}})
+async def update_todo(id,update):
+    await collection.update_one({"id": id},
+                                {"$set": 
+                                 {"text":update.text,"isComplete":update.isComplete}}
+                                ,upsert=True)
     document = await collection.find_one({"id":id})
     return document
 

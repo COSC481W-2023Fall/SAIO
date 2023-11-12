@@ -18,7 +18,7 @@ function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
         }
         )
     }
-
+    
     
     //Pulls the form for updating the item
     if (edit.id) {

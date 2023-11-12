@@ -20,10 +20,10 @@ function TodoForm(props) {
         e.preventDefault();
 
         props.onSubmit({
-            id: (Math.floor(Math.random() * 10000)),
+            id: (Math.floor(Math.random() * 1000000)),
             text: input,
-            email: "none",
-            isCompleted:false
+            email: "s@s.com",
+            isComplete:false
 
         });
         setInput('');
