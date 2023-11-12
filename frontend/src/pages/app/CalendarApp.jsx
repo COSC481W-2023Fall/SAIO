@@ -72,7 +72,18 @@ export default function CalendarApp() {
             'resource': resource.value
         })
         .then(res => console.log(res))
+        .then(setTimeout(function(){ window.location.reload() }, 500));
     };
+
+    // Delete Event in Database
+    const deleteEventHandler = title => {
+        axios.delete(`http://127.0.0.1:8000/app/calendar/${title}`)
+        .then(res => {
+            console.log(res);
+            console.log(res.data);
+        })
+        .then(setTimeout(function(){ window.location.reload() }, 500));
+    }
 
     // Toggle Form Entry
     const [formOpen, setFormOpen] = useState(false)
@@ -153,9 +164,138 @@ export default function CalendarApp() {
                         style={{ height: 900 }}
                         className='md:w-9/12 w-full ml-2'
                     />
-                    <div className='flex flex-col bg-slate-800 md:w-3/12 w-full'>
+                    <div className='flex flex-col bg-slate-800 md:w-3/12 w-full outline ml-2 mr-2'>
                         <div className='flex flex-row w-full bg-slate-400'>
                             <div className='w-full text-center items-center'>Event List</div>
+                        </div>
+                        <div className='flex flex-row w-full bg-slate-400 items-center border-b-4 border-slate-500'>
+                            <div className='w-1/12'></div>
+                            <div className='flex flex-col w-5/12'>
+                                <label>
+                                    <input type='checkbox' checked={schoolChecked} onChange={handleSchoolChange} className='mr-1' />
+                                    School
+                                </label>
+                                <label>
+                                    <input type='checkbox' checked={workChecked} onChange={handleWorkChange} className='mr-1' />
+                                    Work
+                                </label>
+                            </div>
+                            <div className='flex flex-col w-5/12'>
+                                <label>
+                                    <input type='checkbox' checked={homeChecked} onChange={handleHomeChange} className='mr-1' />
+                                    Home
+                                </label>
+                                <label>
+                                    <input type='checkbox' checked={otherChecked} onChange={handleOtherChange} className='mr-1' />
+                                    Other
+                                </label>
+                            </div>
+                            <div className='w-1/12'></div>
+                        </div>
+                        <div className='text-center bg-slate-400 border-b-4 border-slate-500'>--- --- --- --- ---</div>
+                        <div className='w-full bg-slate-400 mb-5 mt-5'>
+                            {schoolChecked
+                            ?
+                                <div>
+                                    <div className='text-center'>School Items:</div>    
+                                    {dataList.map((listItem) => (
+                                        listItem.resource === "school"
+                                        ?
+                                        <div key={listItem.title}>
+                                            <div>Title: {listItem.title}</div>
+                                            <div className='flex flex-row w-full items-center text-center mt-2 mb-2 pb-3 border-b-4'>
+                                                <div className='w-1/12'></div>
+                                                <button className='btn outline outline-1 w-4/12 h-8' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
+                                                <div className='w-2/12'></div>
+                                                <button className='btn outline outline-1 w-4/12 h-8' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Update</button>
+                                                <div className='w-1/12'></div>
+                                            </div>
+                                        </div> 
+                                        :
+                                        <div key={listItem.title}></div>
+                                    ))}
+                                </div>
+                            :
+                                <div></div>
+                            }
+                        </div>
+                        <div className='w-full bg-slate-400 mb-5 mt-5'>
+                            {workChecked
+                            ?
+                                <div>
+                                    <div className='text-center'>Work Items:</div>    
+                                    {dataList.map((listItem) => (
+                                        listItem.resource === "work"
+                                        ?
+                                        <div key={listItem.title}>
+                                            <div>Title: {listItem.title}</div>
+                                            <div className='flex flex-row w-full items-center text-center mt-2 mb-2 pb-3 border-b-4'>
+                                                <div className='w-1/12'></div>
+                                                <button className='btn outline outline-1 w-4/12 h-8' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
+                                                <div className='w-2/12'></div>
+                                                <button className='btn outline outline-1 w-4/12 h-8' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Update</button>
+                                                <div className='w-1/12'></div>
+                                            </div>
+                                        </div> 
+                                        :
+                                        <div key={listItem.title}></div>
+                                    ))}
+                                </div>
+                            :
+                                <div></div>
+                            }
+                        </div>
+                        <div className='w-full bg-slate-400 mb-5 mt-5'>
+                            {homeChecked
+                            ?
+                                <div>
+                                    <div className='text-center'>Home Items:</div>    
+                                    {dataList.map((listItem) => (
+                                        listItem.resource === "home"
+                                        ?
+                                        <div key={listItem.title}>
+                                            <div>Title: {listItem.title}</div>
+                                            <div className='flex flex-row w-full items-center text-center mt-2 mb-2 pb-3 border-b-4'>
+                                                <div className='w-1/12'></div>
+                                                <button className='btn outline outline-1 w-4/12 h-8' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
+                                                <div className='w-2/12'></div>
+                                                <button className='btn outline outline-1 w-4/12 h-8' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Update</button>
+                                                <div className='w-1/12'></div>
+                                            </div>
+                                        </div> 
+                                        :
+                                        <div key={listItem.title}></div>
+                                    ))}
+                                </div>
+                            :
+                                <div></div>
+                            }
+                        </div>
+                        <div className='w-full bg-slate-400 mb-5 mt-5'>
+                            {otherChecked
+                            ?
+                                <div>
+                                    <div className='text-center'>Other Items:</div>    
+                                    {dataList.map((listItem) => (
+                                        listItem.resource === "other"
+                                        ?
+                                        <div key={listItem.title}>
+                                            <div>Title: {listItem.title}</div>
+                                            <div className='flex flex-row w-full items-center text-center mt-2 mb-2 pb-3 border-b-4'>
+                                                <div className='w-1/12'></div>
+                                                <button className='btn outline outline-1 w-4/12 h-8' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
+                                                <div className='w-2/12'></div>
+                                                <button className='btn outline outline-1 w-4/12 h-8' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Update</button>
+                                                <div className='w-1/12'></div>
+                                            </div>
+                                        </div> 
+                                        :
+                                        <div key={listItem.title}></div>
+                                    ))}
+                                </div>
+                            :
+                                <div></div>
+                            }
                         </div>
                     </div>
                 </div>
