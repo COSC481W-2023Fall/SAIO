@@ -33,11 +33,10 @@ export default function CalendarApp() {
     }, []);
 
     // Iterates over the dataList and converts the date string to a DateTime
-    const appointments = dataList.map(appointment => ({
+    const appointments = dataList.map(appointment =>({
         title: appointment.title,
-        start: new Date(appointment.start),
+        start: new Date(appointment.start), 
         end: new Date(appointment.end), 
-        dataList:{appointment},
         allDay: appointment.allDay,
         resource: appointment.resource
     }))
@@ -65,7 +64,7 @@ export default function CalendarApp() {
 
     // Add new Event to the Database
     const addEventHandler = () => {
-        axios.post('http://127.0.0.1:8000/calendar', {
+        axios.post('http://127.0.0.1:8000/app/calendar', {
             'title': title,
             'start': start,
             'end': end,
@@ -104,13 +103,13 @@ export default function CalendarApp() {
     };
 
     return (
-        <div className="flex flex-row w-full">
+        <div className="flex flex-row w-full bg-white">
             <Sidebar/>
             <div className='flex flex-col w-full mt-2' id='main-calendar-section'>
-                <div className='flex flex-col text-center items-center w-full'>
+                <div className='flex flex-col text-center items-center w-full mb-5'>
                     {formOpen ?
-                        <div className='flex flex-col w-full items-center bg-white'>
-                            <BsFillArrowUpCircleFill onClick={handFormOpenToggle} className='mb-1 mt-1' />
+                        <div className='flex flex-col w-full items-center'>
+                            <BsFillArrowUpCircleFill onClick={handFormOpenToggle} className='mb-1 mt-1 h-10 w-10' />
                             <div className='flex flex-row w-full items-center'>
                                 <div className='w-1/12'></div>
                                 <div className='flex flex-col w-5/12 mt-2 mb-2'>
@@ -138,12 +137,27 @@ export default function CalendarApp() {
                             <button onClick={addEventHandler} className='btn outline mt-2 mb-4 bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40'>Add Calendar Item</button>
                         </div>  
                     :
-                        <BsFillArrowDownCircleFill onClick={handFormOpenToggle} className='mb-1 mt-1' />    
+                        <BsFillArrowDownCircleFill onClick={handFormOpenToggle} className='mb-5 mt-1 h-10 w-10' />    
                     }
                 </div>
                 <div className='flex md:flex-row flex-col'>
-                    <div>Calendar</div>
-                    <div>Events List</div>
+                    <Calendar 
+                        localizer={localizer}
+                        events={appointments}
+                        titleAccessor='title'
+                        startAccessor="start"
+                        endAccessor="end"
+                        allDayAccessor="allDay"
+                        resourceAccessor='resource'
+                        defaultView='week'
+                        style={{ height: 900 }}
+                        className='md:w-9/12 w-full ml-2'
+                    />
+                    <div className='flex flex-col bg-slate-800 md:w-3/12 w-full'>
+                        <div className='flex flex-row w-full bg-slate-400'>
+                            <div className='w-full text-center items-center'>Event List</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
