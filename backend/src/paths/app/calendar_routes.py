@@ -10,7 +10,8 @@ from src.dbfuncs.calendar_db_funks import (
     read_one_calendar_item,
     read_all_calendar_items,
     update_calendar_item,
-    remove_calendar_item
+    remove_calendar_item,
+    patch_calendar_item
 )
 
 # Create Calendar Item
@@ -40,8 +41,17 @@ async def get_calendar_item():
 
 # Update Calendar Item
 @router.put("/app/calendar/{title}", tags=["calendar"], response_model=CalendarItem)
-async def put_calendar_item(title:str, start:str, end:str, allDay:bool, resource:str):
-    response = await update_calendar_item(title, start, end, allDay, resource)
+async def put_calendar_item(calendar_item:CalendarItem):
+    response = await update_calendar_item(calendar_item.dict())
+    if response:
+        return response
+    raise HTTPException(400, "Something went wrong, bad request") 
+
+
+# Patch Calendar Item
+@router.patch("/app/calendar/{title}", tags=["calendar"], response_model=CalendarItem)
+async def patch_item(title, start, end, allDay, resource):
+    response = await patch_calendar_item(title, start, end, allDay, resource)
     if response:
         return response
     raise HTTPException(404, f"There is no Calendar Item with this title: {title}")
