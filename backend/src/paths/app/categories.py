@@ -5,7 +5,6 @@ from src.dbfuncs.categories import (
     create_category,
     read_all_categories,
     delete_category,
-    update_category
 )
 router = APIRouter()
 
@@ -32,11 +31,3 @@ async def delete_category_route(category_name: str, user_email: str):
     except ValueError as ve:
         raise HTTPException(404, str(ve))
     
-# Update Category
-@router.put("/categories/{category_name}", tags=["flashcards"])
-async def put_category(category_name: str, updated_category: Category, user_email: str):
-    try:
-        response = await update_category(category_name, updated_category, user_email)
-        return response
-    except ValueError as ve:
-        raise HTTPException(404, str(ve))

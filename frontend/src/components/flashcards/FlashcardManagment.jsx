@@ -15,11 +15,6 @@ const FlashcardManagement = () => {
   const flashcardQuestionEl = useRef();
   const flashcardAnswerEl = useRef();
   const flashcardOptionsEl = useRef();
-
-  // Edit state variables
-  const [selectedCategoryForEdit, setSelectedCategoryForEdit] = useState(null);
-  const [editedCategory, setEditedCategory] = useState('');
-
   const [selectedFlashcardForEdit, setSelectedFlashcardForEdit] = useState(null);
   const [editedFlashcard, setEditedFlashcard] = useState({
     question: '',
@@ -37,6 +32,7 @@ const FlashcardManagement = () => {
     if (selectedCategory) {
       axios.get(`${config.apiUrl}/flashcards?category=${selectedCategory}&user_email=${userEmail}`).then((res) => {
         setFlashcards(res.data);
+        console.log('Flashcards Response:', res.data);
       });
     }
   }, [selectedCategory, flashcardToDelete, userEmail]);
@@ -57,7 +53,7 @@ const FlashcardManagement = () => {
     const question = flashcardQuestionEl.current.value;
     const answer = flashcardAnswerEl.current.value;
     const options = flashcardOptionsEl.current.value.split(',');
-
+  
     if (question.trim() && answer.trim() && selectedCategory && options.length > 0) {
       axios.post(`${config.apiUrl}/flashcards`, {
         question: question,
@@ -69,14 +65,16 @@ const FlashcardManagement = () => {
         flashcardQuestionEl.current.value = '';
         flashcardAnswerEl.current.value = '';
         flashcardOptionsEl.current.value = '';
-
+  
         // Fetch flashcards again after submitting
         axios.get(`${config.apiUrl}/flashcards?category=${selectedCategory}&user_email=${userEmail}`).then((res) => {
           setFlashcards(res.data);
+          console.log('Flashcards Response:', res.data);
         });
       });
     }
   };
+  
 
   const handleCategoryDelete = (category) => {
     axios.delete(`${config.apiUrl}/categories/${category}?user_email=${userEmail}`).then(() => {
@@ -93,16 +91,15 @@ const FlashcardManagement = () => {
   };
   
 
-  const handleFlashcardDelete = (question) => {
-    axios.delete(`${config.apiUrl}/flashcards/${question}?user_email=${userEmail}`).then(() => {
-      setFlashcards((prevFlashcards) => prevFlashcards.filter((card) => card.id !== question));
-      setFlashcardToDelete(question); // Trigger a re-fetch of flashcards
-    });
-  };
-
-  const handleEditCategory = (category) => {
-    setSelectedCategoryForEdit(category);
-    setEditedCategory(category);
+  const handleFlashcardDelete = (flashcardId) => {
+    console.log("Deleting flashcard with ID:", flashcardId);
+    axios.delete(`${config.apiUrl}/flashcards/${flashcardId}`)
+      .then(() => {
+        setFlashcards((prevFlashcards) => prevFlashcards.filter((card) => card._id !== flashcardId));
+      })
+      .catch((error) => {
+        console.error("Error deleting flashcard:", error);
+      });
   };
 
   const handleEditFlashcard = (flashcard) => {
@@ -114,26 +111,12 @@ const FlashcardManagement = () => {
     });
   };
 
-  const handleEditCategorySubmit = (e) => {
-    e.preventDefault();
-    if (editedCategory.trim()) {
-      axios.put(`${config.apiUrl}/categories/${selectedCategoryForEdit}?user_email=${userEmail}`, {
-        name: editedCategory,
-        user_email: userEmail,
-      }).then(() => {
-        setSelectedCategoryForEdit(null);
-        setCategoryToDelete(editedCategory); // Trigger a re-fetch of categories
-        setEditedCategory('');
-      });
-    }
-  };
-
   const handleEditFlashcardSubmit = (e) => {
     e.preventDefault();
     const optionsArray = editedFlashcard.options.split(',').map((option) => option.trim());
 
     if (editedFlashcard.question.trim() && editedFlashcard.answer.trim() && selectedCategory && optionsArray.length > 0) {
-      axios.put(`${config.apiUrl}/flashcards/${selectedFlashcardForEdit.question}?user_email=${userEmail}`, {
+      axios.put(`${config.apiUrl}/flashcards/${selectedFlashcardForEdit._id}`, {
         question: editedFlashcard.question,
         answer: editedFlashcard.answer,
         options: optionsArray,
@@ -190,8 +173,9 @@ const FlashcardManagement = () => {
         <div className="container">
           {flashcards.map((flashcard) => (
             <div key={flashcard._id}>
+                {console.log(flashcard)}
               <p>{flashcard.question}</p>
-              <button onClick={() => handleFlashcardDelete(flashcard.question)}>Delete</button>
+              <button onClick={() => handleFlashcardDelete(flashcard._id)}>Delete</button>
               <button onClick={() => handleEditFlashcard(flashcard)}>Edit</button>
 
               {selectedFlashcardForEdit === flashcard && (
@@ -217,18 +201,9 @@ const FlashcardManagement = () => {
         <h2>Categories</h2>
         <div className="container">
           {categories.map((category) => (
-            <div key={category.toString()}>
+            <div key={category}>
               <p>{category}</p>
               <button onClick={() => handleCategoryDelete(category)}>Delete</button>
-              <button onClick={() => handleEditCategory(category)}>Edit</button>
-
-              {selectedCategoryForEdit === category && (
-                <form onSubmit={handleEditCategorySubmit}>
-                  <label>New Category:</label>
-                  <input type="text" value={editedCategory} onChange={(e) => setEditedCategory(e.target.value)} required />
-                  <button type="submit">Save Changes</button>
-                </form>
-              )}
             </div>
           ))}
         </div>

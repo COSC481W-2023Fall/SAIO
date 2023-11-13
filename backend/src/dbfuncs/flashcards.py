@@ -1,7 +1,8 @@
 from dotenv import load_dotenv
 import os
 from src.models.Flashcard import Flashcard
-
+from bson import ObjectId
+from fastapi.encoders import jsonable_encoder
 
 # Get Secret Items
 load_dotenv()
@@ -15,43 +16,43 @@ client = motor.motor_asyncio.AsyncIOMotorClient(connection_string)
 database = client.SAIO
 collection = database.flashcard
 
+
 # Function to create a new flashcard
 async def create_flashcard(flashcard: Flashcard):
-    document = flashcard.dict()
-    result = await collection.insert_one(document)
-    created_flashcard = await collection.find_one({"_id": result.inserted_id})
+    # Assign a new unique string as the _id
+    flashcard_data = flashcard.dict()
+    flashcard_data['_id'] = str(ObjectId())
+
+    # Insert the flashcard into the collection
+    result = await collection.insert_one(flashcard_data)
+
+    # Find the created flashcard using the _id
+    created_flashcard = await collection.find_one({"_id": flashcard_data['_id']})
+
+   # Return the created flashcard as a Flashcard instance
     return Flashcard(**created_flashcard)
+
 
 # Read All Flashcards
 async def read_all_flashcards(category: str, user_email: str):
-    flashcards = []
-    cursor = collection.find({"category": category, "user_email": user_email})
-    async for document in cursor:
-        flashcards.append(Flashcard(**document))
+    flashcards = await collection.find({"category": category, "user_email": user_email}).to_list(length=None)
+    for flashcard in flashcards:
+        flashcard['_id'] = str(flashcard['_id'])
     return flashcards
 
-async def read_all_flashcards_questions(category: str, user_email: str):
-    questions = []
-    cursor = collection.find({"category": category, "user_email": user_email})
-    async for document in cursor:
-        flashcard = Flashcard(**document)
-        questions.append(flashcard.question)
-    return questions
-
-# Delete Flashcard
-async def delete_flashcard(flashcard_id: str, user_email: str):
-    result = await collection.delete_one({"question": flashcard_id, "user_email": user_email})
-    if result.deleted_count == 0:
-        raise ValueError(f"Flashcard with question {flashcard_id} not found for user {user_email}")
-    return {"message": "Flashcard deleted successfully"}
+async def delete_flashcard_by_id(flashcard_id: str):
+    # Delete the flashcard by its ObjectId
+    result = await collection.delete_one({"_id": flashcard_id})
+    # Check if a document was deleted
+    return result.deleted_count > 0
 
 # Update Flashcard
-async def update_flashcard(flashcard_question: str, updated_flashcard: Flashcard, user_email: str):
+async def update_flashcard(flashcard_id: str, updated_flashcard: Flashcard):
     result = await collection.update_one(
-        {"question": flashcard_question, "user_email": user_email},
+        {"_id": flashcard_id},
         {"$set": updated_flashcard.dict()},
     )
     if result.modified_count == 0:
-        raise ValueError(f"Flashcard with question {flashcard_question} not found for user {user_email}")
+        raise ValueError(f"Flashcard not found")
     return {"message": "Flashcard updated successfully"}
 
