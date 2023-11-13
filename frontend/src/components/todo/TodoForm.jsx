@@ -20,11 +20,16 @@ function TodoForm(props) {
         e.preventDefault();
 
         props.onSubmit({
-            id: Math.floor(Math.random() * 10000),
-            text: input
+            id: (Math.floor(Math.random() * 1000000)),
+            text: input,
+            email: "s@s.com",
+            isComplete:false
+
         });
         setInput('');
+        
     };
+
     //Dysplays the item being updated
     return (
         <form onSubmit={handleSubmit} className='todo-form'>
