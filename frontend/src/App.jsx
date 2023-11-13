@@ -5,7 +5,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import EditAccount from"./pages/EditAccount";
-import Calendar from "./pages/app/Calendar";
+import CalendarApp from "./pages/app/CalendarApp";
 import Flashcards from "./pages/app/Flashcards";
 import Home from "./pages/app/Home";
 import Notes from "./pages/app/Notes";
@@ -20,7 +20,7 @@ function App() {
           <Route path="/signup" element={<Signup/>}></Route>
           <Route path="/edit" element={<EditAccount/>}></Route>
 
-          <Route path="/app/calendar" element={<Calendar/>}></Route>
+          <Route path="/app/calendar" element={<CalendarApp/>}></Route>
           <Route path="/app/flashcards" element={<Flashcards/>}></Route>
           <Route path="/app/home" element={<Home/>}></Route>
           <Route path="/app/notes" element={<Notes/>}></Route>
