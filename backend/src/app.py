@@ -5,8 +5,8 @@ from src.paths import (
     login,
     test,
     signup,
-    todo,
-    student_routes
+    student_routes,
+    edit
 )
 from src.paths.app import (
     flashcards,
@@ -32,8 +32,9 @@ app.include_router(login.router)
 app.include_router(signup.router)
 app.include_router(student_routes.router)
 app.include_router(test.router) # remove everything for tests endpoint eventually
-
+app.include_router(edit.router)
 app.include_router(todo.router)
+
 
 # applet routers
 app.include_router(notes.router)

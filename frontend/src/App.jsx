@@ -4,6 +4,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom'
 /* Web Pages */
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import EditAccount from"./pages/EditAccount";
 import CalendarApp from "./pages/app/CalendarApp";
 import Home from "./pages/app/Home";
 import Notes from "./pages/app/Notes";
@@ -16,7 +17,8 @@ function App() {
       <Routes>
           <Route path="/" element={<Home/>}></Route>
           <Route path="/login" element={<Login/>}></Route>
-          <Route path="/signup" element={<Signup/>}></Route>       
+          <Route path="/signup" element={<Signup/>}></Route>
+          <Route path="/edit" element={<EditAccount/>}></Route>   
           <Route path="/app/flashcards" element={<DisplayFlashcards/>}></Route>
           <Route path="/app/ManageFlashcards" element={<FlashcardManagement/>}></Route>
           <Route path="/app/calendar" element={<CalendarApp/>}></Route>

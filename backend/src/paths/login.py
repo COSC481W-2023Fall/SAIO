@@ -16,6 +16,7 @@ router = APIRouter(
 @router.post("/token")
 async def login(user:UserLogin.UserLogin):
     user = user.dict()
+    
     response = await find_user(user["email"])
     if not response:
         raise HTTPException(status_code=400, detail="Incorrect username or password")
