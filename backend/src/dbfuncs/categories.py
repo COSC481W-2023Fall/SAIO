@@ -65,11 +65,19 @@ async def update_category(category_name: str, updated_category: Category, user_e
         {"name": updated_category.name, "user_email": user_email},
         collation=collation,
     )
-    
+
     # Check if the updated category name already exists for the user
     if existing_category and existing_category["name"] != category_name:
         raise HTTPException(400, f"Category {updated_category.name} already exists for the user {user_email}")
 
+    # Update the category name in the flashcards
+    await collection2.update_many(
+        {"category": category_name, "user_email": user_email},
+        {"$set": {"category": updated_category.name}},
+        collation=collation,
+    )
+
+    # Update the category name in the categories collection
     result = await collection.update_one(
         {"name": category_name, "user_email": user_email},
         {"$set": updated_category.dict()},
@@ -80,5 +88,6 @@ async def update_category(category_name: str, updated_category: Category, user_e
         raise ValueError(f"Category {category_name} not found for user {user_email}")
 
     return {"message": "Category updated successfully"}
+
 
 
