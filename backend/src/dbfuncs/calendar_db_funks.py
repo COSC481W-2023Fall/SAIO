@@ -46,7 +46,25 @@ async def read_all_calendar_items():
 
 
 # Update a Calendar item
-async def update_calendar_item(title, start, end, allDay, resource):
+async def update_calendar_item(item):
+    document = item
+    result = await collection.update_one(
+        {"title":item['title']},
+        {
+            "$set": {
+                "start": item['start'],
+                "end": item['end'],
+                "allDay": item['allDay'],
+                "resource": item['resource']
+            }
+        },
+        upsert=True
+    )
+    return document
+
+
+# Patch a Calendar Item
+async def patch_calendar_item(title, start, end, allDay, resource):
     await collection.update_one(
         {"title":title},
         {
@@ -61,7 +79,6 @@ async def update_calendar_item(title, start, end, allDay, resource):
     )
     document = await collection.find_one({"title": title})
     return document
-
 
 # Delete a Calendar item
 async def remove_calendar_item(title):
