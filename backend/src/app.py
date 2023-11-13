@@ -9,7 +9,7 @@ from src.paths import (
 )
 from src.paths.app import (
     flashcards,
-    categories
+    categories,
     notes,
     calendar_routes
 )
