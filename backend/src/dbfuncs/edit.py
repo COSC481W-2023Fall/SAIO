@@ -21,7 +21,7 @@ async def edit_email(oldEmail, newEmail):
     return response.acknowledged
 
 async def edit_password(email, newPass):  
-
+    
     response= await collection.update_one({"email":email}, {"$set": {'password': newPass}})
     return response.acknowledged
 
