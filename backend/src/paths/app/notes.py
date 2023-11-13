@@ -11,19 +11,20 @@ router = APIRouter(
 )
 
 @router.post('',
-    responses = {200: {'model': CreateNoteResponse}, 400: {'model': NotFoundResponse}},
-    response_model = CreateNoteResponse)
+    responses = {200: {'model': CreateNoteResponse}, 400: {'model': NotFoundResponse}})
 async def create_note(
-        x_email: Annotated[str | None, Header()] = None):    
+        request: CreateNoteRequest,
+        x_email: Annotated[str | None, Header()] = None
+    ) -> CreateNoteResponse:
     
-    inserted_id: str = await funcs.create_note(x_email);
+    inserted_id: str = await funcs.create_note(x_email, adjacent=request.adjacent);
 
     if inserted_id == None:
         raise HTTPException(status_code=400, detail='Something went wrong')
 
     return CreateNoteResponse(note_id = str(inserted_id))
 
-@router.get('/',
+@router.get('',
     responses = {200: {'model': GetNoteResponse}, 404: {'model': NotFoundResponse}},
     response_model = GetNoteResponse)
 async def get_root_note(
@@ -42,15 +43,21 @@ async def get_note(
     if note == None or note.get('_id') == None:
         raise HTTPException(status_code=404, detail='Not found')
     
+    note_id: str = str(note.get('_id'))
     title: str = note.get('title')
     adjacent: list[str] = map(lambda x: str(x), note.get('adjacent_note_ids'))
     text: str = '' if note.get('text') == None else note.get('text')
+    raw_draft_content_state = note.get('raw_draft_content_state')
     
-    return GetNoteResponse(
+    res = GetNoteResponse(
+        note_id = note_id,
         title = title,
         adjacent = adjacent,
-        text = text
+        text = text,
+        raw_draft_content_state = raw_draft_content_state
     )
+
+    return res
 
 @router.patch('/{note_id:str}',
     responses = {200: {'model': OkResponse}, 400: {'model': BadResponse}, 404: {'model': NotFoundResponse}},
@@ -59,16 +66,15 @@ async def update_note(
         request: UpdateNoteRequest,
         x_email: Annotated[str | None, Header()],
         note_id: str):
-    result = await funcs.update_note(x_email, note_id, request.title, request.adjacent, request.text)
-
-    print(result)
+    
+    result = await funcs.update_note(x_email, note_id, request.title, request.adjacent, request.text, request.raw_draft_content_state)
     
     if result == None:
         raise HTTPException(status_code=404, detail='Note not found')
     elif result == -1:
         raise HTTPException(status_code=400, detail='Invalid Note Id')
     elif result == 0:
-        return JSONResponse(status_code=400, detail='No data changed')
+        raise HTTPException(status_code=400, detail='No data changed')
     
     return MessageResponse(message='OK')
 

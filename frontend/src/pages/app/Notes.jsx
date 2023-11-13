@@ -1,68 +1,74 @@
-import Sidebar from "../../components/sidebar/Sidebar";
-
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { EditorState, convertFromRaw } from 'draft-js'
 import axios from 'axios';
 import config from '../../config'
 
-function Notes() {
-    // Page Title
-    // useEffect(() => {
-    //     document.title = "Note Page";
-    // }, []);
+import Sidebar from "../../components/sidebar/Sidebar";
+import NotesTitle from "../../components/notes/NotesTitle";
+import NeighborContainer from "../../components/notes/NeighborContainer";
+import NotesBody from "../../components/notes/NotesBody";
+import SaveButton from '../../components/SaveButton';
+import NewNoteButton from '../../components/notes/NewNoteButton';
+import saveNote from '../../scripts/saveNote';
+import { useParams } from 'react-router-dom';
 
-    // Test note variables
-    const [firstName, setFirstName] = useState([]);
-    const [lastName, setLastName] = useState([]);
+export default function Notes(props) {
+    let paramNoteId = useParams().noteId;
+    paramNoteId = paramNoteId == null? "": paramNoteId;
 
-    // CREATE-POST a note
-    const addStudentHandler = () => {
-        axios.post(`${config.apiUrl}/student`, {
-            'firstName': firstName,
-            'lastName': lastName
-        }).then(res => console.log(res))
-        .catch((error) => {
-            if(error.res) {
-                console.log(error.res.data)
+    const [noteId, setNoteId] = useState(paramNoteId);
+    const [title, setTitle] = useState("Loading...");
+    const [adjacent, setAdjacent] = useState([]);
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+    useEffect(() => {
+        axios.get(`${config.apiUrl}/app/notes/${noteId}`, {
+            headers: {
+                "x-email": "s@s.com"
             }
-        })
-    }
+        }).then(response => {
+            setNoteId(response.data.note_id);
+            setTitle(response.data.title);
+            setAdjacent(response.data.adjacent);
+            if (response.data.raw_draft_content_state != null) {
+                setEditorState(EditorState.createWithContent(convertFromRaw(response.data.raw_draft_content_state)));
+            }
+            else {
+                setEditorState(EditorState.createEmpty());
+            }
+        }).catch(error => {
+            console.error('Error fetching data:', error);
+        });
+    }, []); // The empty dependency array ensures this effect runs only once on mount
 
     return (
-        <div style={{ display: "flex", flexDirection: "row" }}>
-            <div>
-                <Sidebar/>    
-            </div>
-            <div style={{ marginLeft: "25px", marginTop: "25px" }}>
-                <h1>Note Taking Page</h1>
-                <br />
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    <input 
-                        onChange={event => setFirstName(event.target.value)} placeholder="First Name" 
-                        style={{ 
-                            marginBottom: "10px",
-                            border: "1px solid black"
-                        }}    
-                    />
-                    <input 
-                        onChange={event => setLastName(event.target.value)} placeholder="Last Name" 
-                        style={{ 
-                            marginBottom: "10px",
-                            border: "1px solid black"
-                        }} 
-                    />
-                    <button 
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                        onClick={addStudentHandler}
-                    >
-                        Add Note
-                    </button>
-                </div>
-                <div>
-                    {}
-                </div>
+        <div className="flex notes">
+            <Sidebar/>
+            <div className="flex flex-col ">
+                <NotesTitle title={title} setTitle={setTitle}/>
+                <SaveButton
+                    onSave={saveNote}
+                    saveData={{
+                        email: "s@s.com",
+                        noteId: noteId,
+                        title:  title,
+                        adjacent: adjacent, // can't yet update
+                        editorState: editorState
+                    }}
+                />
+                <NewNoteButton
+                    noteId={noteId}
+                    adjacent={adjacent}
+                    setAdjacent={setAdjacent}
+                />
+                <NeighborContainer
+                    adjacent={adjacent}
+                />
+                <NotesBody
+                    editorState={editorState}
+                    setEditorState={setEditorState}
+                />
             </div>
         </div>
     )
 }
-
-export default Notes
