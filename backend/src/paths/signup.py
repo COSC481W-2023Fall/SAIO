@@ -17,9 +17,7 @@ password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 async def register(user: UserCreate.UserCreate):
     user_dict = user.dict()
 
-   
-
-    # Hash the user's password
+   # Hash the user's password
     hashed_password = password_context.hash(user_dict['password'])
     user_dict['password'] = hashed_password
 
@@ -27,3 +25,6 @@ async def register(user: UserCreate.UserCreate):
 
 def verify_password(plain_password, hashed_password):
     return password_context.verify(plain_password, hashed_password)
+
+def hash_password(password):
+    return password_context.hash(password)
