@@ -51,6 +51,19 @@ export default function CalendarApp() {
     const [allDay, setAllDay] = useState();
     const [resource, setResource] = useState("");
 
+    // Query Event Item
+    const [queryTitle, setQueryTitle] = useState("");
+    const [queryStart, setQueryStart] = useState(new Date());
+    const [queryEnd, setQueryEnd] = useState(new Date());
+    const [queryAllDay, setQueryAllDay] = useState();
+    const [queryResource, setQueryResource] = useState("");
+
+    // Edit Event Item
+    const [editStart, setEditStart] = useState(new Date());
+    const [editEnd, setEditEnd] = useState(new Date());
+    const [editAllDay, setEditAllDay] = useState(false);
+    const [editResource, setEditResource] = useState("");
+
     // Category Resource options
     const resourceOptions = [
         { value: 'school', label: 'School' },
@@ -78,9 +91,43 @@ export default function CalendarApp() {
         .then(setTimeout(function(){ window.location.reload() }, 500));
     };
 
+    // Get 1 Event for Search
+    const getOneEventHandler = titleName => {
+        axios.get(`http://127.0.0.1:8000/app/calendar/${titleName}`)
+        .then(res => {
+            setQueryStart(new Date(res.data.start))
+            setQueryEnd(new Date(res.data.end))
+            setQueryAllDay(res.data.allDay)
+            setQueryResource(res.data.resource)
+            setNoResultFound(false)
+        })
+        .catch((error) => {
+            setNoResultFound(true);
+            console.error('There was no result with that title!', error);
+        })
+    }
+    
+    // No Result Found Error
+    const [noResultFound, setNoResultFound] = useState(false);
+
+    // Update/Edit Event in Database
+    const editEventHandler = () => {
+        axios.put(`http://127.0.0.1:8000/app/calendar/${queryTitle}`, 
+        {
+            title: queryTitle,
+            start: editStart,
+            end: editEnd,
+            allDay: editAllDay.value,
+            resource: editResource.value
+        })
+        .then(res => console.log(res.data))
+        .then(setTimeout(function(){ window.location.reload() }, 500))
+        .catch(err => console.log(err))
+    }
+
     // Delete Event in Database
-    const deleteEventHandler = title => {
-        axios.delete(`http://127.0.0.1:8000/app/calendar/${title}`)
+    const deleteEventHandler = titleName => {
+        axios.delete(`http://127.0.0.1:8000/app/calendar/${titleName}`)
         .then(res => {
             console.log(res);
             console.log(res.data);
@@ -91,9 +138,19 @@ export default function CalendarApp() {
     // Toggle Form Entry
     const [formOpen, setFormOpen] = useState(false)
 
+    // Toggle Search Form
+    const [searchOpen, setSearchOpen] = useState(false)
+
     // Handle Form Toggle
     const handFormOpenToggle = () => {
         setFormOpen(!formOpen);
+        setSearchOpen(false);
+    }
+    
+    // Handle Search Open
+    const handleSearchOpenToggle = () => {
+        setSearchOpen(!searchOpen);
+        setFormOpen(false);
     }
 
     // Checkbox Statuses
@@ -123,7 +180,10 @@ export default function CalendarApp() {
                 <div className='flex flex-col text-center items-center w-full mb-5'>
                     {formOpen ?
                         <div className='flex flex-col w-full items-center'>
-                            <BsFillArrowUpCircleFill onClick={handFormOpenToggle} className='mb-1 mt-1 h-10 w-10' />
+                            <div>
+                                <button className='btn outline bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40 mr-5' onClick={handFormOpenToggle}>Entry Form</button>
+                                <button className='btn outline bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40 ml-5' onClick={handleSearchOpenToggle}>Edit Events</button>
+                            </div>
                             <div className='flex flex-row w-full items-center'>
                                 <div className='w-1/12'></div>
                                 <div className='flex flex-col w-5/12 mt-2 mb-2'>
@@ -151,7 +211,76 @@ export default function CalendarApp() {
                             <button onClick={addEventHandler} className='btn outline mt-2 mb-4 bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40'>Add Calendar Item</button>
                         </div>  
                     :
-                        <BsFillArrowDownCircleFill onClick={handFormOpenToggle} className='mb-5 mt-1 h-10 w-10' />    
+                        <div>
+                            <button className='btn outline bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40 mr-5' onClick={handFormOpenToggle}>Enter New Event</button>
+                            <button className='btn outline bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40 ml-5' onClick={handleSearchOpenToggle}>Edit Events</button>
+                        </div>
+                    }
+                </div>
+                <div>
+                    {searchOpen ?
+                        <div className='flex flex-col w-full items-center'>
+                            <div className='flex flex-row w-full items-center'>
+                                <div className='w-2/12'></div>
+                                <div className='flex flex-col w-4/12'>
+                                    <div>Search Title :</div>
+                                    <input type='text' placeholder='Search Title' className='form-control h-10 mb-3 outline outline-1' onChange={event => setQueryTitle(event.target.value)} />
+                                </div>
+                                <div className='w-1/12'></div>
+                                <div className='w-3/12'>
+                                    <button onClick={ () => getOneEventHandler(queryTitle) } className='btn outline mt-2 mb-4 bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40'>Search for Event</button>
+                                </div>
+                                <div className='w-2/12'></div>
+                            </div>
+                            <div>
+                                {noResultFound ? <div className=' text-red-600'>There is no result for that title: {queryTitle}</div> : ""}
+                            </div>
+                            <div className='flex flex-col w-6/12'>
+                                <div className='mt-2'>Current Start Time:</div>
+                                <DateTimePicker value={queryStart} />
+                                <div className='mt-2'>Current End Time:</div>
+                                <DateTimePicker value={queryEnd} />
+                                <div className='flex flex-row mt-2'>
+                                    <div className='mr-2'>Current All Day:</div>
+                                    <div className='ml-2'>{queryAllDay ? "All Day" : "Hourly"}</div>
+                                </div>
+                                <div className='flex flex-row mt-2'>
+                                <div className='mr-2'>Current Category:</div>
+                                    <div className='ml-2'>{queryResource}</div>
+                                </div>
+                            </div>
+                            <div className='flex flex-col w-full items-center'>
+                                <div className='flex flex-row w-full items-center'>
+                                    <div className='w-1/12'></div>
+                                    <div className='flex flex-col w-5/12 mt-2 mb-2'>
+                                        <div className='flex flex-row mt-2'>
+                                            <div className='mr-2'>Title:</div>
+                                            <div className='ml-2'>{queryTitle}</div>
+                                        </div>
+                                        <label className='mb-3'>
+                                            All Day? :
+                                            <Select options={allDayOptions} onChange={setEditAllDay} />
+                                        </label>
+                                        <label>
+                                            Category :
+                                            <Select options={resourceOptions} onChange={setEditResource} />
+                                        </label>
+                                    </div>
+                                    <div className='w-1/12'></div>
+                                    <div className='flex flex-col w-4/12'>
+                                        <div>Start Date Time :</div>
+                                        <DateTimePicker onChange={setEditStart} value={editStart} className='h-10' />
+                                        <div className='mt-2 mb-2'></div>
+                                        <div>End Date Time :</div>
+                                        <DateTimePicker onChange={setEditEnd} value={editEnd} className='h-10' />
+                                    </div>
+                                    <div className='w-1/12'></div>
+                                </div>
+                                <button onClick={editEventHandler} className='btn outline mt-2 mb-4 bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40'>Update Calendar Item</button>
+                            </div>
+                        </div> 
+                    :
+                        <div></div>
                     }
                 </div>
                 <div className='flex lg:flex-row flex-col'>
@@ -214,8 +343,6 @@ export default function CalendarApp() {
                                                 <div className='w-1/12'></div>
                                                 <button className='btn outline outline-1 w-4/12 h-8 hover:bg-red-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
                                                 <div className='w-2/12'></div>
-                                                <button className='btn outline outline-1 w-4/12 h-8 hover:bg-blue-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Update</button>
-                                                <div className='w-1/12'></div>
                                             </div>
                                         </div> 
                                         :
@@ -231,8 +358,8 @@ export default function CalendarApp() {
                             ?
                                 <div>
                                     <div className='text-center'>Work Items:</div>    
-                                    {dataList.map((listItem) => (
-                                        dataListSortedByDate.resource === "work"
+                                    {dataListSortedByDate.map((listItem) => (
+                                        listItem.resource === "work"
                                         ?
                                         <div key={listItem.title} className='w-full'>
                                             <div className='ml-1'>Title: {listItem.title}</div>
@@ -240,12 +367,10 @@ export default function CalendarApp() {
                                             <DateTimePicker value={listItem.start} className="ml-1 w-8/12" />
                                             <div className='ml-1'>End Time:</div>
                                             <DateTimePicker value={listItem.end} className="ml-1 w-8/12" />
-                                            <div className='flex flex-row w-full items-center text-center mt-2 mb-2 pb-3 border-b-4'>
+                                            <div className='flex flex-row w-full items-center text-center mt-3 mb-2 pb-3 border-b-4'>
                                                 <div className='w-1/12'></div>
                                                 <button className='btn outline outline-1 w-4/12 h-8 hover:bg-red-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
                                                 <div className='w-2/12'></div>
-                                                <button className='btn outline outline-1 w-4/12 h-8 hover:bg-blue-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Update</button>
-                                                <div className='w-1/12'></div>
                                             </div>
                                         </div> 
                                         :
@@ -274,8 +399,6 @@ export default function CalendarApp() {
                                                 <div className='w-1/12'></div>
                                                 <button className='btn outline outline-1 w-4/12 h-8 hover:bg-red-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
                                                 <div className='w-2/12'></div>
-                                                <button className='btn outline outline-1 w-4/12 h-8 hover:bg-blue-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Update</button>
-                                                <div className='w-1/12'></div>
                                             </div>
                                         </div> 
                                         :
@@ -304,8 +427,6 @@ export default function CalendarApp() {
                                                 <div className='w-1/12'></div>
                                                 <button className='btn outline outline-1 w-4/12 h-8 hover:bg-red-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
                                                 <div className='w-2/12'></div>
-                                                <button className='btn outline outline-1 w-4/12 h-8 hover:bg-blue-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Update</button>
-                                                <div className='w-1/12'></div>
                                             </div>
                                         </div> 
                                         :
