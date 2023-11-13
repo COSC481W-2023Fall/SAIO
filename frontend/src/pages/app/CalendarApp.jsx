@@ -9,6 +9,9 @@ import DateTimePicker from 'react-datetime-picker';
 // Import Sidebar component
 import Sidebar from "../../components/sidebar/Sidebar";
 
+// Import Config
+import config from '../../config';
+
 // Import DateTime picker styling
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
@@ -26,7 +29,7 @@ export default function CalendarApp() {
 
     // UseEffect for getting database calendar events and setting to dataList
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/app/calendar')
+        axios.get(`${config.apiUrl}/app/calendar`)
         .then(res => {
             setDataList(res.data)
         })
@@ -80,7 +83,7 @@ export default function CalendarApp() {
 
     // Add new Event to the Database
     const addEventHandler = () => {
-        axios.post('http://127.0.0.1:8000/app/calendar', {
+        axios.post(`${config.apiUrl}/app/calendar`, {
             'title': title,
             'start': start,
             'end': end,
@@ -93,7 +96,7 @@ export default function CalendarApp() {
 
     // Get 1 Event for Search
     const getOneEventHandler = titleName => {
-        axios.get(`http://127.0.0.1:8000/app/calendar/${titleName}`)
+        axios.get(`${config.apiUrl}/app/calendar/${titleName}`)
         .then(res => {
             setQueryStart(new Date(res.data.start))
             setQueryEnd(new Date(res.data.end))
@@ -112,7 +115,7 @@ export default function CalendarApp() {
 
     // Update/Edit Event in Database
     const editEventHandler = () => {
-        axios.put(`http://127.0.0.1:8000/app/calendar/${queryTitle}`, 
+        axios.put(`${config.apiUrl}/app/calendar/${queryTitle}`, 
         {
             title: queryTitle,
             start: editStart,
@@ -127,7 +130,7 @@ export default function CalendarApp() {
 
     // Delete Event in Database
     const deleteEventHandler = titleName => {
-        axios.delete(`http://127.0.0.1:8000/app/calendar/${titleName}`)
+        axios.delete(`${config.apiUrl}/app/calendar/${titleName}`)
         .then(res => {
             console.log(res);
             console.log(res.data);
