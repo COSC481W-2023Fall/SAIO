@@ -9,6 +9,8 @@ from src.paths import (
     student_routes
 )
 from src.paths.app import (
+    flashcards,
+    categories,
     notes,
     calendar_routes
 )
@@ -36,3 +38,6 @@ app.include_router(todo.router)
 # applet routers
 app.include_router(notes.router)
 app.include_router(calendar_routes.router)
+app.include_router(flashcards.router)
+app.include_router(categories.router)
+
