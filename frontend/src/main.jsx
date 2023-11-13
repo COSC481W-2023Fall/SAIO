@@ -2,6 +2,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
 /* Components */
 import App from './App.jsx'
