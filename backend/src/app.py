@@ -6,7 +6,8 @@ from src.paths import (
     test,
     signup,
     student_routes,
-    edit
+    edit,
+    todo
 )
 from src.paths.app import (
     flashcards,
