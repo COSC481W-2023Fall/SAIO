@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import config from '../config';
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,8 @@ const Signup = () => {
   });
 
   const [error, setError] = useState('');
+  
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,7 +42,7 @@ const Signup = () => {
       // Registration was successful
       // Currently printing success message as an error
       // Once we decide how we want to route users after registration I will change this
-      setError(response.data.message);
+      navigate("/");
       
     } catch (error) {
       console.error('Registration error:', error);
