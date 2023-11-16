@@ -1,8 +1,14 @@
 import Notes from '../pages/app/Notes.jsx';
 import {render,screen} from '@testing-library/react';
 
-test("should have hello world", () => {
+test("Save Notes Button Should Be Rendered,", () => {
     render(<Notes />);
-    const message = screen.queryByText(/Note Taking Page/i);
+    const message = screen.queryByText(/Save/i); // add new adjacent
+    expect(message).toBeVisible();
+})
+
+test("Add Adjacent Notes Button Should Be Rendered.", () => {
+    render(<Notes />);
+    const message = screen.queryByText(/\+/i); // add new adjacent
     expect(message).toBeVisible();
 })
