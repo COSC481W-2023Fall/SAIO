@@ -11,22 +11,25 @@ import Notes from "./pages/app/Notes";
 import Todo from "./pages/app/Todo";
 import DisplayFlashcards from "./pages/app/DisplayFlashcards";
 import FlashcardManagement from "./pages/app/FlashcardManagment";
+import AppLayout from "./pages/AppLayout";
+
 function App() {
   return (    
     <BrowserRouter>
       <Routes>
           <Route path="/" element={<Home/>}></Route>
-          <Route path="/login" element={<Login/>}></Route>
-          <Route path="/signup" element={<Signup/>}></Route>
-          <Route path="/edit" element={<EditAccount/>}></Route>   
-          <Route path="/app/flashcards" element={<DisplayFlashcards/>}></Route>
-          <Route path="/app/ManageFlashcards" element={<FlashcardManagement/>}></Route>
-          <Route path="/app/calendar" element={<CalendarApp/>}></Route>
-          <Route path="/app/home" element={<Home/>}></Route>
-          <Route path="/app/notes" element={<Notes/>}></Route>
-          <Route path="/app/notes/:noteId" element={<Notes/>}></Route>
-          <Route path="/app/todo" element={<Todo/>}></Route>
-          <Route path="/app/Create" element={<Todo/>}></Route>
+          <Route path="login" element={<Login/>}></Route>
+          <Route path="signup" element={<Signup/>}></Route>
+          <Route path="edit" element={<EditAccount/>}></Route>
+          <Route path="app" element={<AppLayout/>}>
+            <Route path="flashcards" element={<DisplayFlashcards/>}></Route>
+            <Route path="flashcards/manage" element={<FlashcardManagement/>}></Route>
+            <Route path="calendar" element={<CalendarApp/>}></Route>
+            <Route path="home" element={<Home/>}></Route>
+            <Route path="notes" element={<Notes/>}></Route>
+            <Route path="notes/:noteId" element={<Notes/>}></Route>
+            <Route path="todo" element={<Todo/>}></Route>
+          </Route>
         </Routes>
     </BrowserRouter>
   )

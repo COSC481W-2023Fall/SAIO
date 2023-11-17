@@ -3,11 +3,10 @@ import { EditorState, convertFromRaw } from 'draft-js'
 import axios from 'axios';
 import config from '../../config'
 
-import Sidebar from "../../components/sidebar/Sidebar";
 import NotesTitle from "../../components/notes/NotesTitle";
 import NeighborContainer from "../../components/notes/NeighborContainer";
 import NotesBody from "../../components/notes/NotesBody";
-import SaveButton from '../../components/SaveButton';
+import SaveButton from '../../components/notes/SaveButton';
 import NewNoteButton from '../../components/notes/NewNoteButton';
 import saveNote from '../../scripts/saveNote';
 import { useParams } from 'react-router-dom';
@@ -42,33 +41,30 @@ export default function Notes(props) {
     }, []); // The empty dependency array ensures this effect runs only once on mount
 
     return (
-        <div className="flex notes">
-            <Sidebar/>
-            <div className="flex flex-col ">
-                <NotesTitle title={title} setTitle={setTitle}/>
-                <SaveButton
-                    onSave={saveNote}
-                    saveData={{
-                        email: "s@s.com",
-                        noteId: noteId,
-                        title:  title,
-                        adjacent: adjacent, // can't yet update
-                        editorState: editorState
-                    }}
-                />
-                <NewNoteButton
-                    noteId={noteId}
-                    adjacent={adjacent}
-                    setAdjacent={setAdjacent}
-                />
-                <NeighborContainer
-                    adjacent={adjacent}
-                />
-                <NotesBody
-                    editorState={editorState}
-                    setEditorState={setEditorState}
-                />
-            </div>
+        <div className="flex flex-col ">
+            <NotesTitle title={title} setTitle={setTitle}/>
+            <SaveButton
+                onSave={saveNote}
+                saveData={{
+                    email: "s@s.com",
+                    noteId: noteId,
+                    title:  title,
+                    adjacent: adjacent, // can't yet update
+                    editorState: editorState
+                }}
+            />
+            <NewNoteButton
+                noteId={noteId}
+                adjacent={adjacent}
+                setAdjacent={setAdjacent}
+            />
+            <NeighborContainer
+                adjacent={adjacent}
+            />
+            <NotesBody
+                editorState={editorState}
+                setEditorState={setEditorState}
+            />
         </div>
     )
 }
