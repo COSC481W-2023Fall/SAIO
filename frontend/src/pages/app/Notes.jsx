@@ -12,6 +12,9 @@ import NewNoteButton from '../../components/notes/NewNoteButton';
 import saveNote from '../../scripts/saveNote';
 import { useParams } from 'react-router-dom';
 
+// Import Theme Button
+import ThemeButton from '../../components/ThemeButton';
+
 export default function Notes(props) {
     let paramNoteId = useParams().noteId;
     paramNoteId = paramNoteId == null? "": paramNoteId;
@@ -42,7 +45,7 @@ export default function Notes(props) {
     }, []); // The empty dependency array ensures this effect runs only once on mount
 
     return (
-        <div className="flex notes">
+        <div className="flex notes primaryBackground">
             <Sidebar/>
             <div className="flex flex-col ">
                 <NotesTitle title={title} setTitle={setTitle}/>
@@ -69,6 +72,7 @@ export default function Notes(props) {
                     setEditorState={setEditorState}
                 />
             </div>
+            <ThemeButton />
         </div>
     )
 }
