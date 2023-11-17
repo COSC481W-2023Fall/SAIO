@@ -1,12 +1,8 @@
 .sidebar {
-    background-color: bisque;
-
     display: flex;
 }
 
 .sidebar--navbar {
-    background-color: aqua;
-
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -25,12 +21,8 @@
     right: 0px;
 }
 
-.navtab:hover {
-    background-color: white;
-}
-
 .sidebar--toggle {
-    background-color:aquamarine;
     display: grid;
     place-items: center;
 }
+
