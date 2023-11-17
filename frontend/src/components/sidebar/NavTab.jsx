@@ -1,12 +1,15 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function NavTab(props) {
     let iconSource = `/images/icons/apps/${props.appName}.png`;
     return (
-        <div className="navtab">
-            <Link to={"../../app/" + props.appName} relative="path">
+        <>
+            <NavLink
+                to={"/app/" + props.appName}
+                className={({isActive}) => {console.log(isActive); return isActive? "bg-emerald-700" : "bg-yellow-200"} }
+            >
                 <img src={iconSource} alt={props.appName}/>
-            </Link>
-        </div>
+            </NavLink>
+        </>
     )
 }

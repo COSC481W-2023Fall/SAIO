@@ -24,7 +24,6 @@ export default function NeighborNote(props) {
                 <Link to={`/app/notes/${props.noteId}`}>
                     {neighborTitle}
                 </Link>
-                {/* <a href={`/app/notes/${props.noteId}`}>{neighborTitle}</a> */}
             </p>
         </div>
     )
