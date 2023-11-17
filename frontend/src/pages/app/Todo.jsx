@@ -12,7 +12,7 @@ import '../../style/TodoApp.css'
 
 export default function Todo() {
     return (
-        <div className="flex">
+        <div className="flex primaryBackground">
             <Sidebar />
             <div className='todo-app'>
                 <TodoList />
