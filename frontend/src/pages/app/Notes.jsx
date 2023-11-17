@@ -12,10 +12,9 @@ import saveNote from '../../scripts/saveNote';
 import { useParams } from 'react-router-dom';
 
 export default function Notes(props) {
-    let paramNoteId = useParams().noteId;
-    paramNoteId = paramNoteId == null? "": paramNoteId;
+    let { noteId } = useParams();
+    noteId = noteId == null? "": noteId;
 
-    const [noteId, setNoteId] = useState(paramNoteId);
     const [title, setTitle] = useState("Loading...");
     const [adjacent, setAdjacent] = useState([]);
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -26,7 +25,6 @@ export default function Notes(props) {
                 "x-email": "s@s.com"
             }
         }).then(response => {
-            setNoteId(response.data.note_id);
             setTitle(response.data.title);
             setAdjacent(response.data.adjacent);
             if (response.data.raw_draft_content_state != null) {
@@ -38,7 +36,7 @@ export default function Notes(props) {
         }).catch(error => {
             console.error('Error fetching data:', error);
         });
-    }, []); // The empty dependency array ensures this effect runs only once on mount
+    }, [noteId]); // The empty dependency array ensures this effect runs only once on mount
 
     return (
         <div className="flex flex-col ">
