@@ -4,12 +4,58 @@
     margin: 0;
 }
 
-body {
-    background-color: red;
+:root {
+    --PrimaryColor: "#000000";
+    --SecondaryColor: "#000000";
+    --TertiaryColor: "#000000";
+    --FourthColor: "#000000";
+    --FifthColor: "#000000";
+    --SixthColor: "#000000";
 }
 
-#root {
-    background-color: rgb(232, 97, 97);
-    height: 100vh;
+.primaryBackground {
+    background-color: var(--PrimaryColor);
+}
+.primaryColor {
+    color: var(--PrimaryColor);
 }
 
+
+.secondaryBackground {
+    background-color: var(--SecondaryColor);
+}
+.secondaryColor {
+    color: var(--SecondaryColor);
+}
+
+
+.tertiaryBackground {
+    background-color: var(--TertiaryColor);
+}
+.tertiaryColor {
+    color: var(--TertiaryColor);
+}
+
+
+.fourthBackground {
+    background-color: var(--FourthColor);
+}
+.fourthColor {
+    color: var(--FourthColor);
+}
+
+
+.fifthBackground {
+    background-color: var(--FifthColor);
+}
+.fifthColor {
+    color: var(--FifthColor);
+}
+
+
+.sixthBackground {
+    background-color: var(--SixthColor);
+}
+.sixthColor {
+    color: var(--SixthColor);
+}
