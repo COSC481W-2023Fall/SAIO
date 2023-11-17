@@ -4,7 +4,7 @@ import SidebarToggle from "./SidebarToggle";
 export default function Sidebar() {
     return (
         <div className="sidebar secondaryBackground">
-            <nav className="sidebar--navbar primaryBackground">
+            <nav className="sidebar--navbar tertiaryBackground">
                 <NavTab
                     appName = "home"
                 />
