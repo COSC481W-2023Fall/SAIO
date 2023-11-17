@@ -180,7 +180,7 @@ export default function CalendarApp() {
     };
 
     return (
-        <div className="flex flex-row w-full bg-white">
+        <div className="flex flex-row w-full primaryBackground">
             <Sidebar/>
             <div className='flex flex-col w-full mt-2 mr-3' id='main-calendar-section'>
                 <div className='flex flex-col text-center items-center w-full mb-5'>
