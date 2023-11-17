@@ -20,6 +20,9 @@ import 'react-clock/dist/Clock.css';
 // Import React Icons
 import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from 'react-icons/bs';
 
+// Import Theme Button
+import ThemeButton from '../../components/ThemeButton';
+
 // Create Localizer
 const localizer = momentLocalizer(moment);
 
@@ -444,6 +447,7 @@ export default function CalendarApp() {
                 </div>
                 <div className='mt-10'></div>
             </div>
+            <ThemeButton />
         </div>
     ) 
 }
