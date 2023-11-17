@@ -5,7 +5,7 @@ import ThemeButton from '../../components/ThemeButton';
 export default function Home() {
     
     return (
-        <div className="flex home tertiaryBackground">
+        <div className="flex home primaryBackground">
             <Sidebar/>
             <div className="flex flex-row ml-5 mt-5 text-center">
                 <div className="mr-5 outline primaryBackground" style={{ height: "100px", width: "100px"}}>
