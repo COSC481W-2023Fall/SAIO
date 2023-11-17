@@ -187,8 +187,8 @@ export default function CalendarApp() {
                     {formOpen ?
                         <div className='flex flex-col w-full items-center'>
                             <div>
-                                <button className='btn outline bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40 mr-5' onClick={handFormOpenToggle}>Entry Form</button>
-                                <button className='btn outline bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40 ml-5' onClick={handleSearchOpenToggle}>Edit Events</button>
+                                <button className='btn outline tertiaryBackground hover:sixthBackground rounded-full h-10 w-40 mr-5' onClick={handFormOpenToggle}>Entry Form</button>
+                                <button className='btn outline tertiaryBackground hover:sixthBackground rounded-full h-10 w-40 ml-5' onClick={handleSearchOpenToggle}>Edit Events</button>
                             </div>
                             <div className='flex flex-row w-full items-center'>
                                 <div className='w-1/12'></div>
@@ -214,12 +214,12 @@ export default function CalendarApp() {
                                 </div>
                                 <div className='w-1/12'></div>
                             </div>
-                            <button onClick={addEventHandler} className='btn outline mt-2 mb-4 bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40'>Add Calendar Item</button>
+                            <button onClick={addEventHandler} className='btn outline mt-2 mb-4 tertiaryBackground hover:sixthBackground rounded-full h-10 w-40'>Add Calendar Item</button>
                         </div>  
                     :
                         <div>
-                            <button className='btn outline bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40 mr-5' onClick={handFormOpenToggle}>Enter New Event</button>
-                            <button className='btn outline bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40 ml-5' onClick={handleSearchOpenToggle}>Edit Events</button>
+                            <button className='btn outline tertiaryBackground hover:sixthBackground rounded-full h-10 w-40 mr-5' onClick={handFormOpenToggle}>Enter New Event</button>
+                            <button className='btn outline tertiaryBackground hover:sixthBackground rounded-full h-10 w-40 ml-5' onClick={handleSearchOpenToggle}>Edit Events</button>
                         </div>
                     }
                 </div>
@@ -289,7 +289,7 @@ export default function CalendarApp() {
                         <div></div>
                     }
                 </div>
-                <div className='flex lg:flex-row flex-col'>
+                <div className='flex lg:flex-row flex-col tertiaryBackground'>
                     <Calendar 
                         localizer={localizer}
                         events={appointments}
