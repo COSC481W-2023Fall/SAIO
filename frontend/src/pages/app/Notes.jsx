@@ -11,6 +11,9 @@ import NewNoteButton from '../../components/notes/NewNoteButton';
 import saveNote from '../../scripts/saveNote';
 import { useParams } from 'react-router-dom';
 
+// Import Theme Button
+import ThemeButton from '../../components/ThemeButton';
+
 export default function Notes(props) {
     let { noteId } = useParams();
     noteId = noteId == null? "": noteId;
@@ -39,7 +42,7 @@ export default function Notes(props) {
     }, [noteId]); // The empty dependency array ensures this effect runs only once on mount
 
     return (
-        <div className="flex flex-col ">
+        <div className="flex flex-col primaryBackground">
             <NotesTitle title={title} setTitle={setTitle}/>
             <SaveButton
                 onSave={saveNote}
@@ -63,6 +66,7 @@ export default function Notes(props) {
                 editorState={editorState}
                 setEditorState={setEditorState}
             />
+            <ThemeButton />
         </div>
     )
 }

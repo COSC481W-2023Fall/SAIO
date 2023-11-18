@@ -5,12 +5,17 @@
 
 import TodoList from '../../components/todo/TodoList'
 
+import ThemeButton from '../../components/ThemeButton';
+
 // import '../../style/TodoApp.css'
 
 export default function Todo() {
     return (
-        <div className='todo-app'>
-            <TodoList />
-        </div >
+        <div className="flex primaryBackground">
+            <div className='todo-app'>
+                <TodoList />
+            </div>
+            <ThemeButton />
+        </div>
     )
 }

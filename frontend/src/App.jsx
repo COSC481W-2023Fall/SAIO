@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import EditAccount from"./pages/EditAccount";
 import CalendarApp from "./pages/app/CalendarApp";
+import ColorThemePalette from "./pages/app/ColorThemePalette";
 import Home from "./pages/app/Home";
 import Notes from "./pages/app/Notes";
 import Todo from "./pages/app/Todo";
@@ -29,6 +30,7 @@ function App() {
             <Route path="notes" element={<Notes/>}></Route>
             <Route path="notes/:noteId" element={<Notes/>}></Route>
             <Route path="todo" element={<Todo/>}></Route>
+            <Route path="colorthemepalette" element={<ColorThemePalette />}></Route>
           </Route>
         </Routes>
     </BrowserRouter>
