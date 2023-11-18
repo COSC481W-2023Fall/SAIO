@@ -11,6 +11,8 @@
     --FourthColor: "#000000";
     --FifthColor: "#000000";
     --SixthColor: "#000000";
+    --SameShadeColor: "#000000";
+    --OppositeShadeColor: "#000000";
 }
 
 .primaryBackground {
@@ -58,4 +60,18 @@
 }
 .sixthColor {
     color: var(--SixthColor);
+}
+
+.sameShadeBackground {
+    background-color: var(--SameShadeColor);
+}
+.sameShadeColor {
+    color: var(--SameShadeColor);
+}
+
+.oppositeShadeBackground {
+    background-color: var(--OppositeShadeColor);
+}
+.oppositeShadeColor {
+    color: var(--OppositeShadeColor);
 }
