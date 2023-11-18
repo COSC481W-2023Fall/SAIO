@@ -1,15 +1,19 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export default function NavTab(props) {
-    let iconSource = `/images/icons/apps/${props.appName}.png`;
+    const iconSource = `/images/icons/apps/${props.appName}.png`;
+    const [active, setActive] = useState("x-inactive-navtab");
     return (
-        <>
+        <div className={active}>
             <NavLink
                 to={"/app/" + props.appName}
-                className={({isActive}) => {console.log(isActive); return isActive? "bg-emerald-700" : "bg-yellow-200"} }
+                className={({isActive}) => 
+                    setActive(isActive?"x-active-navtab":"x-inactive-navtab")
+                }
             >
-                <img src={iconSource} alt={props.appName}/>
+                <img className="w-24" src={iconSource} alt={props.appName}/>
             </NavLink>
-        </>
+        </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import FlashcardList from './FlashcardList.jsx';
 import config from '../../config.js';
-import '../../style/Flashcards.css';
+// import '../../style/Flashcards.css';
 import {Link} from "react-router-dom";
 import axios from 'axios';
 

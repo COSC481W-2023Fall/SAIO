@@ -5,7 +5,7 @@
 
 import TodoList from '../../components/todo/TodoList'
 
-import '../../style/TodoApp.css'
+// import '../../style/TodoApp.css'
 
 export default function Todo() {
     return (

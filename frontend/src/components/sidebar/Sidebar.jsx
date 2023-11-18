@@ -3,8 +3,8 @@ import SidebarToggle from "./SidebarToggle";
 
 export default function Sidebar() {
     return (
-        <div className="sidebar">
-            <nav className="sidebar--navbar">
+        <div className="x-sidebar flex basis-1/8">
+            <nav id="navtabs" className="x-navtabs h-full w-20 flex flex-col">
                 <NavTab
                     appName = "home"
                 />
@@ -20,8 +20,13 @@ export default function Sidebar() {
                 <NavTab
                     appName = "notes"
                 />
+                <div className="x-inactive-navtab w-full h-full">
+                    {/*Empty div for styling purposes*/}
+                </div>
             </nav>
-            <SidebarToggle/>
+            <div className="grid place-content-center">
+                <SidebarToggle/>
+            </div>
         </div>
     )
 }

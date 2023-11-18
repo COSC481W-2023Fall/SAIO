@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 export default function AppLayout(props) {
     return (
-        <div className="flex">
+        <div className="flex w-full h-full">
             <Sidebar/>
             <Outlet/>
         </div>
