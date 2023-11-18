@@ -6,15 +6,18 @@
 import Sidebar from "../../components/sidebar/Sidebar"
 import TodoList from '../../components/todo/TodoList'
 
+import ThemeButton from '../../components/ThemeButton';
+
 import '../../style/TodoApp.css'
 
 export default function Todo() {
     return (
-        <div className="flex">
+        <div className="flex primaryBackground">
             <Sidebar />
             <div className='todo-app'>
                 <TodoList />
-            </div >
+            </div>
+            <ThemeButton />
         </div>
     )
 }
