@@ -20,6 +20,9 @@ export default function Sidebar() {
                 <NavTab
                     appName = "notes"
                 />
+                <NavTab
+                    appName = "colorthemepalette"
+                />
             </nav>
             <SidebarToggle/>
         </div>
