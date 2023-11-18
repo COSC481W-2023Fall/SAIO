@@ -3,8 +3,8 @@ import SidebarToggle from "./SidebarToggle";
 
 export default function Sidebar() {
     return (
-        <div className="sidebar secondaryBackground">
-            <nav className="sidebar--navbar tertiaryBackground">
+        <div className="sidebar tertiaryBackground">
+            <nav className="sidebar--navbar secondaryBackground">
                 <NavTab
                     appName = "home"
                 />
