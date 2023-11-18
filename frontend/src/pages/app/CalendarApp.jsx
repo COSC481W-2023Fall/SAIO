@@ -182,7 +182,7 @@ export default function CalendarApp() {
     return (
         <div className="flex flex-row w-full primaryBackground">
             <Sidebar/>
-            <div className='flex flex-col w-full mt-2 mr-3' id='main-calendar-section'>
+            <div className='flex flex-col w-full mt-2 mr-3 ml-3' id='main-calendar-section'>
                 <div className='flex flex-col text-center items-center w-full mb-5'>
                     {formOpen ?
                         <div className='flex flex-col w-full items-center'>
@@ -300,7 +300,7 @@ export default function CalendarApp() {
                         resourceAccessor='resource'
                         defaultView='week'
                         style={{ height: 900 }}
-                        className='lg:w-9/12 w-full ml-2'
+                        className='lg:w-9/12 w-full ml-2 mr-1'
                     />
                     <div className='flex flex-col bg-slate-800 lg:w-3/12 w-full outline ml-2 mr-2 mt-5' style={{ height: "900px", "overflow-y": "scroll" }}>
                         <div className='flex flex-row w-full bg-slate-400'>
