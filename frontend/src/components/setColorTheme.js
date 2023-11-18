@@ -3,85 +3,85 @@ export default function setSiteColorTheme(num) {
         // LIGHT THEME
         case 1:
             document.documentElement.style.setProperty('--PrimaryColor', '#BAF3DB')
-            document.documentElement.style.setProperty('--SecondaryColor', '#1F845A')
-            document.documentElement.style.setProperty('--TertiaryColor', '#7EE2B8')
-            document.documentElement.style.setProperty('--FourthColor', '#2ABB7F')
-            document.documentElement.style.setProperty('--FifthColor', '#DCFFF1')
-            document.documentElement.style.setProperty('--SixthColor', '#1C3329')
+            document.documentElement.style.setProperty('--SecondaryColor', '#7EE2B8')
+            document.documentElement.style.setProperty('--TertiaryColor', '#1C3329')
+            document.documentElement.style.setProperty('--FourthColor', '#DCFFF1')
+            document.documentElement.style.setProperty('--FifthColor', '#2ABB7F')
+            document.documentElement.style.setProperty('--SixthColor', '#1F845A')
             document.documentElement.style.setProperty('--SameShadeColor', '#ffffff')
             document.documentElement.style.setProperty('--OppositeShadeColor', '#000000')
             break;
 
         // DARK THEME
         case 2:
-            document.documentElement.style.setProperty('--PrimaryColor', '#121212')
-            document.documentElement.style.setProperty('--SecondaryColor', '#bb86fc')
-            document.documentElement.style.setProperty('--TertiaryColor', '#3700B3')
-            document.documentElement.style.setProperty('--FourthColor', '#03DAC5')
-            document.documentElement.style.setProperty('--FifthColor', '#ff7597')
-            document.documentElement.style.setProperty('--SixthColor', '#ff0266')
-            document.documentElement.style.setProperty('--SameShadeColor', '#000000')
-            document.documentElement.style.setProperty('--OppositeShadeColor', '#ffffff')
+            document.documentElement.style.setProperty('--PrimaryColor', '#1c1e30')
+            document.documentElement.style.setProperty('--SecondaryColor', '#303459')
+            document.documentElement.style.setProperty('--TertiaryColor', '#ff0266')
+            document.documentElement.style.setProperty('--FourthColor', '#313138')
+            document.documentElement.style.setProperty('--FifthColor', '#ff0266')
+            document.documentElement.style.setProperty('--SixthColor', '#bb86fc')
+            document.documentElement.style.setProperty('--SameShadeColor', '#121212')
+            document.documentElement.style.setProperty('--OppositeShadeColor', '#dddded')
             break;
 
         // DEREN THEME
         case 3:
-            document.documentElement.style.setProperty('--PrimaryColor', '#028A9B')
-            document.documentElement.style.setProperty('--SecondaryColor', '#BFA194')
-            document.documentElement.style.setProperty('--TertiaryColor', '#F8CF9B')
-            document.documentElement.style.setProperty('--FourthColor', '#F8A147')
-            document.documentElement.style.setProperty('--FifthColor', '#DE5A5A')
-            document.documentElement.style.setProperty('--SixthColor', '#BF3F76')
-            document.documentElement.style.setProperty('--SameShadeColor', '#1C3329')
-            document.documentElement.style.setProperty('--OppositeShadeColor', '#1C3329')
+            document.documentElement.style.setProperty('--PrimaryColor', '#091833')
+            document.documentElement.style.setProperty('--SecondaryColor', '#133E7C')
+            document.documentElement.style.setProperty('--TertiaryColor', '#EA00D9')
+            document.documentElement.style.setProperty('--FourthColor', '#711C91')
+            document.documentElement.style.setProperty('--FifthColor', '#0ABDC6')
+            document.documentElement.style.setProperty('--SixthColor', '#F3E600')
+            document.documentElement.style.setProperty('--SameShadeColor', '#121212')
+            document.documentElement.style.setProperty('--OppositeShadeColor', '#FFFFFF')
             break;
 
         // SAM THEME
         case 4:
-            document.documentElement.style.setProperty('--PrimaryColor', '#028A9B')
-            document.documentElement.style.setProperty('--SecondaryColor', '#BFA194')
-            document.documentElement.style.setProperty('--TertiaryColor', '#F8CF9B')
-            document.documentElement.style.setProperty('--FourthColor', '#F8A147')
-            document.documentElement.style.setProperty('--FifthColor', '#DE5A5A')
-            document.documentElement.style.setProperty('--SixthColor', '#BF3F76')
-            document.documentElement.style.setProperty('--SameShadeColor', '#1C3329')
-            document.documentElement.style.setProperty('--OppositeShadeColor', '#1C3329')
+            document.documentElement.style.setProperty('--PrimaryColor', '#ff0000')
+            document.documentElement.style.setProperty('--SecondaryColor', '#ff5252')
+            document.documentElement.style.setProperty('--TertiaryColor', '#560000')
+            document.documentElement.style.setProperty('--FourthColor', '#ff7b7b')
+            document.documentElement.style.setProperty('--FifthColor', '#620004')
+            document.documentElement.style.setProperty('--SixthColor', '#740005')
+            document.documentElement.style.setProperty('--SameShadeColor', '#ff0000')
+            document.documentElement.style.setProperty('--OppositeShadeColor', '#ffffff')
             break;
 
         // LENNON THEME
         case 5:
-            document.documentElement.style.setProperty('--PrimaryColor', '#028A9B')
-            document.documentElement.style.setProperty('--SecondaryColor', '#BFA194')
-            document.documentElement.style.setProperty('--TertiaryColor', '#F8CF9B')
-            document.documentElement.style.setProperty('--FourthColor', '#F8A147')
-            document.documentElement.style.setProperty('--FifthColor', '#DE5A5A')
-            document.documentElement.style.setProperty('--SixthColor', '#BF3F76')
-            document.documentElement.style.setProperty('--SameShadeColor', '#1C3329')
-            document.documentElement.style.setProperty('--OppositeShadeColor', '#1C3329')
+            document.documentElement.style.setProperty('--PrimaryColor', '#f8ed62')
+            document.documentElement.style.setProperty('--SecondaryColor', '#fff9ae')
+            document.documentElement.style.setProperty('--TertiaryColor', '#660066')
+            document.documentElement.style.setProperty('--FourthColor', '#e9d700')
+            document.documentElement.style.setProperty('--FifthColor', '#800080')
+            document.documentElement.style.setProperty('--SixthColor', '#be29ec')
+            document.documentElement.style.setProperty('--SameShadeColor', '#f8ed62')
+            document.documentElement.style.setProperty('--OppositeShadeColor', '#000000')
             break;
 
         // RENE THEME
         case 6:
-            document.documentElement.style.setProperty('--PrimaryColor', '#028A9B')
-            document.documentElement.style.setProperty('--SecondaryColor', '#BFA194')
-            document.documentElement.style.setProperty('--TertiaryColor', '#F8CF9B')
-            document.documentElement.style.setProperty('--FourthColor', '#F8A147')
-            document.documentElement.style.setProperty('--FifthColor', '#DE5A5A')
-            document.documentElement.style.setProperty('--SixthColor', '#BF3F76')
-            document.documentElement.style.setProperty('--SameShadeColor', '#1C3329')
-            document.documentElement.style.setProperty('--OppositeShadeColor', '#1C3329')
+            document.documentElement.style.setProperty('--PrimaryColor', '#004c4c')
+            document.documentElement.style.setProperty('--SecondaryColor', '#006666')
+            document.documentElement.style.setProperty('--TertiaryColor', '#d1f3f1')
+            document.documentElement.style.setProperty('--FourthColor', '#008080')
+            document.documentElement.style.setProperty('--FifthColor', '#ff0065')
+            document.documentElement.style.setProperty('--SixthColor', '#43e8d8')
+            document.documentElement.style.setProperty('--SameShadeColor', '#004c4c')
+            document.documentElement.style.setProperty('--OppositeShadeColor', '#ffffff')
             break;
 
         // BLAINE THEME
         case 7:
-            document.documentElement.style.setProperty('--PrimaryColor', '#028A9B')
-            document.documentElement.style.setProperty('--SecondaryColor', '#BFA194')
-            document.documentElement.style.setProperty('--TertiaryColor', '#F8CF9B')
-            document.documentElement.style.setProperty('--FourthColor', '#F8A147')
-            document.documentElement.style.setProperty('--FifthColor', '#DE5A5A')
-            document.documentElement.style.setProperty('--SixthColor', '#BF3F76')
-            document.documentElement.style.setProperty('--SameShadeColor', '#1C3329')
-            document.documentElement.style.setProperty('--OppositeShadeColor', '#1C3329')
+            document.documentElement.style.setProperty('--PrimaryColor', '#fff2e6')
+            document.documentElement.style.setProperty('--SecondaryColor', '#ffb380')
+            document.documentElement.style.setProperty('--TertiaryColor', '#994d00')
+            document.documentElement.style.setProperty('--FourthColor', '#ffffff')
+            document.documentElement.style.setProperty('--FifthColor', '#336633')
+            document.documentElement.style.setProperty('--SixthColor', '#1e3504')
+            document.documentElement.style.setProperty('--SameShadeColor', '#fff2e6')
+            document.documentElement.style.setProperty('--OppositeShadeColor', '#000000')
             break;
     }
 }
