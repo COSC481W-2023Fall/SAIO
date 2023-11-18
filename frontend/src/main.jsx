@@ -6,8 +6,9 @@ import App from './App.jsx'
 
 /* Styles */
 import './style/index.css'
-import './style/themes/standard_light.css'
-// import './style/App.css'
+import './style/sidebar.css'
+// import './style/themes/standard_light.css'
+import './style/App.css'
 // import './style/Navbar.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(

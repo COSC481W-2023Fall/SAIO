@@ -1,0 +1,39 @@
+.x-sidebar {
+    background-color: transparent;
+    overflow: hidden;
+}
+
+.x-navtabs {
+    z-index: 1;
+    transition: all 0.5s ease-out;
+}
+
+.x-active-navtab {
+    width: 80px;
+    height: 80px;
+    z-index:-10;
+}
+
+.x-inactive-navtab {
+    position: relative;
+}
+
+.x-inactive-navtab::after {
+    position: absolute;
+    content:"";
+    box-shadow: 3px -0px 10px 1px gray;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:-1;
+}
+
+.x-inactive-navtab:hover {
+}
+
+.x-sidebar-toggle {
+    box-shadow: 3px 0px 10px gray;
+    border-radius: 30px;
+    z-index: 3;
+}

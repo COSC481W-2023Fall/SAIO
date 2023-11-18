@@ -8,11 +8,11 @@ export default function NavTab(props) {
         <div className={active + " w-18 h-18"}>
             <NavLink
                 to={"/app/" + props.appName}
-                className={({isActive}) =>
+                className={({isActive}) => {
                     // this func doesn't set the NavLink's className, it set's the parent's className 
                     // it does this because setting NavLink's className doesn't apply styling
-                    setActive(isActive?"x-active-navtab":"x-inactive-navtab")
-                }
+                    setActive(isActive?"x-active-navtab primaryBackground":"x-inactive-navtab secondaryBackground")
+                }}
             >
                 <img className="w-full h-full object-contain;" src={iconSource} alt={props.appName}/>
             </NavLink>

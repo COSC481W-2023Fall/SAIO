@@ -1,11 +1,8 @@
-import Sidebar from "../../components/sidebar/Sidebar"
-
 import ThemeButton from '../../components/ThemeButton';
 
 const ColorThemePalette = () => {
   return (
     <div className="flex bg-white">
-      <Sidebar />
       <div className="flex flex-col mt-5 ml-5 bg-white">
         <div className="flex flex-row w-full mt-5">
           <div className="text-center w-full mb-2">DESCRIPTIONS:</div>

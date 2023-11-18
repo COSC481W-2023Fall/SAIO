@@ -16,7 +16,7 @@ const ThemeButton = () => {
   const [blaineMode, setBlaineMode] = useState(false);
 
   // Current Theme
-  const [themeNum, setThemeNum] = useState(1);
+  const [themeNum, setThemeNum] = useState(localStorage.getItem('themeNum'));
 
   // Toggle Theme Button Open
   const [buttonOpen, setButtonOpen] = useState(false);
