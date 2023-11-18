@@ -162,7 +162,7 @@ const ThemeButton = () => {
         <div></div>
       }
       
-      <IoIosColorFill className='h-10 w-10' onClick={handleThemeButtonOpen} style={{color: "white"}} />
+      <IoIosColorFill color="oppositeShadeColor" className='h-10 w-10 oppositeShadeColor' onClick={handleThemeButtonOpen} />
     </div>
   )
 }
