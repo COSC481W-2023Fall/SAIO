@@ -5,14 +5,16 @@ export default function NavTab(props) {
     const iconSource = `/images/icons/apps/${props.appName}.png`;
     const [active, setActive] = useState("x-inactive-navtab");
     return (
-        <div className={active}>
+        <div className={active + " w-18 h-18"}>
             <NavLink
                 to={"/app/" + props.appName}
-                className={({isActive}) => 
+                className={({isActive}) =>
+                    // this func doesn't set the NavLink's className, it set's the parent's className 
+                    // it does this because setting NavLink's className doesn't apply styling
                     setActive(isActive?"x-active-navtab":"x-inactive-navtab")
                 }
             >
-                <img className="w-24" src={iconSource} alt={props.appName}/>
+                <img className="w-full h-full object-contain;" src={iconSource} alt={props.appName}/>
             </NavLink>
         </div>
     )
