@@ -18,7 +18,7 @@ import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 
 // Import React Icons
-import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from 'react-icons/bs';
+// import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from 'react-icons/bs';
 
 // Import Theme Button
 import ThemeButton from '../../components/ThemeButton';
@@ -187,8 +187,12 @@ export default function CalendarApp() {
                     {formOpen ?
                         <div className='flex flex-col w-full items-center'>
                             <div>
-                                <button className='btn outline tertiaryBackground hover:sixthBackground rounded-full h-10 w-40 mr-5' onClick={handFormOpenToggle}>Entry Form</button>
-                                <button className='btn outline tertiaryBackground hover:sixthBackground rounded-full h-10 w-40 ml-5' onClick={handleSearchOpenToggle}>Edit Events</button>
+                                <button className='outline tertiaryBackground rounded-full h-10 w-40 mr-5' onClick={handFormOpenToggle}>
+                                    <span className='sameShadeColor'>Entry Form</span>
+                                </button>
+                                <button className='outline tertiaryBackground rounded-full h-10 w-40 ml-5' onClick={handleSearchOpenToggle}>
+                                    <span className='sameShadeColor'>Edit Events</span>
+                                </button>
                             </div>
                             <div className='flex flex-row w-full items-center'>
                                 <div className='w-1/12'></div>
@@ -214,12 +218,18 @@ export default function CalendarApp() {
                                 </div>
                                 <div className='w-1/12'></div>
                             </div>
-                            <button onClick={addEventHandler} className='btn outline mt-2 mb-4 tertiaryBackground hover:sixthBackground rounded-full h-10 w-40'>Add Calendar Item</button>
+                            <button onClick={addEventHandler} className='outline mt-2 mb-4 tertiaryBackground rounded-full h-10 w-40'>
+                                <span className='sameShadeColor'>Add Calendar Item</span>
+                            </button>
                         </div>  
                     :
                         <div>
-                            <button className='btn outline tertiaryBackground hover:sixthBackground rounded-full h-10 w-40 mr-5' onClick={handFormOpenToggle}>Enter New Event</button>
-                            <button className='btn outline tertiaryBackground hover:sixthBackground rounded-full h-10 w-40 ml-5' onClick={handleSearchOpenToggle}>Edit Events</button>
+                            <button className='outline tertiaryBackground rounded-full h-10 w-40 mr-5' onClick={handFormOpenToggle}>
+                                <span className='sameShadeColor'>Enter New Event</span>
+                            </button>
+                            <button className='outline tertiaryBackground rounded-full h-10 w-40 ml-5' onClick={handleSearchOpenToggle}>
+                                <span className='sameShadeColor'>Edit Events</span>
+                            </button> 
                         </div>
                     }
                 </div>
@@ -234,7 +244,9 @@ export default function CalendarApp() {
                                 </div>
                                 <div className='w-1/12'></div>
                                 <div className='w-3/12'>
-                                    <button onClick={ () => getOneEventHandler(queryTitle) } className='btn outline mt-2 mb-4 bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40'>Search for Event</button>
+                                    <button onClick={ () => getOneEventHandler(queryTitle) } className='btn outline mt-2 mb-4 rounded-full h-10 w-40 tertiaryBackground'>
+                                        <span className='sameShadeColor'>Search for Event</span>
+                                    </button>
                                 </div>
                                 <div className='w-2/12'></div>
                             </div>
@@ -282,14 +294,14 @@ export default function CalendarApp() {
                                     </div>
                                     <div className='w-1/12'></div>
                                 </div>
-                                <button onClick={editEventHandler} className='btn outline mt-2 mb-4 bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40'>Update Calendar Item</button>
+                                <button onClick={editEventHandler} className='btn outline mt-2 mb-4 rounded-full h-10 w-40'>Update Calendar Item</button>
                             </div>
                         </div> 
                     :
                         <div></div>
                     }
                 </div>
-                <div className='flex lg:flex-row flex-col tertiaryBackground'>
+                <div className='flex lg:flex-row flex-col bg-white'>
                     <Calendar 
                         localizer={localizer}
                         events={appointments}
