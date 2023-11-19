@@ -7,9 +7,10 @@ import App from './App.jsx'
 /* Styles */
 import './style/index.css'
 import './style/sidebar.css'
-// import './style/themes/standard_light.css'
+import './style/Flashcards.css'
 import './style/App.css'
 import './style/TodoApp.css'
+import './style/Login.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <App/>
