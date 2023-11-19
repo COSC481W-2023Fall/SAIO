@@ -18,14 +18,15 @@
 .primaryBackground {
     background-color: var(--PrimaryColor);
 }
+
 .primaryColor {
     color: var(--PrimaryColor);
 }
 
-
 .secondaryBackground {
     background-color: var(--SecondaryColor);
 }
+
 .secondaryColor {
     color: var(--SecondaryColor);
 }

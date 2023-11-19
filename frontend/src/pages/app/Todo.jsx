@@ -11,7 +11,7 @@ import ThemeButton from '../../components/ThemeButton';
 
 export default function Todo() {
     return (
-        <main id="main" className="relative flex w-full primaryBackground">
+        <main id="main" className="primaryBackground relative h-full w-full flex ">
             <div className='todo-app'>
                 <TodoList />
             </div>

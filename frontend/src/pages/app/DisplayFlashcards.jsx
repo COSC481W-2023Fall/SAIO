@@ -5,7 +5,7 @@ import ThemeButton from '../../components/ThemeButton';
 
 export default function flashcard() {
     return (
-        <main id="main" className="relative flex w-full primaryBackground">
+        <main id="main" className="primaryBackground relative flex h-full w-full">
             <DisplayFlashcards />
         </main>
     )
