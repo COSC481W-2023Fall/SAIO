@@ -42,7 +42,7 @@ export default function Notes(props) {
     }, [noteId]); // The empty dependency array ensures this effect runs only once on mount
 
     return (
-        <div className="flex flex-col w-full primaryBackground">
+        <main className="relative flex flex-col w-full primaryBackground">
             <NotesTitle title={title} setTitle={setTitle}/>
             <SaveButton
                 onSave={saveNote}
@@ -66,7 +66,6 @@ export default function Notes(props) {
                 editorState={editorState}
                 setEditorState={setEditorState}
             />
-            <ThemeButton />
-        </div>
+        </main>
     )
 }

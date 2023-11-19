@@ -11,11 +11,10 @@ import ThemeButton from '../../components/ThemeButton';
 
 export default function Todo() {
     return (
-        <div className="flex w-full primaryBackground">
+        <main id="main" className="relative flex w-full primaryBackground">
             <div className='todo-app'>
                 <TodoList />
             </div>
-            <ThemeButton />
-        </div>
+        </main>
     )
 }

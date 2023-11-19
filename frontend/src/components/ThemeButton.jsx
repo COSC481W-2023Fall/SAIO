@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { IoIosColorFill } from "react-icons/io";
 
-import setSiteColorTheme from './setColorTheme';
+import setSiteColorTheme from '../scripts/setColorTheme';
 
 const ThemeButton = () => {
 

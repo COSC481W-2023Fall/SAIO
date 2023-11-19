@@ -180,7 +180,7 @@ export default function CalendarApp() {
     };
 
     return (
-        <div className="flex flex-row w-full primaryBackground">
+        <main id="main" className="relative flex flex-row w-full primaryBackground">
             <div className='flex flex-col w-full mt-2 mr-3 ml-3' id='main-calendar-section'>
                 <div className='flex flex-col text-center items-center w-full mb-5'>
                     {formOpen ?
@@ -458,7 +458,6 @@ export default function CalendarApp() {
                 </div>
                 <div className='mt-10'></div>
             </div>
-            <ThemeButton />
-        </div>
+        </main>
     ) 
 }
