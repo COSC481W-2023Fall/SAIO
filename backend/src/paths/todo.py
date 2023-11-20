@@ -7,7 +7,7 @@ from ..models.Todo import Todo
 from ..models.updateTodo import updateTodo
 from fastapi import APIRouter, HTTPException
 from ..dbfuncs import todo as funcs
-from paths.login import get_current_user
+from src.paths.login import get_current_user
 
 
 router = APIRouter(

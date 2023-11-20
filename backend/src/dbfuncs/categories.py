@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import os
 from fastapi import HTTPException
 from src.models.Category import Category
-from paths.login import get_current_user
+from src.paths.login import get_current_user
 from bson import ObjectId
 # Get Secret Items
 load_dotenv()
