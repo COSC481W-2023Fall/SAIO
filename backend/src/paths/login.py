@@ -44,10 +44,16 @@ async def get_current_user(token):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         email = payload["email"]
-       
+        
 
         if payload is None:
             raise credentials_exception
+        
+        response = await find_user(email)
+        
+        if not response:
+            raise credentials_exception
+           
         
         return email
        
