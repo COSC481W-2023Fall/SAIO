@@ -22,7 +22,7 @@ function TodoForm(props) {
         props.onSubmit({
             id: (Math.floor(Math.random() * 1000000)),
             text: input,
-            email: "s@s.com",
+            email: localStorage.getItem('token'),
             isComplete:false
 
         });

@@ -9,7 +9,7 @@ function DisplayFlashcards() {
   const [categories, setCategories] = useState([]);
   const [flashcards, setFlashcards] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [userEmail, setUserEmail] = useState('test2@gmail.com');
+  const [userEmail, setUserEmail] = useState(localStorage.getItem('token'));
 
   useEffect(() => {
     axios.get(`${config.apiUrl}/categories?user_email=${userEmail}`).then((res) => {

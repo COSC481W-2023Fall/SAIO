@@ -7,7 +7,7 @@ from ..models.Todo import Todo
 from ..models.updateTodo import updateTodo
 from fastapi import APIRouter, HTTPException
 from ..dbfuncs import todo as funcs
-
+from paths.login import get_current_user
 
 
 router = APIRouter(
@@ -15,6 +15,7 @@ router = APIRouter(
 
 @router.get("/{id}", response_model=Todo)
 async def get_todo_by_title(id:int,x_email: Annotated[str | None, Header()]):
+    x_email = await get_current_user(x_email)
     response = await funcs.fetch_one_todo(id,x_email)
     if response:
         return response
@@ -22,6 +23,7 @@ async def get_todo_by_title(id:int,x_email: Annotated[str | None, Header()]):
 
 @router.get("")
 async def get_todos( x_email: Annotated[str | None, Header()]):
+    x_email = await get_current_user(x_email)
     response = await funcs.fetch_all_todos(x_email)
     print(response)
     if response:
@@ -30,7 +32,9 @@ async def get_todos( x_email: Annotated[str | None, Header()]):
 
 @router.post("",response_model=Todo)
 async def put_todos(todo:Todo):
-    response = await funcs.create_todo(todo.dict())
+    todo = todo.dict()
+    todo['email'] = await get_current_user(todo['email'])
+    response = await funcs.create_todo(todo)
     if response:
         return response
     raise HTTPException(400, "Something went wrong, bad request")

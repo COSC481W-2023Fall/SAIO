@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import os
 from fastapi import HTTPException
 from src.models.Category import Category
+from paths.login import get_current_user
 from bson import ObjectId
 # Get Secret Items
 load_dotenv()
@@ -19,6 +20,7 @@ collection2 = database.flashcard
 async def create_category(category: Category):
     # Assign a new unique string as the _id
     category_data = category.dict()
+    category_data["user_email"] = await get_current_user(category_data["user_email"])
     category_data['_id'] = str(ObjectId())
 
     # Insert the flashcard into the collection
@@ -32,6 +34,7 @@ async def create_category(category: Category):
 
 
 async def read_all_categories(user_email: str):
+    user_email = await get_current_user(user_email)
     categories = []
     cursor = collection.find({"user_email": user_email})
     async for document in cursor:
@@ -40,6 +43,7 @@ async def read_all_categories(user_email: str):
 
 # Delete Category
 async def delete_category(category_name: str, user_email: str):
+    user_email = await get_current_user(user_email)
     result = await collection.delete_one({"name": category_name, "user_email": user_email})
     if result.deleted_count == 0:
         raise ValueError(f"Category {category_name} not found for user {user_email}")
