@@ -30,56 +30,57 @@ function App() {
           }>
         </Route>
         <Route path="/signup" element={
-          <PrivateRoute>
+          
             <Signup/>
-          </PrivateRoute>}>
+          }>
         </Route>
         <Route path="/edit" element={
           <PrivateRoute>
             <EditAccount/>
           </PrivateRoute>}>
         </Route>   
-        <Route path="/app/flashcards" element={
+        <Route path="app" element={<AppLayout/>}>
+        <Route path="flashcards" element={
           <PrivateRoute>
             <DisplayFlashcards/>
           </PrivateRoute>}>
         </Route>
-        <Route path="/app/ManageFlashcards" element={
+        <Route path="flashcards/manage" element={
           <PrivateRoute>
             <FlashcardManagement/>
           </PrivateRoute>}>
         </Route>
-        <Route path="/app/calendar" element={
+        <Route path="calendar" element={
           <PrivateRoute>
             <CalendarApp/>
             </PrivateRoute>}>
         </Route>
-        <Route path="/app/colorthemepalette" element={
+        <Route path="colorthemepalette" element={
         <PrivateRoute>
           <ColorThemePalette />
           </PrivateRoute>}>
         </Route>
-        <Route path="/app/home" element={
+        <Route path="home" element={
           <PrivateRoute>
             <Home/>
           </PrivateRoute>}>
         </Route>
-        <Route path="/app/notes" element={
+        <Route path="notes" element={
           <PrivateRoute>
             <Notes/>
           </PrivateRoute>}>
         </Route>
-        <Route path="/app/notes/:noteId" element={
+        <Route path="notes/:noteId" element={
           <PrivateRoute>
             <Notes/>
           </PrivateRoute>}>
         </Route>
-        <Route path="/app/todo" element={
+        <Route path="todo" element={
           <PrivateRoute>
             <Todo/>
           </PrivateRoute>}>
         </Route>
-        <Route path="/app/Create" element={
+        <Route path="Create" element={
           <PrivateRoute>
             <Todo/>
           </PrivateRoute>}>
@@ -88,6 +89,7 @@ function App() {
           <PrivateRoute>
             <ColorThemePalette />
           </PrivateRoute>}>
+        </Route>
         </Route>
       </Routes>
     </BrowserRouter>

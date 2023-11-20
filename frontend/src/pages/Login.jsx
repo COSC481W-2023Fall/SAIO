@@ -55,7 +55,7 @@ export default function Login(props) {
       if(user_exists){
         
          // setToke("authenticated", true);
-          navigate("/");
+          navigate("/app/home");
       }
      
   }

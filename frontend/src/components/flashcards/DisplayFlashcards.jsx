@@ -31,7 +31,7 @@ function DisplayFlashcards() {
   return (
     <>
       <form className="header">
-      <Link to="/app/ManageFlashcards"> Manage Flashcards </Link>
+      <Link to="/app/flashcards/manage"> Manage Flashcards </Link>
         <div className="form-group">
           <label htmlFor="newFlashcardCategory">Category</label>
           <select
