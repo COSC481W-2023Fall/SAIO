@@ -135,61 +135,85 @@ const FlashcardManagement = () => {
   };
 
   return (
-    <div>
-        <Link to="/app/flashcards"> Study Flashcards </Link>
-      <form onSubmit={handleCategorySubmit}>
-        <label>New Category:</label>
-        <input type="text" ref={categoryEl} required />
-        <button type="submit">Add Category</button>
-      </form>
-
-      <form onSubmit={handleFlashcardSubmit}>
-        <label>Category:</label>
-        <select onChange={(e) => setSelectedCategory(e.target.value)} value={selectedCategory} required>
-          <option value="" disabled>
-            Select set
-          </option>
-          {categories.map((category) => (
-            <option value={category} key={category.toString()}>
-              {category}
-            </option>
-          ))}
-        </select>
-
-        <label>Question:</label>
-        <input type="text" ref={flashcardQuestionEl} required />
-
-        <label>Answer:</label>
-        <input type="text" ref={flashcardAnswerEl} required />
-
-        <label>Options (comma-separated):</label>
-        <input type="text" ref={flashcardOptionsEl} />
-
-        <button type="submit">Generate Flashcards</button>
-      </form>
-
-      <div>
+    <div className="container">
+      <Link to="/app/flashcards"> Study Flashcards </Link>
+  
+      <div className="form-container">
+        <form onSubmit={handleCategorySubmit} className="mb-4">
+          <label className="block">New Category:</label>
+          <input type="text" ref={categoryEl} required className="border p-2 w-full" />
+          <button type="submit" className="bg-blue-500 text-white p-2 mt-2">Add Category</button>
+        </form>
+  
+        <form onSubmit={handleFlashcardSubmit} className="mb-4">
+          <label className="block">Category:</label>
+          <select onChange={(e) => setSelectedCategory(e.target.value)} value={selectedCategory} required className="border p-2 w-full">
+            <option value="" disabled>Select set</option>
+            {categories.map((category) => (
+              <option value={category} key={category.toString()}>
+                {category}
+              </option>
+            ))}
+          </select>
+  
+          <label className="block">Question:</label>
+          <input type="text" ref={flashcardQuestionEl} required className="border p-2 w-full" />
+  
+          <label className="block">Answer:</label>
+          <input type="text" ref={flashcardAnswerEl} required className="border p-2 w-full" />
+  
+          <label className="block">Options (comma-separated):</label>
+          <input type="text" ref={flashcardOptionsEl} className="border p-2 w-full" />
+  
+          <button type="submit" className="bg-blue-500 text-white p-2 mt-2">Generate Flashcards</button>
+        </form>
+      </div>
+  
+      <div className="flex">
+      <div className="flex-1">
         <h2>Flashcards</h2>
-        <div className="container">
+        <div className="flashcards-container">
           {flashcards.map((flashcard) => (
-            <div key={flashcard._id}>
-                {console.log(flashcard)}
+            <div key={flashcard._id} className="flashcard-item border p-4 rounded">
               <p>{flashcard.question}</p>
-              <button onClick={() => handleFlashcardDelete(flashcard._id)}>Delete</button>
-              <button onClick={() => handleEditFlashcard(flashcard)}>Edit</button>
+              <button onClick={() => handleFlashcardDelete(flashcard._id)} className="bg-red-500 text-white p-2">Delete</button>
+              <button onClick={() => handleEditFlashcard(flashcard)} className="bg-blue-500 text-white p-2 ml-2">Edit</button>
 
               {selectedFlashcardForEdit === flashcard && (
-                <form onSubmit={handleEditFlashcardSubmit}>
-                  <label>Question:</label>
-                  <input type="text" value={editedFlashcard.question} onChange={(e) => setEditedFlashcard({ ...editedFlashcard, question: e.target.value })} required />
+                <form onSubmit={handleEditFlashcardSubmit} className="mt-4">
+                  <div className="mb-4">
+                    <label className="block">Question:</label>
+                    <input
+                      type="text"
+                      value={editedFlashcard.question}
+                      onChange={(e) => setEditedFlashcard({ ...editedFlashcard, question: e.target.value })}
+                      required
+                      className="border p-2 w-full"
+                    />
+                  </div>
 
-                  <label>Answer:</label>
-                  <input type="text" value={editedFlashcard.answer} onChange={(e) => setEditedFlashcard({ ...editedFlashcard, answer: e.target.value })} required />
+                  <div className="mb-4">
+                    <label className="block">Answer:</label>
+                    <input
+                      type="text"
+                      value={editedFlashcard.answer}
+                      onChange={(e) => setEditedFlashcard({ ...editedFlashcard, answer: e.target.value })}
+                      required
+                      className="border p-2 w-full"
+                    />
+                  </div>
 
-                  <label>Options (comma-separated):</label>
-                  <input type="text" value={editedFlashcard.options} onChange={(e) => setEditedFlashcard({ ...editedFlashcard, options: e.target.value })} />
+                  <div className="mb-4">
+                    <label className="block">Options (comma-separated):</label>
+                    <input
+                      type="text"
+                      value={editedFlashcard.options}
+                      onChange={(e) => setEditedFlashcard({ ...editedFlashcard, options: e.target.value })}
+                      className="border p-2 w-full"
+                    />
+                  </div>
 
-                  <button type="submit">Save Changes</button>
+                  <button type="submit" className="bg-green-500 text-white p-2">Save Changes</button>
                 </form>
               )}
             </div>
@@ -197,19 +221,21 @@ const FlashcardManagement = () => {
         </div>
       </div>
 
-      <div>
+      <div className="flex-1">
         <h2>Categories</h2>
-        <div className="container">
+        <div className="categories-container">
           {categories.map((category) => (
-            <div key={category}>
+            <div key={category} className="category-item border p-4 rounded">
               <p>{category}</p>
-              <button onClick={() => handleCategoryDelete(category)}>Delete</button>
+              <button onClick={() => handleCategoryDelete(category)} className="bg-red-500 text-white p-2">Delete</button>
             </div>
           ))}
         </div>
       </div>
     </div>
-  );
+  </div>
+);
+  
 };
 
 export default FlashcardManagement;
