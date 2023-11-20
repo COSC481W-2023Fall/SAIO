@@ -46,37 +46,51 @@ function TodoList() {
         if (!newValue.text || /^\s*$/.test(newValue.text)) {
             return
         }
-        console.log(id)
-        console.log(newValue.text)
-        console.log(newValue.isComplete)
-        axios.put(`${config.apiUrl}/todo/${id}`, { text: newValue.text,  isComplete: newValue.isComplete })
-            .then(res => console.log(res))
-            .then(setTimeout(function () { window.location.reload() }, 500))
-            .catch((err) => console.log(err));
+        let todosUpdated = todos.map(todo => { 
+            if (todo.id === id) {
+                console.log(id)
+                console.log(newValue.text)
+                console.log(newValue.isComplete)
+                todo.isComplete = newValue.isComplete
+                todo.text = newValue.text
+                axios.put(`${config.apiUrl}/todo/${id}`, { text: newValue.text, isComplete: newValue.isComplete })
+                    .then(res => console.log(res))
+                    //.then(setTimeout(function () { window.location.reload() }, 500))
+                    .catch((err) => console.log(err));
+            }
+            return todo
+
+        })
+        setTodos(todosUpdated)
 
     }
     //Crosses out the task of a competed task
     const completeTodo = id => {
-        todos.map(todo => {
+        let todosUpdated = todos.map(todo => {
             
             if (todo.id === id && todo.isComplete === false) {
-                console.log(todo.id)
+                
+                todo.isComplete = true
                 axios.put(`${config.apiUrl}/todo/${id}`, {  text: todo.text, isComplete: true })
                     .then(res => console.log(res))
                     // .then(setTimeout(function () { window.location.reload() }, 500))
                     .catch((err) => console.log(err));
-                    return
+                    
             }
-            if (todo.id === id && todo.isComplete === true)
+            
+            else if (todo.id === id && todo.isComplete === true)
             {
+                todo.isComplete = false
                 axios.put(`${config.apiUrl}/todo/${id}`, { text: todo.text, isComplete: false })
                     .then(res => console.log(res))
                     // .then(setTimeout(function () { window.location.reload() }, 500))
                     .catch((err) => console.log(err));
 
             }
+            return todo
             
         })
+        setTodos(todosUpdated)
         
     }
     //Goes into other componetes
