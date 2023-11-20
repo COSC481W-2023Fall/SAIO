@@ -1,8 +1,9 @@
 import Sidebar from "../../components/sidebar/Sidebar"
+import { useNavigate } from "react-router-dom";
 
-import ThemeButton from '../../components/ThemeButton';
 
 export default function Home() {
+
     return (
         <main id="main" className="x-background primaryBackground relative ease-in grid place-content-center h-full">
             {/* w-full h-full */}
@@ -16,3 +17,5 @@ export default function Home() {
         </main>
     )
 }
+
+

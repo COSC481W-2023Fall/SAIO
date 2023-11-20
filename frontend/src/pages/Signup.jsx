@@ -42,7 +42,7 @@ const Signup = () => {
       // Registration was successful
       // Currently printing success message as an error
       // Once we decide how we want to route users after registration I will change this
-      navigate("/");
+      navigate("/Login");
       
     } catch (error) {
       console.error('Registration error:', error);

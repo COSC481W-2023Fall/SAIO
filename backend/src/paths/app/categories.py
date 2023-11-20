@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from fastapi import HTTPException
 from src.models.Category import Category
+
 from src.dbfuncs.categories import (
     create_category,
     read_all_categories,
@@ -19,6 +20,7 @@ async def post_category(category: Category):
 # Read All Categories
 @router.get("/categories", tags=["flashcards"])
 async def get_categories(user_email: str):
+
     response = await read_all_categories(user_email)
     return response
 

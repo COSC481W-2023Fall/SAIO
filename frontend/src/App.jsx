@@ -1,5 +1,6 @@
 
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import PrivateRoute from './components/PrivateRoute'
 
 /* Web Pages */
 import Login from "./pages/Login";
@@ -18,21 +19,79 @@ function App() {
   return (    
     <BrowserRouter>
       <Routes>
-          <Route path="/" element={<Home/>}></Route>
-          <Route path="login" element={<Login/>}></Route>
-          <Route path="signup" element={<Signup/>}></Route>
-          <Route path="edit" element={<EditAccount/>}></Route>
-          <Route path="app" element={<AppLayout/>}>
-            <Route path="flashcards" element={<DisplayFlashcards/>}></Route>
-            <Route path="flashcards/manage" element={<FlashcardManagement/>}></Route>
-            <Route path="calendar" element={<CalendarApp/>}></Route>
-            <Route path="home" element={<Home/>}></Route>
-            <Route path="notes" element={<Notes/>}></Route>
-            <Route path="notes/:noteId" element={<Notes/>}></Route>
-            <Route path="todo" element={<Todo/>}></Route>
-            <Route path="colorthemepalette" element={<ColorThemePalette />}></Route>
-          </Route>
-        </Routes>
+        <Route path="/" element={
+          <PrivateRoute>
+            <Home/>
+          </PrivateRoute>}>
+        </Route>
+        <Route path="/login" element={
+        
+            <Login/>
+          }>
+        </Route>
+        <Route path="/signup" element={
+          
+            <Signup/>
+          }>
+        </Route>
+        <Route path="/edit" element={
+          <PrivateRoute>
+            <EditAccount/>
+          </PrivateRoute>}>
+        </Route>   
+        <Route path="app" element={<AppLayout/>}>
+        <Route path="flashcards" element={
+          <PrivateRoute>
+            <DisplayFlashcards/>
+          </PrivateRoute>}>
+        </Route>
+        <Route path="flashcards/manage" element={
+          <PrivateRoute>
+            <FlashcardManagement/>
+          </PrivateRoute>}>
+        </Route>
+        <Route path="calendar" element={
+          <PrivateRoute>
+            <CalendarApp/>
+            </PrivateRoute>}>
+        </Route>
+        <Route path="colorthemepalette" element={
+        <PrivateRoute>
+          <ColorThemePalette />
+          </PrivateRoute>}>
+        </Route>
+        <Route path="home" element={
+          <PrivateRoute>
+            <Home/>
+          </PrivateRoute>}>
+        </Route>
+        <Route path="notes" element={
+          <PrivateRoute>
+            <Notes/>
+          </PrivateRoute>}>
+        </Route>
+        <Route path="notes/:noteId" element={
+          <PrivateRoute>
+            <Notes/>
+          </PrivateRoute>}>
+        </Route>
+        <Route path="todo" element={
+          <PrivateRoute>
+            <Todo/>
+          </PrivateRoute>}>
+        </Route>
+        <Route path="Create" element={
+          <PrivateRoute>
+            <Todo/>
+          </PrivateRoute>}>
+        </Route>
+        <Route path="colorthemepalette" element={
+          <PrivateRoute>
+            <ColorThemePalette />
+          </PrivateRoute>}>
+        </Route>
+        </Route>
+      </Routes>
     </BrowserRouter>
   )
 }

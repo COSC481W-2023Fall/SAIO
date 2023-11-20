@@ -10,7 +10,7 @@ const FlashcardManagement = () => {
   const [flashcards, setFlashcards] = useState([]);
   const [categoryToDelete, setCategoryToDelete] = useState('');
   const [flashcardToDelete, setFlashcardToDelete] = useState('');
-  const [userEmail, setUserEmail] = useState('test2@gmail.com');
+  const [userEmail, setUserEmail] = useState(localStorage.getItem('token'));
   const categoryEl = useRef();
   const flashcardQuestionEl = useRef();
   const flashcardAnswerEl = useRef();

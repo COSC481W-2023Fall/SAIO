@@ -35,9 +35,9 @@ export default function Login(props) {
         const data1 = response1.data;
         console.log(data1);
         
-        if(data1.access_token == formData.email){
+        if(data1 != null){
           setUserExists(true);
-        
+          localStorage.setItem('token', data1);
         }
         
 
@@ -49,12 +49,13 @@ export default function Login(props) {
         
       } catch (error) {
         console.error(error);
+        SpeechSynthesisErrorEvent("Invalid Information")
         // Handle the error here, e.g. display an error message to the user
       }
       if(user_exists){
-        setauthenticated(true)
-          localStorage.setItem("authenticated", true);
-          navigate("/");
+        
+         // setToke("authenticated", true);
+          navigate("/app/home");
       }
      
   }

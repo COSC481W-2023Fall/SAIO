@@ -14,7 +14,7 @@ function TodoList() {
     useEffect(() => {
         axios.get(`${config.apiUrl}/todo`,{
             headers: {
-                "x-email": "s@s.com"
+                "x-email": localStorage.getItem('token')
             }
         })
             .then(res => {
