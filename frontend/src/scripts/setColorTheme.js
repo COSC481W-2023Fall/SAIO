@@ -10,6 +10,7 @@ export default function setSiteColorTheme(num) {
             document.documentElement.style.setProperty('--SixthColor', '#1F845A')
             document.documentElement.style.setProperty('--SameShadeColor', '#ffffff')
             document.documentElement.style.setProperty('--OppositeShadeColor', '#000000')
+            document.documentElement.style.setProperty('--FontFamily', 'Lexend, sans-serif')
             break;
 
         // DARK THEME
@@ -22,6 +23,7 @@ export default function setSiteColorTheme(num) {
             document.documentElement.style.setProperty('--SixthColor', '#bb86fc')
             document.documentElement.style.setProperty('--SameShadeColor', '#121212')
             document.documentElement.style.setProperty('--OppositeShadeColor', '#dddded')
+            document.documentElement.style.setProperty('--FontFamily', 'Lexend, sans-serif')
             break;
 
         // DEREN THEME
@@ -46,6 +48,7 @@ export default function setSiteColorTheme(num) {
             document.documentElement.style.setProperty('--SixthColor', '#740005')
             document.documentElement.style.setProperty('--SameShadeColor', '#ff0000')
             document.documentElement.style.setProperty('--OppositeShadeColor', '#ffffff')
+            document.documentElement.style.setProperty('--FontFamily', 'Anonymous Pro, sans-serif')
             break;
 
         // LENNON THEME

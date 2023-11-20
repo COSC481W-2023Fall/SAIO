@@ -1,0 +1,49 @@
+#main {
+    left: 5em;
+    transition: all 0.5s ease-in;
+    width: calc(100% - 5em);
+}
+
+.x-sidebar {
+    transition: all 0.5s ease-in;
+    z-index: 1;
+}
+
+.x-navtabs {
+    z-index: 2;
+    transition: all 0.5s ease-out;
+}
+
+.x-active-navtab {
+    z-index:-2;
+}
+
+.x-inactive-navtab {
+    position: relative;
+}
+
+.x-inactive-navtab::after {
+    position: absolute;
+    content:"";
+    box-shadow: 3px -0px 10px 1px gray;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:-1;
+}
+
+.x-inactive-navtab:hover {
+}
+
+.x-sidebar-toggle {
+    box-shadow: 3px 0px 10px gray;
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    top: calc(50% - (0.5 * 2em));
+    left: 4em;
+    border-radius: 30px;
+    z-index: 3;
+    transition: all 0.5s ease-in;
+}

@@ -1,7 +1,13 @@
+/* Import fonts here */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;1,700&display=swap');
+
 /* Site-wide styling goes here! */
 
 * {
     margin: 0;
+    font-family: var(--FontFamily);
+    font-size: 16;
 }
 
 :root {
@@ -13,19 +19,29 @@
     --SixthColor: "#000000";
     --SameShadeColor: "#000000";
     --OppositeShadeColor: "#000000";
+    --FontFamily: "";
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 24px;
 }
 
 .primaryBackground {
     background-color: var(--PrimaryColor);
 }
+
 .primaryColor {
     color: var(--PrimaryColor);
 }
 
-
 .secondaryBackground {
     background-color: var(--SecondaryColor);
 }
+
 .secondaryColor {
     color: var(--SecondaryColor);
 }
@@ -74,4 +90,11 @@
 }
 .oppositeShadeColor {
     color: var(--OppositeShadeColor);
+}
+
+/* Stanard styles */
+
+.x-content-section {
+    box-shadow: 3px 3px 10px 0px gray;
+    border-radius: 12px;
 }

@@ -1,11 +1,8 @@
-import Sidebar from "../../components/sidebar/Sidebar"
-
 import ThemeButton from '../../components/ThemeButton';
 
 const ColorThemePalette = () => {
   return (
-    <div className="flex bg-white">
-      <Sidebar />
+    <main id="main" className="relative flex bg-white">
       <div className="flex flex-col mt-5 ml-5 bg-white">
         <div className="flex flex-row w-full mt-5">
           <div className="text-center w-full mb-2">DESCRIPTIONS:</div>
@@ -112,8 +109,7 @@ const ColorThemePalette = () => {
           <div className="mr-5 outline outline-1 text-center" style={{height: "120px", width: "120px", backgroundColor:"#000000"}}>Opposite</div>
         </div>
       </div>
-      <ThemeButton />
-    </div>
+    </main>
   )
 }
 
