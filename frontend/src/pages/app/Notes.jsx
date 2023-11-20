@@ -3,20 +3,21 @@ import { EditorState, convertFromRaw } from 'draft-js'
 import axios from 'axios';
 import config from '../../config'
 
-import Sidebar from "../../components/sidebar/Sidebar";
 import NotesTitle from "../../components/notes/NotesTitle";
 import NeighborContainer from "../../components/notes/NeighborContainer";
 import NotesBody from "../../components/notes/NotesBody";
-import SaveButton from '../../components/SaveButton';
+import SaveButton from '../../components/notes/SaveButton';
 import NewNoteButton from '../../components/notes/NewNoteButton';
 import saveNote from '../../scripts/saveNote';
 import { useParams } from 'react-router-dom';
 
-export default function Notes(props) {
-    let paramNoteId = useParams().noteId;
-    paramNoteId = paramNoteId == null? "": paramNoteId;
+// Import Theme Button
+import ThemeButton from '../../components/ThemeButton';
 
-    const [noteId, setNoteId] = useState(paramNoteId);
+export default function Notes(props) {
+    let { noteId } = useParams();
+    noteId = noteId == null? "": noteId;
+
     const [title, setTitle] = useState("Loading...");
     const [adjacent, setAdjacent] = useState([]);
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -27,7 +28,6 @@ export default function Notes(props) {
                 "x-email": "s@s.com"
             }
         }).then(response => {
-            setNoteId(response.data.note_id);
             setTitle(response.data.title);
             setAdjacent(response.data.adjacent);
             if (response.data.raw_draft_content_state != null) {
@@ -39,36 +39,33 @@ export default function Notes(props) {
         }).catch(error => {
             console.error('Error fetching data:', error);
         });
-    }, []); // The empty dependency array ensures this effect runs only once on mount
+    }, [noteId]); // The empty dependency array ensures this effect runs only once on mount
 
     return (
-        <div className="flex notes">
-            <Sidebar/>
-            <div className="flex flex-col ">
-                <NotesTitle title={title} setTitle={setTitle}/>
-                <SaveButton
-                    onSave={saveNote}
-                    saveData={{
-                        email: "s@s.com",
-                        noteId: noteId,
-                        title:  title,
-                        adjacent: adjacent, // can't yet update
-                        editorState: editorState
-                    }}
-                />
-                <NewNoteButton
-                    noteId={noteId}
-                    adjacent={adjacent}
-                    setAdjacent={setAdjacent}
-                />
-                <NeighborContainer
-                    adjacent={adjacent}
-                />
-                <NotesBody
-                    editorState={editorState}
-                    setEditorState={setEditorState}
-                />
-            </div>
-        </div>
+        <main className="relative flex flex-col h-full w-full primaryBackground">
+            <NotesTitle title={title} setTitle={setTitle}/>
+            <SaveButton
+                onSave={saveNote}
+                saveData={{
+                    email: "s@s.com",
+                    noteId: noteId,
+                    title:  title,
+                    adjacent: adjacent, // can't yet update
+                    editorState: editorState
+                }}
+            />
+            <NewNoteButton
+                noteId={noteId}
+                adjacent={adjacent}
+                setAdjacent={setAdjacent}
+            />
+            <NeighborContainer
+                adjacent={adjacent}
+            />
+            <NotesBody
+                editorState={editorState}
+                setEditorState={setEditorState}
+            />
+        </main>
     )
 }

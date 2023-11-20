@@ -18,7 +18,10 @@ import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 
 // Import React Icons
-import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from 'react-icons/bs';
+// import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from 'react-icons/bs';
+
+// Import Theme Button
+import ThemeButton from '../../components/ThemeButton';
 
 // Create Localizer
 const localizer = momentLocalizer(moment);
@@ -177,79 +180,90 @@ export default function CalendarApp() {
     };
 
     return (
-        <div className="flex flex-row w-full bg-white">
-            <Sidebar/>
-            <div className='flex flex-col w-full mt-2 mr-3' id='main-calendar-section'>
+        <main id="main" className="relative flex flex-row w-full primaryBackground">
+            <div className='flex flex-col w-full mt-2 mr-5 ml-5' id='main-calendar-section'>
                 <div className='flex flex-col text-center items-center w-full mb-5'>
                     {formOpen ?
                         <div className='flex flex-col w-full items-center'>
                             <div>
-                                <button className='btn outline bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40 mr-5' onClick={handFormOpenToggle}>Entry Form</button>
-                                <button className='btn outline bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40 ml-5' onClick={handleSearchOpenToggle}>Edit Events</button>
+                                <button className='outline tertiaryBackground fifthColor rounded-full mr-5' onClick={handFormOpenToggle} style={{ width: "200px"}}>
+                                    <span className='sameShadeColor'>Entry Form</span>
+                                </button>
+                                <button className='outline tertiaryBackground fifthColor rounded-full ml-5' onClick={handleSearchOpenToggle} style={{ width: "200px"}}>
+                                    <span className='sameShadeColor'>Edit Events</span>
+                                </button>
                             </div>
                             <div className='flex flex-row w-full items-center'>
                                 <div className='w-1/12'></div>
                                 <div className='flex flex-col w-5/12 mt-2 mb-2'>
-                                    <div>Title :</div>
+                                    <div className='oppositeShadeColor'>Title :</div>
                                     <input type='text' placeholder='Title' className='form-control h-10 mb-3 outline outline-1' onChange={event => setTitle(event.target.value)} />
-                                    <label className='mb-3'>
+                                    <label className='mb-3 oppositeShadeColor'>
                                         All Day? :
-                                        <Select options={allDayOptions} onChange={setAllDay} />
+                                        <Select options={allDayOptions} onChange={setAllDay} className='fifthColor'/>
                                     </label>
-                                    <label>
+                                    <label className='oppositeShadeColor'>
                                         Category :
-                                        <Select options={resourceOptions} onChange={setResource} />
+                                        <Select options={resourceOptions} onChange={setResource} className='fifthColor oppositeShadeBackground' />
                                     </label>
                                 </div>
                                 <div className='w-1/12'></div>
                                 <div className='flex flex-col w-4/12'>
-                                    <div>Start Date Time :</div>
-                                    <DateTimePicker onChange={setStart} value={start} className='h-10' />
+                                    <div className='oppositeShadeColor'>Start Date Time :</div>
+                                    <DateTimePicker onChange={setStart} value={start} className='h-10 fifthBackground oppositeShadeColor' />
                                     <div className='mt-2 mb-2'></div>
-                                    <div>End Date Time :</div>
-                                    <DateTimePicker onChange={setEnd} value={end} className='h-10' />
+                                    <div className='oppositeShadeColor'>End Date Time :</div>
+                                    <DateTimePicker onChange={setEnd} value={end} className='h-10 fifthBackground oppositeShadeColor' />
                                 </div>
                                 <div className='w-1/12'></div>
                             </div>
-                            <button onClick={addEventHandler} className='btn outline mt-2 mb-4 bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40'>Add Calendar Item</button>
+                            <button onClick={addEventHandler} className='outline mt-2 mb-4 tertiaryBackground fifthColor rounded-full' style={{ width: "200px"}}>
+                                <span className='sameShadeColor'>Add Calendar Item</span>
+                            </button>
                         </div>  
                     :
                         <div>
-                            <button className='btn outline bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40 mr-5' onClick={handFormOpenToggle}>Enter New Event</button>
-                            <button className='btn outline bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40 ml-5' onClick={handleSearchOpenToggle}>Edit Events</button>
+                            <button className='outline tertiaryBackground fifthColor rounded-full mr-5' onClick={handFormOpenToggle} style={{ width: "200px"}}>
+                                <span className='sameShadeColor'>Enter New Event</span>
+                            </button>
+                            <button className='outline tertiaryBackground fifthColor rounded-full ml-5' onClick={handleSearchOpenToggle} style={{ width: "200px"}}>
+                                <span className='sameShadeColor'>Edit Events</span>
+                            </button> 
                         </div>
                     }
                 </div>
                 <div>
                     {searchOpen ?
                         <div className='flex flex-col w-full items-center'>
-                            <div className='flex flex-row w-full items-center'>
+                            <div className='flex flex-row w-9/12 items-center'>
                                 <div className='w-2/12'></div>
                                 <div className='flex flex-col w-4/12'>
-                                    <div>Search Title :</div>
+                                    <div className='oppositeShadeColor'>Search Title :</div>
                                     <input type='text' placeholder='Search Title' className='form-control h-10 mb-3 outline outline-1' onChange={event => setQueryTitle(event.target.value)} />
                                 </div>
                                 <div className='w-1/12'></div>
                                 <div className='w-3/12'>
-                                    <button onClick={ () => getOneEventHandler(queryTitle) } className='btn outline mt-2 mb-4 bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40'>Search for Event</button>
+                                    <button onClick={ () => getOneEventHandler(queryTitle) } className='outline mt-2 mb-4 rounded-full tertiaryBackground fifthColor' style={{ width: "200px"}}>
+                                        <span className='sameShadeColor'>Search for Event</span>
+                                    </button>
                                 </div>
                                 <div className='w-2/12'></div>
                             </div>
                             <div>
-                                {noResultFound ? <div className=' text-red-600'>There is no result for that title: {queryTitle}</div> : ""}
+                                {noResultFound ? <div className='oppositeShadeColor'>There is no result for that title: {queryTitle}</div> : ""}
                             </div>
                             <div className='flex flex-col w-6/12'>
-                                <div className='mt-2'>Current Start Time:</div>
-                                <DateTimePicker value={queryStart} />
-                                <div className='mt-2'>Current End Time:</div>
-                                <DateTimePicker value={queryEnd} />
+                                <div className='mt-2 oppositeShadeColor'>Current Start Time:</div>
+                                <DateTimePicker value={queryStart} className="fifthBackground oppositeShadeColor" />
+                                <div className='mt-2 oppositeShadeColor'>Current End Time:</div>
+                                <DateTimePicker value={queryEnd} className="fifthBackground oppositeShadeColor" />
                                 <div className='flex flex-row mt-2'>
-                                    <div className='mr-2'>Current All Day:</div>
-                                    <div className='ml-2'>{queryAllDay ? "All Day" : "Hourly"}</div>
+                                    <div className='mr-2 oppositeShadeColor'>Current All Day:</div>
+                                    <div className='ml-2 oppositeShadeColor'>{queryAllDay ? "All Day" : "Hourly"}</div>
                                 </div>
                                 <div className='flex flex-row mt-2'>
-                                <div className='mr-2'>Current Category:</div>
-                                    <div className='ml-2'>{queryResource}</div>
+                                <div className='mr-2 oppositeShadeColor'>Current Category:</div>
+                                    <div className='ml-2 oppositeShadeColor'>{queryResource}</div>
                                 </div>
                             </div>
                             <div className='flex flex-col w-full items-center'>
@@ -257,36 +271,42 @@ export default function CalendarApp() {
                                     <div className='w-1/12'></div>
                                     <div className='flex flex-col w-5/12 mt-2 mb-2'>
                                         <div className='flex flex-row mt-2'>
-                                            <div className='mr-2'>Title:</div>
-                                            <div className='ml-2'>{queryTitle}</div>
+                                            <div className='mr-2 oppositeShadeColor'>Title:</div>
+                                            <div className='ml-2 oppositeShadeColor'>{queryTitle}</div>
                                         </div>
-                                        <label className='mb-3'>
+                                        <label className='mb-3 oppositeShadeColor'>
                                             All Day? :
-                                            <Select options={allDayOptions} onChange={setEditAllDay} />
+                                            <Select options={allDayOptions} onChange={setEditAllDay} className='fifthColor' />
                                         </label>
-                                        <label>
+                                        <label className='oppositeShadeColor'>
                                             Category :
-                                            <Select options={resourceOptions} onChange={setEditResource} />
+                                            <Select options={resourceOptions} onChange={setEditResource} className='fifthColor' />
                                         </label>
                                     </div>
                                     <div className='w-1/12'></div>
                                     <div className='flex flex-col w-4/12'>
-                                        <div>Start Date Time :</div>
-                                        <DateTimePicker onChange={setEditStart} value={editStart} className='h-10' />
+                                        <div className='flex flex-row mt-2'>
+                                            <div className='mr-2 oppositeShadeColor'><span className='primaryColor'>.</span></div>
+                                            <div className='ml-2 oppositeShadeColor'><span className='primaryColor'>.</span></div>
+                                        </div>
+                                        <div className='oppositeShadeColor'>Start Date Time :</div>
+                                        <DateTimePicker onChange={setEditStart} value={editStart} className='h-10 fifthBackground oppositeShadeColor' />
                                         <div className='mt-2 mb-2'></div>
-                                        <div>End Date Time :</div>
-                                        <DateTimePicker onChange={setEditEnd} value={editEnd} className='h-10' />
+                                        <div className='oppositeShadeColor'>End Date Time :</div>
+                                        <DateTimePicker onChange={setEditEnd} value={editEnd} className='h-10 fifthBackground oppositeShadeColor' />
                                     </div>
                                     <div className='w-1/12'></div>
                                 </div>
-                                <button onClick={editEventHandler} className='btn outline mt-2 mb-4 bg-blue-500 hover:bg-blue-700 rounded-full h-10 w-40'>Update Calendar Item</button>
+                                <button onClick={editEventHandler} className='outline mt-2 mb-4 rounded-full tertiaryBackground fifthColor' style={{ width: "200px"}}>
+                                    <span className='sameShadeColor'>Update Calendar Item</span>
+                                </button>
                             </div>
                         </div> 
                     :
                         <div></div>
                     }
                 </div>
-                <div className='flex lg:flex-row flex-col'>
+                <div className='flex lg:flex-row flex-col tertiaryBackground pt-2 pb-2'>
                     <Calendar 
                         localizer={localizer}
                         events={appointments}
@@ -297,13 +317,13 @@ export default function CalendarApp() {
                         resourceAccessor='resource'
                         defaultView='week'
                         style={{ height: 900 }}
-                        className='lg:w-9/12 w-full ml-2'
+                        className='lg:w-9/12 w-full ml-2 mr-1 bg-white outline'
                     />
-                    <div className='flex flex-col bg-slate-800 lg:w-3/12 w-full outline ml-2 mr-2 mt-5' style={{ height: "900px", "overflow-y": "scroll" }}>
-                        <div className='flex flex-row w-full bg-slate-400'>
-                            <div className='w-full text-center items-center'>Event List</div>
+                    <div className='flex flex-col secondaryBackground lg:w-3/12 w-full outline ml-2 mr-2' style={{ height: "900px", "overflow-y": "scroll" }}>
+                        <div className='flex flex-row w-full secondaryBackground'>
+                            <div className='w-full text-center items-center oppositeShadeColor'>Event List</div>
                         </div>
-                        <div className='flex flex-row w-full bg-slate-400 items-center border-b-4 border-slate-500'>
+                        <div className='flex flex-row w-full secondaryBackground items-center oppositeShadeColor'>
                             <div className='w-1/12'></div>
                             <div className='flex flex-col w-5/12'>
                                 <label>
@@ -327,24 +347,26 @@ export default function CalendarApp() {
                             </div>
                             <div className='w-1/12'></div>
                         </div>
-                        <div className='text-center bg-slate-400 border-b-4 border-slate-500'>--- --- --- --- ---</div>
-                        <div className='w-full bg-slate-400 mb-5 mt-5'>
+                        <div className='text-center fourthBackground'>--- --- --- --- ---</div>
+                        <div className='w-full secondaryBackground mb-5 mt-5'>
                             {schoolChecked
                             ?
                                 <div>
-                                    <div className='text-center'>School Items:</div>    
+                                    <div className='text-center oppositeShadeColor'>School Items:</div>    
                                     {dataListSortedByDate.map((listItem) => (
                                         listItem.resource === "school"
                                         ?
                                         <div key={listItem.title} className='w-full'>
-                                            <div className='ml-1'>Title: {listItem.title}</div>
-                                            <div className='ml-1'>Start Time:</div>
-                                            <DateTimePicker value={listItem.start} className="ml-1 w-8/12" />
-                                            <div className='ml-1'>End Time:</div>
-                                            <DateTimePicker value={listItem.end} className="ml-1 w-8/12" />
+                                            <div className='ml-1 oppositeShadeColor'>Title: {listItem.title}</div>
+                                            <div className='ml-1 oppositeShadeColor'>Start Time:</div>
+                                            <DateTimePicker value={listItem.start} className="ml-1 w-9/12 fifthBackground oppositeShadeColor" />
+                                            <div className='ml-1 oppositeShadeColor'>End Time:</div>
+                                            <DateTimePicker value={listItem.end} className="ml-1 w-9/12 fifthBackground oppositeShadeColor" />
                                             <div className='flex flex-row w-full items-center text-center mt-3 mb-2 pb-3 border-b-4'>
                                                 <div className='w-1/12'></div>
-                                                <button className='btn outline outline-1 w-4/12 h-8 hover:bg-red-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
+                                                <button className='outline outline-1 sixthColor fourthBackground hover:bg-red-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>
+                                                    <span className='oppositeShadeColor'>Delete</span>
+                                                </button>
                                                 <div className='w-2/12'></div>
                                             </div>
                                         </div> 
@@ -356,23 +378,25 @@ export default function CalendarApp() {
                                 <div></div>
                             }
                         </div>
-                        <div className='w-full bg-slate-400 mb-5 mt-5'>
+                        <div className='w-full mb-5 mt-5'>
                             {workChecked
                             ?
                                 <div>
-                                    <div className='text-center'>Work Items:</div>    
+                                    <div className='text-center oppositeShadeColor'>Work Items:</div>    
                                     {dataListSortedByDate.map((listItem) => (
                                         listItem.resource === "work"
                                         ?
                                         <div key={listItem.title} className='w-full'>
-                                            <div className='ml-1'>Title: {listItem.title}</div>
-                                            <div className='ml-1'>Start Time:</div>
-                                            <DateTimePicker value={listItem.start} className="ml-1 w-8/12" />
-                                            <div className='ml-1'>End Time:</div>
-                                            <DateTimePicker value={listItem.end} className="ml-1 w-8/12" />
+                                            <div className='ml-1 oppositeShadeColor'>Title: {listItem.title}</div>
+                                            <div className='ml-1 oppositeShadeColor'>Start Time:</div>
+                                            <DateTimePicker value={listItem.start} className="ml-1 w-9/12 fifthBackground oppositeShadeColor" />
+                                            <div className='ml-1 oppositeShadeColor'>End Time:</div>
+                                            <DateTimePicker value={listItem.end} className="ml-1 w-9/12 fifthBackground oppositeShadeColor" />
                                             <div className='flex flex-row w-full items-center text-center mt-3 mb-2 pb-3 border-b-4'>
                                                 <div className='w-1/12'></div>
-                                                <button className='btn outline outline-1 w-4/12 h-8 hover:bg-red-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
+                                                <button className='outline outline-1 sixthColor fourthBackground hover:bg-red-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>
+                                                    <span className='oppositeShadeColor'>Delete</span>
+                                                </button>
                                                 <div className='w-2/12'></div>
                                             </div>
                                         </div> 
@@ -384,23 +408,25 @@ export default function CalendarApp() {
                                 <div></div>
                             }
                         </div>
-                        <div className='w-full bg-slate-400 mb-5 mt-5'>
+                        <div className='w-full mb-5 mt-5'>
                             {homeChecked
                             ?
                                 <div>
-                                    <div className='text-center'>Home Items:</div>    
+                                    <div className='text-center oppositeShadeColor'>Home Items:</div>    
                                     {dataListSortedByDate.map((listItem) => (
                                         listItem.resource === "home"
                                         ?
                                         <div key={listItem.title} className='w-full'>
-                                            <div className='ml-1'>Title: {listItem.title}</div>
-                                            <div className='ml-1'>Start Time:</div>
-                                            <DateTimePicker value={listItem.start} className="ml-1 w-8/12" />
-                                            <div className='ml-1'>End Time:</div>
-                                            <DateTimePicker value={listItem.end} className="ml-1 w-8/12" />
+                                            <div className='ml-1 oppositeShadeColor'>Title: {listItem.title}</div>
+                                            <div className='ml-1 oppositeShadeColor'>Start Time:</div>
+                                            <DateTimePicker value={listItem.start} className="ml-1 w-9/12 fifthBackground oppositeShadeColor" />
+                                            <div className='ml-1 oppositeShadeColor'>End Time:</div>
+                                            <DateTimePicker value={listItem.end} className="ml-1 w-9/12 fifthBackground oppositeShadeColor" />
                                             <div className='flex flex-row w-full items-center text-center mt-2 mb-2 pb-3 border-b-4'>
                                                 <div className='w-1/12'></div>
-                                                <button className='btn outline outline-1 w-4/12 h-8 hover:bg-red-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
+                                                <button className='outline outline-1 sixthColor fourthBackground hover:bg-red-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>
+                                                    <span className='oppositeShadeColor'>Delete</span>
+                                                </button>
                                                 <div className='w-2/12'></div>
                                             </div>
                                         </div> 
@@ -412,23 +438,25 @@ export default function CalendarApp() {
                                 <div></div>
                             }
                         </div>
-                        <div className='w-full bg-slate-400 mb-5 mt-5'>
+                        <div className='w-full mb-5 mt-5'>
                             {otherChecked
                             ?
                                 <div>
-                                    <div className='text-center'>Other Items:</div>    
+                                    <div className='text-center oppositeShadeColor'>Other Items:</div>    
                                     {dataListSortedByDate.map((listItem) => (
                                         listItem.resource === "other"
                                         ?
                                         <div key={listItem.title} className='w-full'>
-                                            <div className='ml-1'>Title: {listItem.title}</div>
-                                            <div className='ml-1'>Start Time:</div>
-                                            <DateTimePicker value={listItem.start} className="ml-1 w-8/12" />
-                                            <div className='ml-1'>End Time:</div>
-                                            <DateTimePicker value={listItem.end} className="ml-1 w-8/12" />
+                                            <div className='ml-1 oppositeShadeColor'>Title: {listItem.title}</div>
+                                            <div className='ml-1 oppositeShadeColor'>Start Time:</div>
+                                            <DateTimePicker value={listItem.start} className="ml-1 w-9/12 fifthBackground oppositeShadeColor" />
+                                            <div className='ml-1 oppositeShadeColor'>End Time:</div>
+                                            <DateTimePicker value={listItem.end} className="ml-1 w-9/12 fifthBackground oppositeShadeColor" />
                                             <div className='flex flex-row w-full items-center text-center mt-2 mb-2 pb-3 border-b-4'>
                                                 <div className='w-1/12'></div>
-                                                <button className='btn outline outline-1 w-4/12 h-8 hover:bg-red-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>Delete</button>
+                                                <button className='outline outline-1 sixthColor fourthBackground hover:bg-red-600' type='submit' onClick={ () => deleteEventHandler(listItem.title)}>
+                                                    <span className='oppositeShadeColor'>Delete</span>
+                                                </button>
                                                 <div className='w-2/12'></div>
                                             </div>
                                         </div> 
@@ -444,6 +472,6 @@ export default function CalendarApp() {
                 </div>
                 <div className='mt-10'></div>
             </div>
-        </div>
+        </main>
     ) 
 }

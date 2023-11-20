@@ -14,7 +14,7 @@ function TodoList() {
     useEffect(() => {
         axios.get(`${config.apiUrl}/todo`,{
             headers: {
-                "x-email": "s@s.com"
+                "x-email": localStorage.getItem('token')
             }
         })
             .then(res => {
@@ -63,7 +63,7 @@ function TodoList() {
                 console.log(todo.id)
                 axios.put(`${config.apiUrl}/todo/${id}`, {  text: todo.text, isComplete: true })
                     .then(res => console.log(res))
-                    .then(setTimeout(function () { window.location.reload() }, 500))
+                    // .then(setTimeout(function () { window.location.reload() }, 500))
                     .catch((err) => console.log(err));
                     return
             }
@@ -71,7 +71,7 @@ function TodoList() {
             {
                 axios.put(`${config.apiUrl}/todo/${id}`, { text: todo.text, isComplete: false })
                     .then(res => console.log(res))
-                    .then(setTimeout(function () { window.location.reload() }, 500))
+                    // .then(setTimeout(function () { window.location.reload() }, 500))
                     .catch((err) => console.log(err));
 
             }

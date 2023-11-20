@@ -24,6 +24,7 @@ async def post_flashcard(flashcard: Flashcard):
 @router.get("/flashcards", tags=["flashcards"])
 async def get_flashcards(category: str, user_email: str):
     try:
+
         response = await read_all_flashcards(category, user_email)
         return response
     except Exception as e:
