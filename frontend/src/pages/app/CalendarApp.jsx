@@ -182,8 +182,14 @@ export default function CalendarApp() {
     return (
         <main id="main" className="relative flex flex-row w-full primaryBackground">
             <div className='flex flex-col w-full mt-2 mr-5 ml-5' id='main-calendar-section'>
-                <div className='tertiaryColor text-2xl mb-2'>
-                    Calendar
+                <div className='flex flex-row mb-3'>
+                    <div className='text-2xl oppositeShadeColor'>
+                        SAIO - Calendar
+                    </div>
+                    <div className='ml-3 mr-5 mt-1 tertiaryColor'>
+                        An App for entering and saving all of your appointments
+                    </div>
+                    <div className='mr-5'></div>
                 </div>
                 <div className='flex flex-col text-center items-center w-full mb-5'>
                     {formOpen ?
@@ -195,6 +201,9 @@ export default function CalendarApp() {
                                 <button className='outline tertiaryBackground fifthColor rounded-full ml-5' onClick={handleSearchOpenToggle} style={{ width: "200px"}}>
                                     <span className='sameShadeColor'>Edit Events</span>
                                 </button>
+                            </div>
+                            <div className='sixthColor mt-3 mb-2'>
+                                This is a form for entering new events to the Calendar. Click <span className='tertiaryColor'>&quot;Add Calendar Item&quot;</span> when done.
                             </div>
                             <div className='flex flex-row w-full items-center'>
                                 <div className='w-1/12'></div>
@@ -238,6 +247,15 @@ export default function CalendarApp() {
                 <div>
                     {searchOpen ?
                         <div className='flex flex-col w-full items-center'>
+                            <div className='sixthColor mt-3 mb-2'>
+                                This is a form for searching & editing events in the Calendar. Click <span className='tertiaryColor'>&quot;Add Calendar Item&quot;</span> when done.
+                            </div>
+                            <div className='sixthColor mt-3 mb-2'>
+                                Events are searched by title with the <span className='tertiaryColor'>&quot;Search for Event&quot;</span> button, results displayed below.
+                            </div>
+                            <div className='sixthColor mt-3 mb-2'>
+                                Values can be changed in the entry form and updated with the <span className='tertiaryColor'>&quot;Update Calendar Item&quot;</span> button.
+                            </div>
                             <div className='flex flex-row w-9/12 items-center'>
                                 <div className='w-2/12'></div>
                                 <div className='flex flex-col w-4/12'>
@@ -324,7 +342,13 @@ export default function CalendarApp() {
                     />
                     <div className='flex flex-col secondaryBackground lg:w-3/12 w-full outline ml-2 mr-2' style={{ height: "900px", "overflow-y": "scroll" }}>
                         <div className='flex flex-row w-full secondaryBackground'>
-                            <div className='w-full text-center items-center oppositeShadeColor'>Event List</div>
+                            <div className='w-full text-center items-center sixthColor'>All Items in the Calendar</div>
+                        </div>
+                        <div className='flex flex-row w-full secondaryBackground'>
+                            <div className='w-full text-center items-center sixthColor'>Sorted Alphabetically by Category</div>
+                        </div>
+                        <div className='flex flex-row w-full secondaryBackground'>
+                            <div className='w-full text-center items-center sixthColor'>Show or Hide categories with Checkboxes</div>
                         </div>
                         <div className='flex flex-row w-full secondaryBackground items-center oppositeShadeColor'>
                             <div className='w-1/12'></div>
