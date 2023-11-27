@@ -25,7 +25,7 @@
 .x-inactive-navtab::after {
     position: absolute;
     content:"";
-    box-shadow: 3px -0px 10px 1px gray;
+    box-shadow: var(--BoxShadow);
     top:0;
     left:0;
     right:0;
@@ -37,7 +37,6 @@
 }
 
 .x-sidebar-toggle {
-    box-shadow: 3px 0px 10px gray;
     position: absolute;
     width: 2em;
     height: 2em;
