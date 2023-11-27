@@ -1,6 +1,6 @@
 export default function SidebarToggle() {
     return (
-        <div id="sidebar-toggle" className="x-sidebar-toggle tertiaryBackground grid place-content-center" onClick={toggleSidebar}>
+        <div id="sidebar-toggle" className="x-sidebar-toggle tertiaryBackground theme-shadow grid place-content-center" onClick={toggleSidebar}>
                 <img
                     src="/images/icons/chevron.png"
                     alt="Chevron" width="20px" heght="20px"
