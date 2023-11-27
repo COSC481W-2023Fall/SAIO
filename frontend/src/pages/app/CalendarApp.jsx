@@ -260,7 +260,7 @@ export default function CalendarApp() {
                                 <div className='w-2/12'></div>
                                 <div className='flex flex-col w-4/12'>
                                     <div className='oppositeShadeColor'>Search Title :</div>
-                                    <input type='text' placeholder='Search Title' className='form-control h-10 mb-3 outline outline-1' onChange={event => setQueryTitle(event.target.value)} />
+                                    <input required type='text' placeholder='Search Title' className='form-control h-10 mb-3 outline outline-1' onChange={event => setQueryTitle(event.target.value)} />
                                 </div>
                                 <div className='w-1/12'></div>
                                 <div className='w-3/12'>
@@ -340,7 +340,7 @@ export default function CalendarApp() {
                         style={{ height: 900 }}
                         className='lg:w-9/12 w-full ml-2 mr-1 bg-white outline'
                     />
-                    <div className='flex flex-col secondaryBackground lg:w-3/12 w-full outline ml-2 mr-2' style={{ height: "900px", "overflow-y": "scroll" }}>
+                    <div className='flex flex-col secondaryBackground lg:w-3/12 w-full outline ml-2 mr-2' style={{ height: "900px", "overflowY": "scroll" }}>
                         <div className='flex flex-row w-full secondaryBackground'>
                             <div className='w-full text-center items-center sixthColor'>All Items in the Calendar</div>
                         </div>
