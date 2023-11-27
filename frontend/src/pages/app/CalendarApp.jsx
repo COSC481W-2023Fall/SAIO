@@ -209,7 +209,7 @@ export default function CalendarApp() {
                                 <div className='w-1/12'></div>
                                 <div className='flex flex-col w-5/12 mt-2 mb-2'>
                                     <div className='oppositeShadeColor'>Title :</div>
-                                    <input type='text' placeholder='Title' className='form-control h-10 mb-3 outline outline-1' onChange={event => setTitle(event.target.value)} />
+                                    <input type='text' placeholder='Title' required className='form-control h-10 mb-3 outline outline-1' onChange={event => setTitle(event.target.value)} />
                                     <label className='mb-3 oppositeShadeColor'>
                                         All Day? :
                                         <Select options={allDayOptions} onChange={setAllDay} className='fifthColor'/>
@@ -260,7 +260,7 @@ export default function CalendarApp() {
                                 <div className='w-2/12'></div>
                                 <div className='flex flex-col w-4/12'>
                                     <div className='oppositeShadeColor'>Search Title :</div>
-                                    <input required type='text' placeholder='Search Title' className='form-control h-10 mb-3 outline outline-1' onChange={event => setQueryTitle(event.target.value)} />
+                                    <input type='text' placeholder='Search Title' required className='form-control h-10 mb-3 outline outline-1' onChange={event => setQueryTitle(event.target.value)} />
                                 </div>
                                 <div className='w-1/12'></div>
                                 <div className='w-3/12'>
