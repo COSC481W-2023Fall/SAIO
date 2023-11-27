@@ -182,6 +182,9 @@ export default function CalendarApp() {
     return (
         <main id="main" className="relative flex flex-row w-full primaryBackground">
             <div className='flex flex-col w-full mt-2 mr-5 ml-5' id='main-calendar-section'>
+                <div className='tertiaryColor text-2xl mb-2'>
+                    Calendar
+                </div>
                 <div className='flex flex-col text-center items-center w-full mb-5'>
                     {formOpen ?
                         <div className='flex flex-col w-full items-center'>
@@ -375,7 +378,7 @@ export default function CalendarApp() {
                                     ))}
                                 </div>
                             :
-                                <div></div>
+                                <span></span>
                             }
                         </div>
                         <div className='w-full mb-5 mt-5'>
@@ -405,7 +408,7 @@ export default function CalendarApp() {
                                     ))}
                                 </div>
                             :
-                                <div></div>
+                                <span></span>
                             }
                         </div>
                         <div className='w-full mb-5 mt-5'>
@@ -435,7 +438,7 @@ export default function CalendarApp() {
                                     ))}
                                 </div>
                             :
-                                <div></div>
+                                <span></span>
                             }
                         </div>
                         <div className='w-full mb-5 mt-5'>
@@ -465,7 +468,7 @@ export default function CalendarApp() {
                                     ))}
                                 </div>
                             :
-                                <div></div>
+                                <span></span>
                             }
                         </div>
                     </div>
