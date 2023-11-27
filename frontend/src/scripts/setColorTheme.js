@@ -36,7 +36,6 @@ export default function setSiteColorTheme(num) {
             document.documentElement.style.setProperty('--SixthColor', '#F3E600')
             document.documentElement.style.setProperty('--SameShadeColor', '#121212')
             document.documentElement.style.setProperty('--OppositeShadeColor', '#FFFFFF')
-            document.documentElement.style.setProperty('--FontFamily', 'Lexend, sans-serif')
             break;
 
         // SAM THEME
@@ -62,7 +61,6 @@ export default function setSiteColorTheme(num) {
             document.documentElement.style.setProperty('--SixthColor', '#be29ec')
             document.documentElement.style.setProperty('--SameShadeColor', '#f8ed62')
             document.documentElement.style.setProperty('--OppositeShadeColor', '#000000')
-            document.documentElement.style.setProperty('--FontFamily', 'Lexend, sans-serif')
             break;
 
         // RENE THEME
@@ -75,7 +73,6 @@ export default function setSiteColorTheme(num) {
             document.documentElement.style.setProperty('--SixthColor', '#43e8d8')
             document.documentElement.style.setProperty('--SameShadeColor', '#004c4c')
             document.documentElement.style.setProperty('--OppositeShadeColor', '#ffffff')
-            document.documentElement.style.setProperty('--FontFamily', 'Lexend, sans-serif')
             break;
 
         // BLAINE THEME
@@ -88,7 +85,6 @@ export default function setSiteColorTheme(num) {
             document.documentElement.style.setProperty('--SixthColor', '#1e3504')
             document.documentElement.style.setProperty('--SameShadeColor', '#fff2e6')
             document.documentElement.style.setProperty('--OppositeShadeColor', '#000000')
-            document.documentElement.style.setProperty('--FontFamily', 'Lexend, sans-serif')
             break;
     }
 }
