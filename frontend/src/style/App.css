@@ -22,6 +22,10 @@
     --FontFamily: "";
 }
 
+body {
+	background: var(--PrimaryColor);
+}
+
 h1 {
     font-size: 32px;
 }
