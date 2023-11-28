@@ -38,6 +38,22 @@
     background-color: var(--FifthColor);
 }
 
+.x-background-sidebar {
+    position: relative;
+    transition: background-color 100ms linear;
+}
+
+.x-background-sidebar::after {
+    position: absolute;
+    content:"";
+    box-shadow: var(--BoxShadow);
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:-1;
+}
+
 .x-sidebar-toggle {
     position: absolute;
     width: 2em;
