@@ -12,7 +12,7 @@ import SidebarToggle from "./SidebarToggle";
 
 export default function Sidebar() {
     return (
-        <div id="sidebar" className="primaryBackground x-sidebar-onscreen x-sidebar absolute flex basis-1/8">
+        <div id="sidebar" className="primaryBackground x-sidebar flex basis-1/8">
             <nav id="navtabs" className="secondaryBackground x-navtabs h-screen w-20 flex flex-col">
                 <NavTab
                     appName = "home"

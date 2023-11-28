@@ -2,9 +2,13 @@
     left: 5em;
     transition: all 0.5s ease-in;
     width: calc(100% - 5em);
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .x-sidebar {
+    position: absolute;
+    top: 0;
     transition: all 0.5s ease-in;
     z-index: 1;
 }
