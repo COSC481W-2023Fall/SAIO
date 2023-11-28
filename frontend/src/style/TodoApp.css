@@ -6,7 +6,7 @@
 } */
 
 body {
-	background: navy
+	background-color: var(--PrimaryColor);
 }
 
 .todo-app {

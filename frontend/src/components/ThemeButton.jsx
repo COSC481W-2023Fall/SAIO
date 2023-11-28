@@ -19,19 +19,16 @@ const ThemeButton = () => {
   // gets / sets current theme
   useEffect(() => {
     let activeTheme = localStorage.getItem("theme");
-    console.log("activeTheme: " + activeTheme);
     if (activeTheme) {
-      console.log("actvie!: " + activeTheme);
       setTheme(activeTheme);
     }
     else {
-      console.log("inavtive!: " + activeTheme);
       setTheme("light");
     }
   }, []);
 
   useEffect(() => {
-    console.log("set to: " + theme);
+    // localStorage.setItem(theme);
     setSiteColorTheme(theme);
   }, [theme])
 
@@ -49,8 +46,8 @@ const ThemeButton = () => {
         ?
         <div className='right-0'>
           {/* The theme name comes from the the div's innerHTML value. */}
-          <div className='outline outline-2 bg-white mb-2' onClick={themeClick}>Light</div>
-          <div className='outline outline-2 bg-white mb-2' onClick={themeClick}>Dark</div>
+          <div className='outline outline-2 bg-white mb-2' onClick={themeClick}>Standard Light</div>
+          <div className='outline outline-2 bg-white mb-2' onClick={themeClick}>Standard Dark</div>
           <div className='outline outline-2 bg-white mb-2' onClick={themeClick}>Mint</div>
           <div className='outline outline-2 bg-white mb-2' onClick={themeClick}>Autumn</div>
           <div className='outline outline-2 bg-white mb-2' onClick={themeClick}>Lennon Mode</div>
