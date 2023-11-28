@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 export default function AppLayout(props) {
     return (
-        <div className="flex w-full h-full">
+        <div className="flex overflow-hidden">
             <Sidebar/>
             <Outlet/>
             <ThemeButton/>

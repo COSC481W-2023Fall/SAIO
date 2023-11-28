@@ -38,6 +38,6 @@ function toggleSidebar(event) {
         sidebar.style.transform = "";
         toggle.style.transform = "";
         main.style.left = "5em";
-        main.style.width = "calc(100% - 75px)";
+        main.style.width = "calc(100% - 5em)";
     }
 }
