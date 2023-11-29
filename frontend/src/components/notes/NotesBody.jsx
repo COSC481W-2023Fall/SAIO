@@ -24,14 +24,18 @@ export default function NotesBody(props) {
     };
 
     return (
-        <div className="w-full bg-gray-600">
-            <EditorButton name="B" onChange={onBold}/>
-            <EditorButton name="I" onChange={onItalic}/>
-            <Editor
-                editorState={props.editorState}
-                onChange={props.setEditorState}
-                onTab={handleTab}
-            />
+        <div className="oppositeShadeColor w-full">
+            <div className="secondaryBackground flex">
+                <EditorButton name="B" onChange={onBold}/>
+                <EditorButton name="I" onChange={onItalic}/>
+            </div>
+            <div className="fourthBackground theme-border-radius p-2">
+                <Editor
+                    editorState={props.editorState}
+                    onChange={props.setEditorState}
+                    onTab={handleTab}
+                />
+            </div>
         </div>
     )
 }

@@ -18,7 +18,7 @@ export default function NewNoteButton(props) {
     };
 
     return (
-        <button onClick={CreateNewNote}>
+        <button className="tertiaryBackground oppositeShadeColor w-full h-8 grid place-content-center" onClick={CreateNewNote}>
             +
         </button>
     )

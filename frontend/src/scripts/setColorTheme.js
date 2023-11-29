@@ -1,7 +1,36 @@
-export default function setSiteColorTheme(num) {
-    switch (num) {
-        // LIGHT THEME
-        case 1:
+export default function setSiteColorTheme(theme) {
+    if (!theme) return;
+    
+    /* DEFINE THEMES HERE! */
+
+    switch (theme.toLowerCase()) {
+        case "standard light":
+            document.documentElement.style.setProperty('--PrimaryColor', '#FFFFFF')
+            document.documentElement.style.setProperty('--SecondaryColor', '#DDDDDD')
+            document.documentElement.style.setProperty('--TertiaryColor', '#BBBBBB')
+            document.documentElement.style.setProperty('--FourthColor', '#BBBBBB')
+            document.documentElement.style.setProperty('--FifthColor', '#BBBBBB')
+            document.documentElement.style.setProperty('--SixthColor', '#FFFFFF')
+            document.documentElement.style.setProperty('--SameShadeColor', '#ffffff')
+            document.documentElement.style.setProperty('--OppositeShadeColor', '#000000')
+            document.documentElement.style.setProperty('--FontFamily', 'Lexend, sans-serif')
+            document.documentElement.style.setProperty('--BoxShadow', '3px -0px 10px 1px gray')
+            document.documentElement.style.setProperty('--BorderRadius', '12px')
+            break;
+        case "standard dark":
+            document.documentElement.style.setProperty('--PrimaryColor', '#212329')
+            document.documentElement.style.setProperty('--SecondaryColor', '#2b2a2e')
+            document.documentElement.style.setProperty('--TertiaryColor', '#4d4949')
+            document.documentElement.style.setProperty('--FourthColor', '#313138')
+            document.documentElement.style.setProperty('--FifthColor', '#706c6c')
+            document.documentElement.style.setProperty('--SixthColor', '#bb86fc')
+            document.documentElement.style.setProperty('--SameShadeColor', '#121212')
+            document.documentElement.style.setProperty('--OppositeShadeColor', '#dddded')
+            document.documentElement.style.setProperty('--FontFamily', 'Lexend, sans-serif')
+            document.documentElement.style.setProperty('--BoxShadow', '5px 9px 10px 1px black')
+            document.documentElement.style.setProperty('--BorderRadius', '12px')
+            break;
+        case "mint":
             document.documentElement.style.setProperty('--PrimaryColor', '#BAF3DB')
             document.documentElement.style.setProperty('--SecondaryColor', '#7EE2B8')
             document.documentElement.style.setProperty('--TertiaryColor', '#1C3329')
@@ -11,23 +40,22 @@ export default function setSiteColorTheme(num) {
             document.documentElement.style.setProperty('--SameShadeColor', '#ffffff')
             document.documentElement.style.setProperty('--OppositeShadeColor', '#000000')
             document.documentElement.style.setProperty('--FontFamily', 'Lexend, sans-serif')
+            document.documentElement.style.setProperty('--BoxShadow', '3px -0px 10px 1px gray')
+            document.documentElement.style.setProperty('--BorderRadius', '12px')
             break;
-
-        // DARK THEME
-        case 2:
-            document.documentElement.style.setProperty('--PrimaryColor', '#1c1e30')
-            document.documentElement.style.setProperty('--SecondaryColor', '#303459')
-            document.documentElement.style.setProperty('--TertiaryColor', '#ff0266')
-            document.documentElement.style.setProperty('--FourthColor', '#313138')
-            document.documentElement.style.setProperty('--FifthColor', '#ff0266')
-            document.documentElement.style.setProperty('--SixthColor', '#bb86fc')
-            document.documentElement.style.setProperty('--SameShadeColor', '#121212')
-            document.documentElement.style.setProperty('--OppositeShadeColor', '#dddded')
-            document.documentElement.style.setProperty('--FontFamily', 'Lexend, sans-serif')
+        case "autumn":
+            document.documentElement.style.setProperty('--PrimaryColor', '#fff2e6')
+            document.documentElement.style.setProperty('--SecondaryColor', '#ffb380')
+            document.documentElement.style.setProperty('--TertiaryColor', '#994d00')
+            document.documentElement.style.setProperty('--FourthColor', '#ffffff')
+            document.documentElement.style.setProperty('--FifthColor', '#336633')
+            document.documentElement.style.setProperty('--SixthColor', '#1e3504')
+            document.documentElement.style.setProperty('--SameShadeColor', '#fff2e6')
+            document.documentElement.style.setProperty('--OppositeShadeColor', '#000000')
+            document.documentElement.style.setProperty('--BoxShadow', '3px -0px 10px 1px gray')
+            document.documentElement.style.setProperty('--BorderRadius', '12px')
             break;
-
-        // DEREN THEME
-        case 3:
+        case "deren":
             document.documentElement.style.setProperty('--PrimaryColor', '#091833')
             document.documentElement.style.setProperty('--SecondaryColor', '#133E7C')
             document.documentElement.style.setProperty('--TertiaryColor', '#EA00D9')
