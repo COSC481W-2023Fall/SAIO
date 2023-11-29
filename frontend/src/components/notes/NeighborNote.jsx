@@ -19,7 +19,7 @@ export default function NeighborNote(props) {
     }, []);
 
     return (
-        <div className="flex justify-center rounded-md bg-blue-500 w-44 h-10 py-2 px-1 m-1">
+        <div className="fifthBackground flex flex-col justify-center rounded-md w-fill h-10 py-2 px-1 m-1">
             <p className="block w-full overflow-hidden whitespace-nowrap text-ellipsis">
                 <Link to={`/app/notes/${props.noteId}`}>
                     {neighborTitle}
