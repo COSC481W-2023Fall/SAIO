@@ -146,23 +146,26 @@ const ThemeButton = () => {
   }
 
   return (
-    <div className='absolute bottom-1 right-1'>
-      {buttonOpen
-      ?
-        <div className='right-0'>
-          <div className='outline outline-2 bg-white mb-2' onClick={turnOnLightMode}>Light Mode</div>
-          <div className='outline outline-2 bg-white mb-2' onClick={turnOnDarkMode}>Dark Mode</div>
-          <div className='outline outline-2 bg-white mb-2' onClick={turnOnDerenMode}>Deren Mode</div>
-          <div className='outline outline-2 bg-white mb-2' onClick={turnOnSamMode}>Sam Mode</div>
-          <div className='outline outline-2 bg-white mb-2' onClick={turnOnLennonMode}>Lennon Mode</div>
-          <div className='outline outline-2 bg-white mb-2' onClick={turnOnReneMode}>Rene Mode</div>
-          <div className='outline outline-2 bg-white mb-2' onClick={turnOnBlaineMode}>Blaine Mode</div>
-        </div>
-      :
-        <div></div>
-      }
-      
-      <IoIosColorFill color="oppositeShadeColor" className='h-10 w-10 oppositeShadeColor' onClick={handleThemeButtonOpen} />
+    <div>
+      <div className='absolute top-1 right-2'>
+        <IoIosColorFill color="oppositeShadeColor" className='h-10 w-10 oppositeShadeColor' onClick={handleThemeButtonOpen} />
+      </div>
+      <div className='absolute top-9 mt-5 right-2'>
+        {buttonOpen
+        ?
+          <div className='right-0'>
+            <div className='outline outline-2 bg-white mb-2' onClick={turnOnLightMode}>Light Mode</div>
+            <div className='outline outline-2 bg-white mb-2' onClick={turnOnDarkMode}>Dark Mode</div>
+            <div className='outline outline-2 bg-white mb-2' onClick={turnOnDerenMode}>Deren Mode</div>
+            <div className='outline outline-2 bg-white mb-2' onClick={turnOnSamMode}>Sam Mode</div>
+            <div className='outline outline-2 bg-white mb-2' onClick={turnOnLennonMode}>Lennon Mode</div>
+            <div className='outline outline-2 bg-white mb-2' onClick={turnOnReneMode}>Rene Mode</div>
+            <div className='outline outline-2 bg-white mb-2' onClick={turnOnBlaineMode}>Blaine Mode</div>
+          </div>
+        :
+          <div></div>
+        }
+      </div>
     </div>
   )
 }

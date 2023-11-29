@@ -182,6 +182,15 @@ export default function CalendarApp() {
     return (
         <main id="main" className="relative flex flex-row w-full primaryBackground">
             <div className='flex flex-col w-full mt-2 mr-5 ml-5' id='main-calendar-section'>
+                <div className='flex flex-row mb-3'>
+                    <div className='text-2xl oppositeShadeColor'>
+                        SAIO - Calendar
+                    </div>
+                    <div className='ml-3 mr-5 mt-1 tertiaryColor'>
+                        An App for entering and saving all of your appointments
+                    </div>
+                    <div className='mr-5'></div>
+                </div>
                 <div className='flex flex-col text-center items-center w-full mb-5'>
                     {formOpen ?
                         <div className='flex flex-col w-full items-center'>
@@ -193,11 +202,14 @@ export default function CalendarApp() {
                                     <span className='sameShadeColor'>Edit Events</span>
                                 </button>
                             </div>
+                            <div className='sixthColor mt-3 mb-2'>
+                                This is a form for entering new events to the Calendar. Click <span className='tertiaryColor'>&quot;Add Calendar Item&quot;</span> when done.
+                            </div>
                             <div className='flex flex-row w-full items-center'>
                                 <div className='w-1/12'></div>
                                 <div className='flex flex-col w-5/12 mt-2 mb-2'>
                                     <div className='oppositeShadeColor'>Title :</div>
-                                    <input type='text' placeholder='Title' className='form-control h-10 mb-3 outline outline-1' onChange={event => setTitle(event.target.value)} />
+                                    <input type='text' placeholder='Title' required className='form-control h-10 mb-3 outline outline-1' onChange={event => setTitle(event.target.value)} />
                                     <label className='mb-3 oppositeShadeColor'>
                                         All Day? :
                                         <Select options={allDayOptions} onChange={setAllDay} className='fifthColor'/>
@@ -235,11 +247,20 @@ export default function CalendarApp() {
                 <div>
                     {searchOpen ?
                         <div className='flex flex-col w-full items-center'>
+                            <div className='sixthColor mt-3 mb-2'>
+                                This is a form for searching & editing events in the Calendar. Click <span className='tertiaryColor'>&quot;Add Calendar Item&quot;</span> when done.
+                            </div>
+                            <div className='sixthColor mt-3 mb-2'>
+                                Events are searched by title with the <span className='tertiaryColor'>&quot;Search for Event&quot;</span> button, results displayed below.
+                            </div>
+                            <div className='sixthColor mt-3 mb-2'>
+                                Values can be changed in the entry form and updated with the <span className='tertiaryColor'>&quot;Update Calendar Item&quot;</span> button.
+                            </div>
                             <div className='flex flex-row w-9/12 items-center'>
                                 <div className='w-2/12'></div>
                                 <div className='flex flex-col w-4/12'>
                                     <div className='oppositeShadeColor'>Search Title :</div>
-                                    <input type='text' placeholder='Search Title' className='form-control h-10 mb-3 outline outline-1' onChange={event => setQueryTitle(event.target.value)} />
+                                    <input type='text' placeholder='Search Title' required className='form-control h-10 mb-3 outline outline-1' onChange={event => setQueryTitle(event.target.value)} />
                                 </div>
                                 <div className='w-1/12'></div>
                                 <div className='w-3/12'>
@@ -319,9 +340,15 @@ export default function CalendarApp() {
                         style={{ height: 900 }}
                         className='lg:w-9/12 w-full ml-2 mr-1 bg-white outline'
                     />
-                    <div className='flex flex-col secondaryBackground lg:w-3/12 w-full outline ml-2 mr-2' style={{ height: "900px", "overflow-y": "scroll" }}>
+                    <div className='flex flex-col secondaryBackground lg:w-3/12 w-full outline ml-2 mr-2' style={{ height: "900px", "overflowY": "scroll" }}>
                         <div className='flex flex-row w-full secondaryBackground'>
-                            <div className='w-full text-center items-center oppositeShadeColor'>Event List</div>
+                            <div className='w-full text-center items-center sixthColor'>All Items in the Calendar</div>
+                        </div>
+                        <div className='flex flex-row w-full secondaryBackground'>
+                            <div className='w-full text-center items-center sixthColor'>Sorted Alphabetically by Category</div>
+                        </div>
+                        <div className='flex flex-row w-full secondaryBackground'>
+                            <div className='w-full text-center items-center sixthColor'>Show or Hide categories with Checkboxes</div>
                         </div>
                         <div className='flex flex-row w-full secondaryBackground items-center oppositeShadeColor'>
                             <div className='w-1/12'></div>
@@ -375,7 +402,7 @@ export default function CalendarApp() {
                                     ))}
                                 </div>
                             :
-                                <div></div>
+                                <span></span>
                             }
                         </div>
                         <div className='w-full mb-5 mt-5'>
@@ -405,7 +432,7 @@ export default function CalendarApp() {
                                     ))}
                                 </div>
                             :
-                                <div></div>
+                                <span></span>
                             }
                         </div>
                         <div className='w-full mb-5 mt-5'>
@@ -435,7 +462,7 @@ export default function CalendarApp() {
                                     ))}
                                 </div>
                             :
-                                <div></div>
+                                <span></span>
                             }
                         </div>
                         <div className='w-full mb-5 mt-5'>
@@ -465,7 +492,7 @@ export default function CalendarApp() {
                                     ))}
                                 </div>
                             :
-                                <div></div>
+                                <span></span>
                             }
                         </div>
                     </div>
