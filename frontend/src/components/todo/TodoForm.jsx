@@ -5,16 +5,18 @@ import React, { useState, useEffect, useRef } from 'react';
 function TodoForm(props) {
     //Stores the inputed value that was edited
     const [input, setInput] = useState(props.edit ? props.edit.value : '');
+    const [inputDate, setDate] = useState(props.edit ? props.edit.date : '');
 
     const inputRef = useRef(null);
+
     //Focuses on the text input box
-    useEffect(() => {
+    /*useEffect(() => {
         inputRef.current.focus();
-    });
+    });*/
     //handle the change of the entered data
-    const handleChange = e => {
+    /*const handleChange = e => {
         setInput(e.target.value);
-    };
+    };*/
     //handles the submition and stored data of the input
     const handleSubmit = e => {
         e.preventDefault();
@@ -22,11 +24,13 @@ function TodoForm(props) {
         props.onSubmit({
             id: (Math.floor(Math.random() * 1000000)),
             text: input,
+            date: inputDate,
             email: localStorage.getItem('token'),
             isComplete:false
 
         });
         setInput('');
+        setDate('');
         
     };
 
@@ -38,10 +42,18 @@ function TodoForm(props) {
                     <input
                         placeholder='Update your item'
                         value={input}
-                        onChange={handleChange}
+                        onChange={e => setInput(e.target.value)}
                         name='text'
                         ref={inputRef}
                         className='todo-input edit'
+                    />
+                    <input
+                        type='date'
+                        value={inputDate}
+                        onChange={e => setDate(e.target.value)}
+                        name='date'
+                        className='todo-input edit'
+                        ref={inputRef}
                     />
                     <button onClick={handleSubmit} className='todo-button edit'>
                         Update
@@ -53,12 +65,20 @@ function TodoForm(props) {
 
                     <input
                         placeholder='Add a todo'
-                        value={input}
-                        onChange={handleChange}
+                            value={input}
+                            onChange={e => setInput(e.target.value)}
                         name='text'
                         className='todo-input'
                         ref={inputRef}
-                    />
+                        />
+                        <input
+                            type='date'
+                            value={inputDate}
+                            onChange={e => setDate(e.target.value)}
+                            name='date'
+                            className='todo-input'
+                            ref={inputRef}
+                        />
                     <button onClick={handleSubmit} className='todo-button'>
                         Add todo
                     </button>

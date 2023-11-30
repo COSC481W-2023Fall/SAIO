@@ -28,7 +28,7 @@ function TodoList() {
             return;
         }
         console.log(todo.id)
-        axios.post(`${config.apiUrl}/todo`, { id: todo.id, text: todo.text, email: todo.email, isComplete: todo.isComplete })
+        axios.post(`${config.apiUrl}/todo`, { id: todo.id, text: todo.text, date: todo.date, email: todo.email, isComplete: todo.isComplete })
             .then(res => console.log(res))
             .then(setTimeout(function () { window.location.reload() }, 500))
             .catch((err) => console.log(err));
@@ -53,7 +53,8 @@ function TodoList() {
                 console.log(newValue.isComplete)
                 todo.isComplete = newValue.isComplete
                 todo.text = newValue.text
-                axios.put(`${config.apiUrl}/todo/${id}`, { text: newValue.text, isComplete: newValue.isComplete })
+                todo.date = newValue.date
+                axios.put(`${config.apiUrl}/todo/${id}`, { text: newValue.text, date: newValue.date, isComplete: newValue.isComplete })
                     .then(res => console.log(res))
                     //.then(setTimeout(function () { window.location.reload() }, 500))
                     .catch((err) => console.log(err));
@@ -71,7 +72,7 @@ function TodoList() {
             if (todo.id === id && todo.isComplete === false) {
                 
                 todo.isComplete = true
-                axios.put(`${config.apiUrl}/todo/${id}`, {  text: todo.text, isComplete: true })
+                axios.put(`${config.apiUrl}/todo/${id}`, { text: todo.text, date: todo.date, isComplete: true })
                     .then(res => console.log(res))
                     // .then(setTimeout(function () { window.location.reload() }, 500))
                     .catch((err) => console.log(err));
@@ -81,7 +82,7 @@ function TodoList() {
             else if (todo.id === id && todo.isComplete === true)
             {
                 todo.isComplete = false
-                axios.put(`${config.apiUrl}/todo/${id}`, { text: todo.text, isComplete: false })
+                axios.put(`${config.apiUrl}/todo/${id}`, { text: todo.text, date: todo.date, isComplete: false })
                     .then(res => console.log(res))
                     // .then(setTimeout(function () { window.location.reload() }, 500))
                     .catch((err) => console.log(err));
