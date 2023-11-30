@@ -18,13 +18,21 @@ export default function Home() {
                         <h2 className="pb-2">Update Your Info</h2>
                         <button className="sameShadeColor grid place-content-center h-8">Update</button>
                     </div>
-                    <form action="submit" className="flex flex-col">
-                        <label htmlFor="fname">First Name</label>
-                        <input id="fname" type="text" className="sameShadeColor"/>
-                        <label htmlFor="lname">Last Name</label>
-                        <input id="lname" type="text" className="sameShadeColor"/>
-                        <label htmlFor="email">Email Address</label>
-                        <input id="email" type="text" className="sameShadeColor"/>
+                    <form action="submit" className="grid grid-flow-col justify-stretch">
+                        <div className="flex flex-col pr-6">
+                            <label htmlFor="fname">New First Name</label>
+                            <input id="fname" type="text" className="sameShadeColor"/>
+                            <label htmlFor="lname">New Last Name</label>
+                            <input id="lname" type="text" className="sameShadeColor"/>
+                            <label htmlFor="email">New Email Address</label>
+                            <input id="email" type="text" className="sameShadeColor"/>
+                        </div>
+                        <div className="flex flex-col">
+                            <label htmlFor="password">New Password</label>
+                            <input id="password" type="text" className="sameShadeColor"/>
+                            <label htmlFor="confirm-password">Confirm Password</label>
+                            <input id="confirm-password" type="text" className="sameShadeColor"/>
+                        </div>
                     </form>
                 </div>
 
