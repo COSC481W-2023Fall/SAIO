@@ -16,7 +16,7 @@ export default function Home() {
                 <div className="tertiaryBackground theme-shadow theme-border-radius mt-10 p-6 text-left">
                     <div className="flex justify-between items-center">
                         <h2 className="pb-2">Update Your Info</h2>
-                        <button className="sameShadeColor grid place-content-center h-8">Update</button>
+                        <button className="sameShadeColor oppositeShadeBackground grid place-content-center h-8">Update</button>
                     </div>
                     <form action="submit" className="grid grid-flow-col justify-stretch">
                         <div className="flex flex-col pr-6">

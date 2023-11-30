@@ -10,7 +10,7 @@ export default function setSiteColorTheme(theme) {
             document.documentElement.style.setProperty('--TertiaryColor', '#BBBBBB')
             document.documentElement.style.setProperty('--FourthColor', '#BBBBBB')
             document.documentElement.style.setProperty('--FifthColor', '#BBBBBB')
-            document.documentElement.style.setProperty('--SixthColor', '#FFFFFF')
+            document.documentElement.style.setProperty('--SixthColor', '#f5763b')
             document.documentElement.style.setProperty('--SameShadeColor', '#ffffff')
             document.documentElement.style.setProperty('--OppositeShadeColor', '#000000')
             document.documentElement.style.setProperty('--FontFamily', 'Lexend, sans-serif')
@@ -33,10 +33,10 @@ export default function setSiteColorTheme(theme) {
         case "mint":
             document.documentElement.style.setProperty('--PrimaryColor', '#BAF3DB')
             document.documentElement.style.setProperty('--SecondaryColor', '#7EE2B8')
-            document.documentElement.style.setProperty('--TertiaryColor', '#1C3329')
+            document.documentElement.style.setProperty('--TertiaryColor', '#10ad76')
             document.documentElement.style.setProperty('--FourthColor', '#DCFFF1')
             document.documentElement.style.setProperty('--FifthColor', '#2ABB7F')
-            document.documentElement.style.setProperty('--SixthColor', '#1F845A')
+            document.documentElement.style.setProperty('--SixthColor', '#0d6f70')
             document.documentElement.style.setProperty('--SameShadeColor', '#ffffff')
             document.documentElement.style.setProperty('--OppositeShadeColor', '#000000')
             document.documentElement.style.setProperty('--FontFamily', 'Lexend, sans-serif')
@@ -46,13 +46,13 @@ export default function setSiteColorTheme(theme) {
         case "autumn":
             document.documentElement.style.setProperty('--PrimaryColor', '#fff2e6')
             document.documentElement.style.setProperty('--SecondaryColor', '#ffb380')
-            document.documentElement.style.setProperty('--TertiaryColor', '#994d00')
+            document.documentElement.style.setProperty('--TertiaryColor', '#de5a1d')
             document.documentElement.style.setProperty('--FourthColor', '#ffffff')
-            document.documentElement.style.setProperty('--FifthColor', '#336633')
+            document.documentElement.style.setProperty('--FifthColor', '#f5e0a4')
             document.documentElement.style.setProperty('--SixthColor', '#1e3504')
             document.documentElement.style.setProperty('--SameShadeColor', '#fff2e6')
             document.documentElement.style.setProperty('--OppositeShadeColor', '#000000')
-            document.documentElement.style.setProperty('--BoxShadow', '3px -0px 10px 1px gray')
+            document.documentElement.style.setProperty('--BoxShadow', '3px -0px 10px 1px #594304')
             document.documentElement.style.setProperty('--BorderRadius', '12px')
             break;
         case "deren":
