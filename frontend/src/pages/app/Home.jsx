@@ -37,7 +37,7 @@ export default function Home() {
                 </div>
 
                 <div className="flex justify-end text-right">
-                    <div className="tertiaryBackground theme-shadow theme-border-radius w-3/5 flex items-center justify-evenly p-3 mt-3">
+                    <div className="tertiaryBackground theme-shadow theme-border-radius w-3/5 flex items-center justify-evenly p-3 mt-6">
                         <p className="w-1/2">Warning: Once your account is deleted, it cannot be recovered.</p>
                         <button className="oppositeShadeColor bg-red-500 h-8 grid place-content-center">Delete Account</button>
                 </div>
