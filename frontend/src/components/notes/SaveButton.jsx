@@ -3,6 +3,7 @@
 export default function SaveButton(props) {
     const onClick = (event) => {
         props.onSave(props.saveData);
+        
     };
 
     return (

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from src.models.calendar_model import CalendarItem
-
+from src.paths.login import get_current_user
 # Create Router
 router = APIRouter()
 
@@ -17,7 +17,9 @@ from src.dbfuncs.calendar_db_funks import (
 # Create Calendar Item
 @router.post("/app/calendar", tags=["calendar"], response_model=CalendarItem)
 async def post_calendar_item(calendar_item:CalendarItem):
-    response = await create_calendar_item(calendar_item.dict())
+    calendar_item = calendar_item.dict()
+    calendar_item['email'] = await get_current_user(calendar_item['email'])
+    response = await create_calendar_item(calendar_item)
     if response:
         return response
     raise HTTPException(400, "Something went wrong, bad request") 
@@ -32,10 +34,11 @@ async def get_calendar_item_by_id(title):
     raise HTTPException(404, f"There is no Calendar Item with this title: {title}")
 
 
-# Read All Calendar Items
-@router.get("/app/calendar", tags=["calendar"])
-async def get_calendar_item():
-    response = await read_all_calendar_items()
+# Read All Calendar Items for a user 
+@router.get("/app/calendar{email}", tags=["calendar"])
+async def get_calendar_item(email):
+    email = await get_current_user(email)
+    response = await read_all_calendar_items(email)
     return response
 
 
