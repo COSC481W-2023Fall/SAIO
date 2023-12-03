@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import config from '../../config';
-// import '../../style/Flashcards.css';
 import {Link} from "react-router-dom";
 
 const FlashcardManagement = () => {
@@ -136,13 +135,15 @@ const FlashcardManagement = () => {
 
   return (
     <div className="container">
-      <Link to="/app/flashcards"> Study Flashcards </Link>
+      <Link to="/app/flashcards" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Study Flashcards
+      </Link>
   
-      <div className="form-container">
+      <div className="form-container mt-4">
         <form onSubmit={handleCategorySubmit} className="mb-4">
           <label className="block">New Category:</label>
           <input type="text" ref={categoryEl} required className="border p-2 w-full" />
-          <button type="submit" className="bg-blue-500 text-white p-2 mt-2">Add Category</button>
+          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Category</button>
         </form>
   
         <form onSubmit={handleFlashcardSubmit} className="mb-4">
@@ -165,7 +166,7 @@ const FlashcardManagement = () => {
           <label className="block">Options (comma-separated):</label>
           <input type="text" ref={flashcardOptionsEl} className="border p-2 w-full" />
   
-          <button type="submit" className="bg-blue-500 text-white p-2 mt-2">Generate Flashcards</button>
+          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Generate Flashcards</button>
         </form>
       </div>
   
