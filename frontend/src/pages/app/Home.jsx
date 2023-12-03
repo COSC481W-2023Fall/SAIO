@@ -8,6 +8,12 @@ export default function Home() {
     const [dataList, setDataList] = useState([])
     const [error, setError] = useState('');
 
+
+    const deleteUser = () =>{
+        localStorage.remove('token');
+        localStorage.remove('authenticated');x
+        axios.delete(`${config.apiUrl}/edit/${localStorage.getItem('token')}`)
+    }
     const [formData, setFormData] = useState({
         email: localStorage.getItem('token'),
         newName: '', 
@@ -98,7 +104,7 @@ export default function Home() {
                 <div className="flex justify-end text-right">
                     <div className="tertiaryBackground theme-shadow theme-border-radius w-3/5 flex items-center justify-evenly p-3 mt-6">
                         <p className="w-1/2">Warning: Once your account is deleted, it cannot be recovered.</p>
-                        <button className="oppositeShadeColor bg-red-500 h-8 grid place-content-center">Delete Account</button>
+                        <button className="oppositeShadeColor bg-red-500 h-8 grid place-content-center" onClick = {deleteUser}>Delete Account</button>
                 </div>
                 </div>
             </div>
