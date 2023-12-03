@@ -50,7 +50,7 @@ export default function Login(props) {
         
       } catch (error) {
         console.error(error);
-        SpeechSynthesisErrorEvent("Invalid Information")
+        //SpeechSynthesisErrorEvent("Invalid Information")
         // Handle the error here, e.g. display an error message to the user
       }
       if(user_exists){

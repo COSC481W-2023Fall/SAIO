@@ -23,10 +23,8 @@ export default function Notes(props) {
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
     useEffect(() => {
-        axios.get(`${config.apiUrl}/app/notes/${noteId}`, {
-            headers: {
-                "x-email": "s@s.com"
-            }
+        axios.get(`${config.apiUrl}/app/notes/${noteId}?x_email=${localStorage.getItem('token')}`, {
+            
         }).then(response => {
             setTitle(response.data.title);
             setAdjacent(response.data.adjacent);
@@ -50,7 +48,7 @@ export default function Notes(props) {
                         <SaveButton
                             onSave={saveNote}
                             saveData={{
-                                email: "s@s.com",
+                                email: localStorage.getItem('token'),
                                 noteId: noteId,
                                 title:  title,
                                 adjacent: adjacent, // can't yet update
