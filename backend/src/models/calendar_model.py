@@ -6,3 +6,4 @@ class CalendarItem(BaseModel):
     end: str
     allDay: bool
     resource: str
+    email: str

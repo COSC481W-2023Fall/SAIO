@@ -73,5 +73,5 @@ async def login(user:UserLogin):
         raise HTTPException(status_code=400, detail="Incorrect username or password")
     if not verify_password(user["password"], response['password']):
         raise HTTPException(status_code=400, detail="Incorrect username or password")
-    token = create_access_token(user, timedelta(minutes=45))
+    token = create_access_token(user, timedelta(minutes=60))
     return   token

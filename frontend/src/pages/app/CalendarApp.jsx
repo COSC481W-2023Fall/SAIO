@@ -32,7 +32,8 @@ export default function CalendarApp() {
 
     // UseEffect for getting database calendar events and setting to dataList
     useEffect(() => {
-        axios.get(`${config.apiUrl}/app/calendar`)
+        
+        axios.get(`${config.apiUrl}/app/calendar${localStorage.getItem('token')}`)
         .then(res => {
             setDataList(res.data)
         })
@@ -91,7 +92,8 @@ export default function CalendarApp() {
             'start': start,
             'end': end,
             'allDay': allDay.value,
-            'resource': resource.value
+            'resource': resource.value,
+            'email': localStorage.getItem('token')
         })
         .then(res => console.log(res))
         .then(setTimeout(function(){ window.location.reload() }, 500));
@@ -124,7 +126,8 @@ export default function CalendarApp() {
             start: editStart,
             end: editEnd,
             allDay: editAllDay.value,
-            resource: editResource.value
+            resource: editResource.value,
+            email: localStorage.getItem('token')
         })
         .then(res => console.log(res.data))
         .then(setTimeout(function(){ window.location.reload() }, 500))

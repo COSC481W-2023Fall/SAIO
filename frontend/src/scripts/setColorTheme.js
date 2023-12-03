@@ -1,5 +1,5 @@
 export default function setSiteColorTheme(theme) {
-    if (!theme) return;
+    if (!theme) theme = "standard light";
     
     /* DEFINE THEMES HERE! */
 

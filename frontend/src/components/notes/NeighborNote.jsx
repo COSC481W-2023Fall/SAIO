@@ -7,9 +7,9 @@ export default function NeighborNote(props) {
     const [neighborTitle, setNeighborTitle] = useState(null);
     useEffect(() => {
         /* Fetch this Note's Title when the ID is supplied */
-        axios.get(`${config.apiUrl}/app/notes/${props.noteId}`, {
+        axios.get(`${config.apiUrl}/app/notes/${props.noteId}?x_email=${localStorage.getItem('token')}`, {
             headers: {
-                "x-email": "s@s.com"
+                "x_email": localStorage.getItem('token')
             }
         }).then(response => {
             setNeighborTitle(response.data.title);
