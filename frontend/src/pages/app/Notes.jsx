@@ -15,10 +15,9 @@ import { useParams } from 'react-router-dom';
 import ThemeButton from '../../components/ThemeButton';
 
 export default function Notes(props) {
-    let { noteIdParam } = useParams();
-    noteIdParam = noteIdParam == null? "": noteIdParam;
+    let { noteId } = useParams();
+    noteId = noteId == null? "": noteId;
 
-    const [noteId, setNoteId] = useState(noteIdParam);
     const [title, setTitle] = useState("Loading...");
     const [adjacent, setAdjacent] = useState([]);
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -27,7 +26,6 @@ export default function Notes(props) {
         axios.get(`${config.apiUrl}/app/notes/${noteId}?x_email=${localStorage.getItem('token')}`, {
             
         }).then(response => {
-            setNoteId(response.data.note_id);
             setTitle(response.data.title);
             setAdjacent(response.data.adjacent);
             if (response.data.raw_draft_content_state != null) {
