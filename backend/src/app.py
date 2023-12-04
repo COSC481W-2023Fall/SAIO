@@ -1,12 +1,12 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
+from src.paths import edit
 from src.paths import (
     index,
     login,
     test,
     signup,
     student_routes,
-    edit,
     todo
 )
 from src.paths.app import (

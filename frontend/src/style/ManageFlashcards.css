@@ -1,0 +1,43 @@
+.flex {
+    display: flex;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .flex-row {
+    flex-direction: row;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .form-container {
+    margin-bottom: 20px;
+  }
+  
+  .flashcards-container,
+  .categories-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .flashcard-item,
+  .category-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .flashcards-container,
+    .categories-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  

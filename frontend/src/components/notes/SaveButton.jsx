@@ -3,11 +3,12 @@
 export default function SaveButton(props) {
     const onClick = (event) => {
         props.onSave(props.saveData);
+        
     };
 
     return (
         <button
-            className="bg-green-200"
+            className="tertiaryBackground oppositeShadeColor theme-border-radius w-24 h-full"
             onClick={onClick}
         >
             Save

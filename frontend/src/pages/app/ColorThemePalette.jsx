@@ -2,23 +2,23 @@ import ThemeButton from '../../components/ThemeButton';
 
 const ColorThemePalette = () => {
   return (
-    <main id="main" className="relative flex bg-white">
-      <div className="flex flex-col mt-5 ml-5 bg-white">
+    <main id="main" className="relative flex primaryBackground">
+      <div className="flex flex-col mt-5 ml-5">
         <div className="flex flex-row w-full mt-5">
-          <div className="text-center w-full mb-2">DESCRIPTIONS:</div>
+          <div className="text-center w-full mb-2 oppositeShadeColor">DESCRIPTIONS:</div>
         </div>
         <div className="flex flex-row mb-10">
-          <div className="mr-5 outline outline-1 text-center" style={{height: "180px", width: "120px", fontSize: "14px"}}>Primary Color. Takes up most of color space. Other colors picked based on this</div>
-          <div className="mr-5 outline outline-1 text-center" style={{height: "180px", width: "120px", fontSize: "14px"}}>Secondary Color. Compliments Primary. Similar Hue to Primary.</div>
-          <div className="mr-5 outline outline-1 text-center" style={{height: "180px", width: "120px", fontSize: "14px"}}>Tertiary Color. Contrasts Primary. Used for text, borders, splitting divs visually</div>
-          <div className="mr-5 outline outline-1 text-center" style={{height: "180px", width: "120px", fontSize: "14px"}}>Fourth. Another complimenting color like Secondary</div>
-          <div className="mr-5 outline outline-1 text-center" style={{height: "180px", width: "120px", fontSize: "14px"}}>Fifth. Another contrasting color like tertiary</div>
-          <div className="mr-5 outline outline-1 text-center" style={{height: "180px", width: "120px", fontSize: "14px"}}>Sixth. Another contrasting color like tertiary</div>
-          <div className="mr-5 outline outline-1 text-center" style={{height: "180px", width: "120px", fontSize: "14px"}}>Same Brightness. Same Tone as Primary</div>
-          <div className="mr-5 outline outline-1 text-center" style={{height: "180px", width: "120px", fontSize: "14px"}}>Opposite Brightness. Opposite Tone as Primary</div>
+          <div className="mr-5 outline outline-1 text-center bg-white" style={{height: "180px", width: "120px", fontSize: "14px"}}>Primary Color. Takes up most of color space. Other colors picked based on this</div>
+          <div className="mr-5 outline outline-1 text-center bg-white" style={{height: "180px", width: "120px", fontSize: "14px"}}>Secondary Color. Compliments Primary. Similar Hue to Primary.</div>
+          <div className="mr-5 outline outline-1 text-center bg-white" style={{height: "180px", width: "120px", fontSize: "14px"}}>Tertiary Color. Contrasts Primary. Used for text, borders, splitting divs visually</div>
+          <div className="mr-5 outline outline-1 text-center bg-white" style={{height: "180px", width: "120px", fontSize: "14px"}}>Fourth. Another complimenting color like Secondary</div>
+          <div className="mr-5 outline outline-1 text-center bg-white" style={{height: "180px", width: "120px", fontSize: "14px"}}>Fifth. Another contrasting color like tertiary</div>
+          <div className="mr-5 outline outline-1 text-center bg-white" style={{height: "180px", width: "120px", fontSize: "14px"}}>Sixth. Another contrasting color like tertiary</div>
+          <div className="mr-5 outline outline-1 text-center bg-white" style={{height: "180px", width: "120px", fontSize: "14px"}}>Same Brightness. Same Tone as Primary</div>
+          <div className="mr-5 outline outline-1 text-center bg-white" style={{height: "180px", width: "120px", fontSize: "14px"}}>Opposite Brightness. Opposite Tone as Primary</div>
         </div>
         <div className="flex flex-row w-full mt-5">
-          <div className="text-center w-full mb-2">LIGHT THEME:</div>
+          <div className="text-center w-full mb-2 oppositeShadeColor">LIGHT THEME:</div>
         </div>
         <div className="flex flex-row mb-10">
           <div className="mr-5 outline outline-1 text-center" style={{height: "120px", width: "120px", backgroundColor:"#BAF3DB"}}>Primary</div>
@@ -31,7 +31,7 @@ const ColorThemePalette = () => {
           <div className="mr-5 outline outline-1 text-center" style={{height: "120px", width: "120px", backgroundColor:"#000000"}}>Opposite</div>
         </div>
         <div className="flex flex-row w-full mt-5">
-          <div className="text-center w-full mb-2">DARK THEME:</div>
+          <div className="text-center w-full mb-2 oppositeShadeColor">DARK THEME:</div>
         </div>
         <div className="flex flex-row mb-10">
           <div className="mr-5 outline outline-1 text-center" style={{height: "120px", width: "120px", backgroundColor:"#1c1e30"}}>Primary</div>
@@ -44,7 +44,7 @@ const ColorThemePalette = () => {
           <div className="mr-5 outline outline-1 text-center" style={{height: "120px", width: "120px", backgroundColor:"#dddded"}}>Opposite</div>
         </div>
         <div className="flex flex-row w-full mt-5">
-          <div className="text-center w-full mb-2">DEREN THEME:</div>
+          <div className="text-center w-full mb-2 oppositeShadeColor">DEREN THEME:</div>
         </div>
         <div className="flex flex-row mb-10">
           <div className="mr-5 outline outline-1 text-center" style={{height: "120px", width: "120px", backgroundColor:"#091833"}}>Primary</div>
@@ -57,7 +57,7 @@ const ColorThemePalette = () => {
           <div className="mr-5 outline outline-1 text-center" style={{height: "120px", width: "120px", backgroundColor:"#FFFFFF"}}>Opposite</div>
         </div>
         <div className="flex flex-row w-full mt-5">
-          <div className="text-center w-full mb-2">SAM THEME:</div>
+          <div className="text-center w-full mb-2 oppositeShadeColor">SAM THEME:</div>
         </div>
         <div className="flex flex-row mb-10">
           <div className="mr-5 outline outline-1 text-center" style={{height: "120px", width: "120px", backgroundColor:"#ff0000"}}>Primary</div>
@@ -70,7 +70,7 @@ const ColorThemePalette = () => {
           <div className="mr-5 outline outline-1 text-center" style={{height: "120px", width: "120px", backgroundColor:"#ffffff"}}>Opposite</div>
         </div>
         <div className="flex flex-row w-full mt-5">
-          <div className="text-center w-full mb-2">LENNON THEME:</div>
+          <div className="text-center w-full mb-2 oppositeShadeColor">LENNON THEME:</div>
         </div>
         <div className="flex flex-row mb-10">
           <div className="mr-5 outline outline-1 text-center" style={{height: "120px", width: "120px", backgroundColor:"#f8ed62"}}>Primary</div>
@@ -83,7 +83,7 @@ const ColorThemePalette = () => {
           <div className="mr-5 outline outline-1 text-center" style={{height: "120px", width: "120px", backgroundColor:"#000000"}}>Opposite</div>
         </div>
         <div className="flex flex-row w-full mt-5">
-          <div className="text-center w-full mb-2">RENE THEME:</div>
+          <div className="text-center w-full mb-2 oppositeShadeColor">RENE THEME:</div>
         </div>
         <div className="flex flex-row mb-10">
           <div className="mr-5 outline outline-1 text-center" style={{height: "120px", width: "120px", backgroundColor:"#004c4c"}}>Primary</div>
@@ -96,7 +96,7 @@ const ColorThemePalette = () => {
           <div className="mr-5 outline outline-1 text-center" style={{height: "120px", width: "120px", backgroundColor:"#ffffff"}}>Opposite</div>
         </div>
         <div className="flex flex-row w-full mt-5">
-          <div className="text-center w-full mb-2">BLAINE THEME:</div>
+          <div className="text-center w-full mb-2 oppositeShadeColor">BLAINE THEME:</div>
         </div>
         <div className="flex flex-row mb-10">
           <div className="mr-5 outline outline-1 text-center" style={{height: "120px", width: "120px", backgroundColor:"#fff2e6"}}>Primary</div>

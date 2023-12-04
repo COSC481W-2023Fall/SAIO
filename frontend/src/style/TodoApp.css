@@ -5,16 +5,8 @@
 	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 } */
 
-:root {
-	--PrimaryColor: "#000000";
-	--SecondaryColor: "#000000";
-	--TertiaryColor: "#000000";
-	--FourthColor: "#000000";
-	--FifthColor: "#000000";
-	--SixthColor: "#000000";
-	--SameShadeColor: "#000000";
-	--OppositeShadeColor: "#000000";
-	--FontFamily: "";
+body {
+	background-color: var(--PrimaryColor);
 }
 
 .todo-app {
