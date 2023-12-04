@@ -105,14 +105,14 @@ export default function setSiteColorTheme(theme) {
 
         // BLAINE THEME
         case 7:
-            document.documentElement.style.setProperty('--PrimaryColor', '#fff2e6')
-            document.documentElement.style.setProperty('--SecondaryColor', '#ffb380')
-            document.documentElement.style.setProperty('--TertiaryColor', '#994d00')
-            document.documentElement.style.setProperty('--FourthColor', '#ffffff')
-            document.documentElement.style.setProperty('--FifthColor', '#336633')
-            document.documentElement.style.setProperty('--SixthColor', '#1e3504')
+            document.documentElement.style.setProperty('--PrimaryColor', '#1a1a1a')
+            document.documentElement.style.setProperty('--SecondaryColor', '#595959')
+            document.documentElement.style.setProperty('--TertiaryColor', 'orange')
+            document.documentElement.style.setProperty('--FourthColor', '#1a1aff')
+            document.documentElement.style.setProperty('--FifthColor', '#ff0000')
+            document.documentElement.style.setProperty('--SixthColor', '#ff6600')
             document.documentElement.style.setProperty('--SameShadeColor', '#fff2e6')
-            document.documentElement.style.setProperty('--OppositeShadeColor', '#000000')
+            document.documentElement.style.setProperty('--OppositeShadeColor', 'black')
             break;
     }
 }

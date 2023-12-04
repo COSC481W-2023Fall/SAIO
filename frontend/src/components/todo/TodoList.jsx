@@ -28,7 +28,7 @@ function TodoList() {
             return;
         }
         console.log(todo.id)
-        axios.post(`${config.apiUrl}/todo`, { id: todo.id, text: todo.text, email: todo.email, isComplete: todo.isComplete })
+        axios.post(`${config.apiUrl}/todo`, { id: todo.id, text: todo.text, date: todo.date, email: todo.email, isComplete: todo.isComplete })
             .then(res => console.log(res))
             .then(setTimeout(function () { window.location.reload() }, 500))
             .catch((err) => console.log(err));
@@ -46,37 +46,52 @@ function TodoList() {
         if (!newValue.text || /^\s*$/.test(newValue.text)) {
             return
         }
-        console.log(id)
-        console.log(newValue.text)
-        console.log(newValue.isComplete)
-        axios.put(`${config.apiUrl}/todo/${id}`, { text: newValue.text,  isComplete: newValue.isComplete })
-            .then(res => console.log(res))
-            .then(setTimeout(function () { window.location.reload() }, 500))
-            .catch((err) => console.log(err));
+        let todosUpdated = todos.map(todo => { 
+            if (todo.id === id) {
+                console.log(id)
+                console.log(newValue.text)
+                console.log(newValue.isComplete)
+                todo.isComplete = newValue.isComplete
+                todo.text = newValue.text
+                todo.date = newValue.date
+                axios.put(`${config.apiUrl}/todo/${id}`, { text: newValue.text, date: newValue.date, isComplete: newValue.isComplete })
+                    .then(res => console.log(res))
+                    //.then(setTimeout(function () { window.location.reload() }, 500))
+                    .catch((err) => console.log(err));
+            }
+            return todo
+
+        })
+        setTodos(todosUpdated)
 
     }
     //Crosses out the task of a competed task
     const completeTodo = id => {
-        todos.map(todo => {
+        let todosUpdated = todos.map(todo => {
             
             if (todo.id === id && todo.isComplete === false) {
-                console.log(todo.id)
-                axios.put(`${config.apiUrl}/todo/${id}`, {  text: todo.text, isComplete: true })
+                
+                todo.isComplete = true
+                axios.put(`${config.apiUrl}/todo/${id}`, { text: todo.text, date: todo.date, isComplete: true })
                     .then(res => console.log(res))
                     // .then(setTimeout(function () { window.location.reload() }, 500))
                     .catch((err) => console.log(err));
-                    return
+                    
             }
-            if (todo.id === id && todo.isComplete === true)
+            
+            else if (todo.id === id && todo.isComplete === true)
             {
-                axios.put(`${config.apiUrl}/todo/${id}`, { text: todo.text, isComplete: false })
+                todo.isComplete = false
+                axios.put(`${config.apiUrl}/todo/${id}`, { text: todo.text, date: todo.date, isComplete: false })
                     .then(res => console.log(res))
                     // .then(setTimeout(function () { window.location.reload() }, 500))
                     .catch((err) => console.log(err));
 
             }
+            return todo
             
         })
+        setTodos(todosUpdated)
         
     }
     //Goes into other componetes
