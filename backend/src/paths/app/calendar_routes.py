@@ -45,7 +45,9 @@ async def get_calendar_item(email):
 # Update Calendar Item
 @router.put("/app/calendar/{title}", tags=["calendar"], response_model=CalendarItem)
 async def put_calendar_item(calendar_item:CalendarItem):
-    response = await update_calendar_item(calendar_item.dict())
+    calendar_item = calendar_item.dict()
+    calendar_item["email"] = await get_current_user(calendar_item["email"])
+    response = await update_calendar_item(calendar_item)
     if response:
         return response
     raise HTTPException(400, "Something went wrong, bad request") 
