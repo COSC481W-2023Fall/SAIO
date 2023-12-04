@@ -36,16 +36,28 @@ const FlashcardManagement = () => {
     }
   }, [selectedCategory, flashcardToDelete, userEmail]);
 
-  const handleCategorySubmit = (e) => {
+  const handleCategorySubmit = async (e) => {
     e.preventDefault();
-    const newCategory = categoryEl.current.value;
-    if (newCategory.trim()) {
-      axios.post(`${config.apiUrl}/categories`, { name: newCategory, user_email: userEmail }).then(() => {
+    const newCategory = categoryEl.current.value.trim().toLowerCase(); 
+  
+    // Check if the category already exists 
+    if (categories.map(category => category.toLowerCase()).includes(newCategory)) {
+      alert('Category with the same name already exists. Please choose a different name.');
+      return;
+    }
+  
+    if (newCategory) {
+      try {
+        await axios.post(`${config.apiUrl}/categories`, { name: newCategory, user_email: userEmail });
+  
         setCategories((prevCategories) => [...prevCategories, newCategory]);
         categoryEl.current.value = '';
-      });
+      } catch (error) {
+        console.error('Error creating category:', error);
+      }
     }
   };
+  
 
   const handleFlashcardSubmit = (e) => {
     e.preventDefault();

@@ -61,15 +61,15 @@ function DisplayFlashcards() {
           </button>
         )}
         <div className="form-group">
-          <div className={`flex space-x-4 mt-4 ${selectedCategory ? 'hidden' : 'block'}`}>
-            {categories.map((category) => (
-              <div
-                key={category}
-                className={`group relative flex flex-col justify-center items-center w-32 h-32 cursor-pointer rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25`}
-                onClick={() => handleCategoryClick(category)}
-              >
-                <p className="text-center">{category}</p>
-              </div>
+        <div className={`flex flex-wrap mt-4 ${selectedCategory ? 'hidden' : 'block'}`}>
+          {categories.map((category) => (
+            <div
+              key={category}
+              className={`group relative flex flex-col justify-center items-center w-32 h-32 cursor-pointer rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25 mb-4 mr-4`}
+              onClick={() => handleCategoryClick(category)}
+            >
+              <p className="text-center">{category}</p>
+            </div>
             ))}
           </div>
         </div>
