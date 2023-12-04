@@ -1,7 +1,7 @@
 
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import PrivateRouteApps from './components/PrivateRouteApps'
 import PrivateRoute from './components/PrivateRoute'
-
 /* Web Pages */
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -41,54 +41,54 @@ function App() {
         </Route>   
         <Route path="app" element={<AppLayout/>}>
         <Route path="flashcards" element={
-          <PrivateRoute>
+          <PrivateRouteApps>
             <DisplayFlashcards/>
-          </PrivateRoute>}>
+          </PrivateRouteApps>}>
         </Route>
         <Route path="flashcards/manage" element={
-          <PrivateRoute>
+          <PrivateRouteApps>
             <FlashcardManagement/>
-          </PrivateRoute>}>
+          </PrivateRouteApps>}>
         </Route>
         <Route path="calendar" element={
-          <PrivateRoute>
+          <PrivateRouteApps>
             <CalendarApp/>
-            </PrivateRoute>}>
+            </PrivateRouteApps>}>
         </Route>
         <Route path="colorthemepalette" element={
-        <PrivateRoute>
+        <PrivateRouteApps>
           <ColorThemePalette />
-          </PrivateRoute>}>
+          </PrivateRouteApps>}>
         </Route>
         <Route path="home" element={
-          <PrivateRoute>
+          <PrivateRouteApps>
             <Home/>
-          </PrivateRoute>}>
+          </PrivateRouteApps>}>
         </Route>
         <Route path="notes" element={
-          <PrivateRoute>
+          <PrivateRouteApps>
             <Notes/>
-          </PrivateRoute>}>
+          </PrivateRouteApps>}>
         </Route>
         <Route path="notes/:noteId" element={
-          <PrivateRoute>
+          <PrivateRouteApps>
             <Notes/>
-          </PrivateRoute>}>
+          </PrivateRouteApps>}>
         </Route>
         <Route path="todo" element={
-          <PrivateRoute>
+          <PrivateRouteApps>
             <Todo/>
-          </PrivateRoute>}>
+          </PrivateRouteApps>}>
         </Route>
         <Route path="Create" element={
-          <PrivateRoute>
+          <PrivateRouteApps>
             <Todo/>
-          </PrivateRoute>}>
+          </PrivateRouteApps>}>
         </Route>
         <Route path="colorthemepalette" element={
-          <PrivateRoute>
+          <PrivateRouteApps>
             <ColorThemePalette />
-          </PrivateRoute>}>
+          </PrivateRouteApps>}>
         </Route>
         </Route>
       </Routes>

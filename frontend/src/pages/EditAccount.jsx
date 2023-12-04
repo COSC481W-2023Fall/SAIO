@@ -54,7 +54,7 @@ export default function Login(props) {
           <h1>Edit Account</h1>
           <form className="login-form" onSubmit={handleSubmit}>
               <label htmlFor="email">email</label>
-              <input className="input" value={formData.email} onChange={handleChange} type="email" placeholder="youremail@gmail.com" id="email" name="email" />
+              <input className="input" value={formData.email} onChange={(e) => handleChange} type="email" placeholder="youremail@gmail.com" id="email" name="email" />
               <label htmlFor="newEmail">New Email</label>
               <input className="input" value={formData.newEmail} onChange={handleChange} type="email" placeholder="youremail@gmail.com" id="newEmail" name="newEmail" />
               <label htmlFor="password">password</label>

@@ -38,6 +38,7 @@ export default function Login(props) {
         if(data1 != null){
           setUserExists(true);
           localStorage.setItem('token', data1);
+          localStorage.setItem('authenticated', true)
         }
         
 
