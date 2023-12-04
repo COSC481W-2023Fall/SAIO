@@ -7,9 +7,9 @@ export default function NeighborNote(props) {
     const [neighborTitle, setNeighborTitle] = useState(null);
     useEffect(() => {
         /* Fetch this Note's Title when the ID is supplied */
-        axios.get(`${config.apiUrl}/app/notes/${props.noteId}`, {
+        axios.get(`${config.apiUrl}/app/notes/${props.noteId}?x_email=${localStorage.getItem('token')}`, {
             headers: {
-                "x-email": "s@s.com"
+                "x_email": localStorage.getItem('token')
             }
         }).then(response => {
             setNeighborTitle(response.data.title);
@@ -19,7 +19,7 @@ export default function NeighborNote(props) {
     }, []);
 
     return (
-        <div className="flex justify-center rounded-md bg-blue-500 w-44 h-10 py-2 px-1 m-1">
+        <div className="fifthBackground flex flex-col justify-center rounded-md w-fill h-10 py-2 px-1 m-1">
             <p className="block w-full overflow-hidden whitespace-nowrap text-ellipsis">
                 <Link to={`/app/notes/${props.noteId}`}>
                     {neighborTitle}

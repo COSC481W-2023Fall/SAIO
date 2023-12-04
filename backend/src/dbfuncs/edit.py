@@ -25,7 +25,23 @@ async def edit_password(email, newPass):
     response= await collection.update_one({"email":email}, {"$set": {'password': newPass}})
     return response.acknowledged
 
+async def edit_name(email, newName):  
+    
+    response= await collection.update_one({"email":email}, {"$set": {'name': newName}})
+    return response.acknowledged
+
+
 async def edit_both(email,newEmail, newPass):  
 
     response= await collection.update_one({"email":email}, {"$set": {'email': newEmail, 'password': newPass}})
     return response.acknowledged
+
+async def user_name(email):
+
+    response = await collection.find_one({"email": email})
+    return response
+
+async def remove_user(email):
+
+    response = await collection.delete_one({"email": email})
+    return response 

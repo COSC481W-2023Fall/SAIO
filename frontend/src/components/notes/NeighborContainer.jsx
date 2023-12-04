@@ -16,7 +16,7 @@ export default function NeighborContainer(props) {
   }, [props.adjacent]);
 
   return (
-    <div className="w-full flex flex-wrap overflow-hidden overflow-x-scroll bg-pink-400">
+    <div className="w-full flex flex-wrap overflow-hidden overflow-x-scroll mt-2">
         {neighbors}
     </div>
   );

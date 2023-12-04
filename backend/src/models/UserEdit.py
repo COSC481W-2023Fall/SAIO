@@ -4,6 +4,6 @@ from pydantic import BaseModel
 class UserEdit(BaseModel):
     
     email: str
-    password: str
+    newName: str
     newEmail: str
     newPass: str 

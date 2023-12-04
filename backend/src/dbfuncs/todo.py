@@ -30,7 +30,7 @@ async def create_todo(todo):
 async def update_todo(id,update):
     await collection.update_one({"id": id},
                                 {"$set": 
-                                 {"text":update.text,"isComplete":update.isComplete}}
+                                 {"text":update.text,"date":update.date,"isComplete":update.isComplete}}
                                 ,upsert=True)
     document = await collection.find_one({"id":id})
     return document

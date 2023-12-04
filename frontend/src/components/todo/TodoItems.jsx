@@ -7,14 +7,16 @@ import axios from 'axios';
 function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
     const [edit, setEdit] = useState({
         id: null,
-        value: ''
+        value: '',
+        date:''
     })
     //Updates the changed item
     const submitUpdate = value => {
-        updateTodo(edit.id, value)
+        updateTodo(edit.id, value,edit.date)
         setEdit({
             id: null,
-            value: ''
+            value: '',
+            date: ''
         }
         )
     }
@@ -28,12 +30,12 @@ function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
     return todos.map((todo, index) => (
         <div className={todo.isComplete ? 'todo-row complete' : 'todo-row'} key={index}>
             <div key={todo.id} onClick={() => completeTodo(todo.id)}>
-                {todo.text}
+                {todo.text} Due: {todo.date}
             </div>
             <div className='icons'>
                 <button onClick={() => removeTodo(todo.id)}
                     className='delete-btn'>Delete</button>
-                <button onClick={() => setEdit({ id: todo.id, value: todo.text })}
+                <button onClick={() => setEdit({ id: todo.id, value: todo.text, date: todo.date })}
                     className='edit-btn'>Edit</button>
             </div>
         </div>

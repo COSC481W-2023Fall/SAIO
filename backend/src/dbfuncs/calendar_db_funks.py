@@ -37,9 +37,9 @@ async def read_one_calendar_item(title):
 
 
 # Read All Calendar items
-async def read_all_calendar_items():
+async def read_all_calendar_items(email):
     calendar_items = []
-    cursor = collection.find({})
+    cursor = collection.find({"email": email})
     async for document in cursor:
         calendar_items.append(CalendarItem(**document))
     return calendar_items
@@ -55,7 +55,8 @@ async def update_calendar_item(item):
                 "start": item['start'],
                 "end": item['end'],
                 "allDay": item['allDay'],
-                "resource": item['resource']
+                "resource": item['resource'],
+                "email": item['email']
             }
         },
         upsert=True
