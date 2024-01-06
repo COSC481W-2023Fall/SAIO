@@ -2,6 +2,8 @@
 
 The only app you need for success in school! With note taking, flashcards, calendar, to-do lists, and more, you can do it all with **SAIO**!
 
+Check it out here: https://saio-frontend-y2z2s.ondigitalocean.app/
+
 ## Setup
 
 ### Languages used
